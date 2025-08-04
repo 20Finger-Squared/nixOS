@@ -11,8 +11,8 @@
 	time.timeZone = "Europe/London";
 
 # Networking - WiFi configuration
-	networking.hostName = "nixos"; # Define your hostname
-		networking.networkmanager.enable = true;
+	networking.hostName = "rhyliePC"; # Define your hostname
+	networking.networkmanager.enable = true;
 	networking.wireless.enable = false; # Disable wpa_supplicant (conflicts with NetworkManager)
 
 # Bluetooth
@@ -49,6 +49,7 @@
 		enable = true;
 		wrapperFeatures.gtk = true;
 	};
+
 	programs.zsh.enable = true;
 	programs.firefox.enable = true;
 	programs.wshowkeys.enable = true;
@@ -66,7 +67,7 @@
 
 # System packages
 	environment.systemPackages = with pkgs; [
-		tree
+			tree
 			tmux
 			git
 			grim
@@ -82,13 +83,13 @@
 			sway
 			wget
 			rofi
-			alacritty
+			kitty
 			networkmanagerapplet
 			obs-studio
 			wshowkeys
 			gruvbox-dark-gtk
 			gruvbox-dark-icons-gtk
-			];
+		];
 
 # Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
