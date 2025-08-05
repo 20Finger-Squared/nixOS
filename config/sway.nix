@@ -1,40 +1,41 @@
-{ config, nix-colors, ... }:
+{ pkgs, lib, config, nix-colors, ... }:
 
 {
-# Git configuration.
     wayland.windowManager.sway = {
         enable = true;
         checkConfig = true;
-
-# Bar config.
-        config.bars.*.colors = {
-# The button for the active workspace.
-            activeWorkspace = {
-                Border = "#${config.colorScheme.palette.base01}";
-                background = "#${config.colorScheme.palette.base02}";
-                text = "#${config.colorScheme.palette.base07}";
+        config = {
+            modifier = "Mod4";
+            input = {
+                "*" = {
+                    xkb_layout = "gb";
+                    xkb_options = "caps:escape";
+                    repeat_delay = "250";
+                    repeat_rate = "5";
+                };
             };
+            keybindings =
+            let
+                modifier = config.wayland.windowManager.sway.config.modifier;
+                left = "h";
+                down = "j";
+                up = "k";
+                right = "l";
+            in {
+                "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+                "${modifier}+Shift+q" = "kill";
+                "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
 
-# Same as inactive
-            focusedWorkspace = {
-                Border = "#${config.colorScheme.palette.base02}";
-                background = "#${config.colorScheme.palette.base03}";
-                text = "#${config.colorScheme.palette.base06}";
-            };
-            inactiveWorkspace = {
-                Border = "#${config.colorScheme.palette.base01}";
-                background = "#${config.colorScheme.palette.base02}";
-                text = "#${config.colorScheme.palette.base07}";
-            };
+                "${modifier}+${left}" = "focus left";
+                "${modifier}+${down}" = "focus down";
+                "${modifier}+${up}" = "focus up";
+                "${modifier}+${right}" = "focus right";
+                "${modifier}+${left}" = "focus left";
+                "${modifier}+${down}" = "focus down";
+                "${modifier}+${up}" = "focus up";
+                "${modifier}+${right}" = "focus right";
 
-            bindingMode = {
-                background = "#${config.colorScheme.palette.base08}";
-                border = "#${config.colorScheme.palette.base08}";
-                text = "#${config.colorScheme.palette.base07}";
             };
-            background = "#${config.colorScheme.palette.base00}";
-
         };
     };
 }
-
