@@ -83,6 +83,7 @@
 			sway
 			wget
 			rofi
+            zoxide
 			kitty
 			networkmanagerapplet
 			obs-studio
