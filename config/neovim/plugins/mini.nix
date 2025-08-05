@@ -1,5 +1,4 @@
 { pkgs }:
-
 {
   plugin = pkgs.vimPlugins.mini-nvim;
   type = "lua";
