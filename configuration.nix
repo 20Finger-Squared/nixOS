@@ -90,6 +90,10 @@
 			wshowkeys
 			gruvbox-dark-gtk
 			gruvbox-dark-icons-gtk
+            eza
+            fastfetch
+            fzf
+            aseprite
 		];
 
 # Allow unfree packages

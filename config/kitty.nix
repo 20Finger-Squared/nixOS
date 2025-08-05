@@ -1,4 +1,4 @@
-{ programs }:
+{ ... }:
 {
   # Kitty terminal with Gruvbox theme and JetBrains Mono NF
   programs.kitty = {
