@@ -16,10 +16,10 @@
     networking.wireless.enable = false; # Disable wpa_supplicant (conflicts with NetworkManager).
 
 # Bluetooth.
-        hardware.bluetooth = {
-            enable = true;
-            powerOnBoot = true;
-        };
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+    };
     services.blueman.enable = true;
 
 # Localization.
@@ -56,6 +56,11 @@
         shell = pkgs.zsh;
         extraGroups = [ "wheel" "networkmanager" ]; # networkmanager group is important for WiFi.
     };
+
+    stylix.enable = true;
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    stylix.image = ./urban_architecture.jpg;
+
 
 # Nix configuration.
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
