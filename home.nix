@@ -9,6 +9,7 @@
         ./config/kitty.nix
         ./config/sway.nix
         ./config/zsh.nix
+        ./config/gtk.nix
     ];
 
 # Font configuration
@@ -16,6 +17,7 @@
     home.packages = with pkgs; [
         nerd-fonts.jetbrains-mono
     ];
+
 
     programs.home-manager.enable = true;
 
