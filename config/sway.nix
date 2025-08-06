@@ -17,25 +17,26 @@
             keybindings =
             let
                 modifier = config.wayland.windowManager.sway.config.modifier;
-                left = "h";
-                down = "j";
-                up = "k";
-                right = "l";
+                sMod  =    "${modifier}+SHIFT";
+                left  =    config.wayland.windowManager.sway.config.left;
+                down  =    config.wayland.windowManager.sway.config.down;
+                up    =    config.wayland.windowManager.sway.config.up;
+                right =    config.wayland.windowManager.sway.config.right;
             in {
-                "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
-                "${modifier}+Shift+q" = "kill";
+                "${modifier}+t" = "exec ${pkgs.kitty}/bin/kitty";
+                "${sMod}+t" = "exec ${pkgs.firefox}/bin/firefox";
+
+                "${modifier}+q" = "kill";
                 "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
 
                 "${modifier}+${left}" = "focus left";
                 "${modifier}+${down}" = "focus down";
                 "${modifier}+${up}" = "focus up";
                 "${modifier}+${right}" = "focus right";
-                "${modifier}+${left}" = "focus left";
-                "${modifier}+${down}" = "focus down";
-                "${modifier}+${up}" = "focus up";
-                "${modifier}+${right}" = "focus right";
 
+                "${sMod}+${left}" = "move left";
+                "${sMod}+${down}" = "move down";
+                "${sMod}+${up}" = "move up";
+                "${sMod}+${right}" = "move right";
             };
-        };
-    };
-}
+        };};}
