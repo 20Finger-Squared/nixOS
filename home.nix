@@ -5,8 +5,7 @@
     home.homeDirectory = "/home/rhylie";
 
     imports = [
-        ./config/neovim/default.nix
-        ./config/git.nix
+        ./config/neovim/default.nix ./config/git.nix
         ./config/kitty.nix
         ./config/sway.nix
         ./config/zsh.nix

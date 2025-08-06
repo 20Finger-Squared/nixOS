@@ -59,7 +59,7 @@
 
     stylix.enable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-    stylix.image = ./urban_architecture.jpg;
+    stylix.image = ./rubiks-cube.png;
 
 
 # Nix configuration.
@@ -67,34 +67,32 @@
 
 # System packages.
     environment.systemPackages = with pkgs; [
-        tree
-            tmux
-            git
-            grim
-            slurp
-            neovim
-            zsh
-            mako
-            discord
-            wl-clipboard
-            vim
-            bluez
-            networkmanager
-            sway
-            wget
-            rofi
-            zoxide
-            kitty
-            networkmanagerapplet
-            obs-studio
-            wshowkeys
-            gruvbox-dark-gtk
-            gruvbox-dark-icons-gtk
-            eza
-            fastfetch
-            fzf
-            aseprite
-            kdePackages.kdenlive
+                tmux
+                git
+                grim
+                slurp
+                neovim
+                zsh
+                mako
+                discord
+                wl-clipboard
+                vim
+                bluez
+                networkmanager
+                sway
+                wget
+                rofi
+                zoxide
+                kitty
+                networkmanagerapplet
+                wshowkeys
+                gruvbox-dark-gtk
+                gruvbox-dark-icons-gtk
+                eza
+                fastfetch
+                fzf
+                aseprite
+                btop
             ];
 
 # Allow unfree packages.
