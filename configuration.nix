@@ -57,9 +57,20 @@
         extraGroups = [ "wheel" "networkmanager" ]; # networkmanager group is important for WiFi.
     };
 
-    stylix.enable = true;
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-    stylix.image = ./rubiks-cube.png;
+    stylix = {
+        enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+        image = ./rubiks-cube.png;
+
+        targets = {
+                gtk.enable = true;
+                icons.enable = true;
+            };
+        iconTheme = {
+                package = pkgs.gruvbox-dark-icons-gtk;
+                name = "gruvbox-dark";
+            };
+};
 
 
 # Nix configuration.
@@ -93,6 +104,7 @@
                 fzf
                 aseprite
                 btop
+                ripgrep
             ];
 
 # Allow unfree packages.

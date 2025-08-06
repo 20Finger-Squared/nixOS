@@ -9,7 +9,6 @@
         ./config/kitty.nix
         ./config/sway.nix
         ./config/zsh.nix
-        ./config/gtk.nix
     ];
 
 # Font configuration
