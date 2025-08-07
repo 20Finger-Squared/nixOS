@@ -9,7 +9,7 @@
            (import ./plugins/git-signs.nix { inherit pkgs; })
            (import ./plugins/telescope.nix { inherit pkgs; })
            (import ./plugins/lsp-conf.nix { inherit pkgs; })
-           (import ./plugins/mason.nix { inherit pkgs; })
+           (import ./plugins/cmp.nix { inherit pkgs; })
 		{
 			plugin = nvim-treesitter.withAllGrammars; # Syntax Highlighting
 			type = "lua";
