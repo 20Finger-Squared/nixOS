@@ -5,26 +5,23 @@
         enable = true;
         checkConfig = true;
         config = {
-            modifier = "Mod4";
-            input = {
-                "*" = {
-                    xkb_layout = "gb";
-                    xkb_options = "caps:escape";
-                    repeat_delay = "250";
-                    repeat_rate = "5";
-                };
+            input."*" = {
+                xkb_layout   = "gb";
+                xkb_options  = "caps:escape";
+                repeat_delay = "250";
+                repeat_rate  = "5";
             };
-            colors = {
+            bars = [];
 
-                };
-            keybindings =
-            let
-                modifier = config.wayland.windowManager.sway.config.modifier;
+            modifier = "Mod4";
+            keybindings = let
                 sMod  =    "${modifier}+SHIFT";
-                left  =    config.wayland.windowManager.sway.config.left;
-                down  =    config.wayland.windowManager.sway.config.down;
-                up    =    config.wayland.windowManager.sway.config.up;
-                right =    config.wayland.windowManager.sway.config.right;
+            modifier = config.wayland.windowManager.sway.config.modifier;
+            left  =    config.wayland.windowManager.sway.config.left;
+            down  =    config.wayland.windowManager.sway.config.down;
+            up    =    config.wayland.windowManager.sway.config.up;
+            right =    config.wayland.windowManager.sway.config.right;
+
             in {
                 "${modifier}+t" = "exec ${pkgs.kitty}/bin/kitty";
                 "${sMod}+t" = "exec ${pkgs.firefox}/bin/firefox";
@@ -79,6 +76,19 @@
                 "${sMod}+8" = "move container to workspace number 8";
                 "${sMod}+9" = "move container to workspace number 9";
                 "${sMod}+0" = "move container to workspace number 10";
+
+# Special keys to adjust volume via PulseAudio
+                "--locked XF86AudioMute" = "exec pactl set-sink-mute \@DEFAULT_SINK@ toggle";
+                "--locked XF86AudioLowerVolume" = "exec pactl set-sink-volume \@DEFAULT_SINK@ -5%";
+                "--locked XF86AudioRaiseVolume" = "exec pactl set-sink-volume \@DEFAULT_SINK@ +5%";
+                "--locked XF86AudioMicMute" = "exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle";
+# Special keys to adjust brightness via brightnessctl
+                "--locked XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+                "--locked XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+
+# Special key to take a screenshot with grim
+                "Print" = "exec grim";
+
             };
         };
     };
