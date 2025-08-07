@@ -11,6 +11,9 @@
            (import ./plugins/lsp-conf.nix { inherit pkgs; })
            (import ./plugins/cmp.nix { inherit pkgs; })
 		{
+			plugin = luasnip;
+		}
+		{
 			plugin = nvim-treesitter.withAllGrammars; # Syntax Highlighting
 			type = "lua";
 			config = ''
