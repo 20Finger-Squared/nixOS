@@ -11,17 +11,17 @@
                 repeat_delay = "250";
                 repeat_rate  = "5";
             };
+
             bars = [];
 
             modifier = "Mod4";
             keybindings = let
-                sMod  =    "${modifier}+SHIFT";
+            sMod  =    "${modifier}+SHIFT";
             modifier = config.wayland.windowManager.sway.config.modifier;
             left  =    config.wayland.windowManager.sway.config.left;
             down  =    config.wayland.windowManager.sway.config.down;
             up    =    config.wayland.windowManager.sway.config.up;
             right =    config.wayland.windowManager.sway.config.right;
-
             in {
                 "${modifier}+t" = "exec ${pkgs.kitty}/bin/kitty";
                 "${sMod}+t" = "exec ${pkgs.firefox}/bin/firefox";
