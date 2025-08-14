@@ -45,7 +45,7 @@
         ];
         extraLuaConfig = builtins.concatStringsSep "\n" [
             (import ./opts.nix { inherit pkgs; })
-            (import ./lsp.nix { inherit pkgs; })
+            (import ./keymaps.nix { inherit pkgs; })
         ];
     };
 }

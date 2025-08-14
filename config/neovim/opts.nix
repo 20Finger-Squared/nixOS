@@ -43,8 +43,4 @@ vim.opt.linebreak = true
 -- Performance
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
-
-            -- Make completion menu appear automatically and configure behavior
-vim.opt.completeopt = {"menu", "menuone", "noselect"}
-vim.opt.pumheight = 10  -- Limit popup menu height
 ''
