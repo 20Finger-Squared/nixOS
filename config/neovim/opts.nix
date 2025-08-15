@@ -43,4 +43,27 @@ vim.opt.linebreak = true
 -- Performance
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
+
+-- delete all trailspaces on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local pos = vim.fn.getpos(".")
+    vim.cmd [[%s/\s\+$//e]]
+    vim.fn.setpos(".", pos)
+  end
+})
+
+-- Highlight all works under the cursor
+vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {
+  callback = function()
+    pcall(vim.fn.matchdelete, vim.w.cursorword_match or -1)
+    local word = vim.fn.expand('<cword>')
+    if word ~= "" then
+      vim.w.cursorword_match = vim.fn.matchadd('CursorWord', [[\<]] .. word .. [[\>]])
+    end
+  end
+})
+
+vim.api.nvim_set_hl(0, 'CursorWord', { underline = true })
 ''

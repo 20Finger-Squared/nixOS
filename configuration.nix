@@ -104,8 +104,6 @@
             zoxide
             networkmanagerapplet
             wshowkeys
-            gruvbox-dark-gtk
-            gruvbox-dark-icons-gtk
             eza
             fastfetch
             fzf
@@ -118,9 +116,6 @@
             python314
             nil
             socat
-            pkg-config
-            gtk4
-            gtk3
             ];
 
 # Allow unfree packages.

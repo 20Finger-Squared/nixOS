@@ -1,20 +1,13 @@
 { ... }:
 ''
--- Disable arrow keys in normal mode
-vim.keymap.set('n', '<Up>', '<Nop>')
-vim.keymap.set('n', '<Down>', '<Nop>')
-vim.keymap.set('n', '<Left>', '<Nop>')
-vim.keymap.set('n', '<Right>', '<Nop>')
+-- Move to windows
+vim.keymap.set({ 'n', 'i' }, '<C-h>', '<C-w>h')
+vim.keymap.set({ 'n', 'i' }, '<C-j>', '<C-w>j')
+vim.keymap.set({ 'n', 'i' }, '<C-k>', '<C-w>k')
+vim.keymap.set({ 'n', 'i' }, '<C-l>', '<C-w>l')
 
--- Disable arrow keys in insert mode (optional)
-vim.keymap.set('i', '<Up>', '<Nop>')
-vim.keymap.set('i', '<Down>', '<Nop>')
-vim.keymap.set('i', '<Left>', '<Nop>')
-vim.keymap.set('i', '<Right>', '<Nop>')
-
--- Disable arrow keys in visual mode (optional)
-vim.keymap.set('v', '<Up>', '<Nop>')
-vim.keymap.set('v', '<Down>', '<Nop>')
-vim.keymap.set('v', '<Left>', '<Nop>')
-vim.keymap.set('v', '<Right>', '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Up>', '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Down>', '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Left>', '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Right>', '<Nop>')
 ''
