@@ -1,6 +1,11 @@
 { pkgs }:
+
 {
-    plugins = pkgs.vimPlugins.treewalker-nvim;
-    type = "lua";
-    config = '' '';
+  plugin = pkgs.vimPlugins.treewalker-nvim;
+  type = "lua";
+  config = ''
+    require('treewalker').setup({
+      highlight = false,
+    })
+  '';
 }
