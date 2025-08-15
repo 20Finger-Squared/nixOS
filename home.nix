@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
     home.stateVersion = "25.05";
     home.username = "rhylie";
@@ -13,11 +13,10 @@
         ./config/kitty.nix
         ./config/sway.nix
         ./config/zsh.nix
+        ./config/gtk.nix
     ];
 
 # Font configuration
     fonts.fontconfig.enable = true;
-
-
     programs.home-manager.enable = true;
 }
