@@ -103,6 +103,14 @@
         "wheel"
         "networkmanager"
       ];
+      packages = with pkgs; [
+        aseprite
+        discord
+        zoxide
+        eza
+        fastfetch
+        btop
+      ];
     };
 
     defaultUserShell = pkgs.zsh;
@@ -149,34 +157,36 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    neovim
-    mako
-    discord
+    # system utils
     wl-clipboard
-    vim
     bluez
     networkmanager
-    wget
-    zoxide
+
+    # cli tools
     networkmanagerapplet
-    wshowkeys
-    eza
-    fastfetch
-    fzf
-    aseprite
-    btop
+    wget
     ripgrep
-    waybar
-    clang
-    clang-tools
-    python314
-    nil
-    nixfmt-rfc-style
     socat
+
+    # apps
+    # gui
     deluge
+    # tui
+    neovim
+    fzf
+
+    # wm specific stuff
     rofi
-    lua-language-server
-    stylua
+    mako
+    grim
+
+    # lsps
+    lua-language-server # lua
+    nil # nix
+
+    # formaters
+    stylua # lua
+    nixfmt-rfc-style # nix
   ];
 
   # Allow unfree packages
