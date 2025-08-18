@@ -8,7 +8,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./config/stylix.nix
+    ./stylix.nix
+    ./user.nix
   ];
 
   # zram

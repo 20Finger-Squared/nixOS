@@ -25,14 +25,14 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./configuration.nix
+            ./config/configuration.nix
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               home-manager.backupFileExtension = "bak";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.rhylie = import ./home.nix;
+              home-manager.users.rhylie = import ./config/home.nix;
             }
           ];
         };

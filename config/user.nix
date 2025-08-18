@@ -1,4 +1,9 @@
-{ pkgs }:
+{
+  config,
+  pkgs,
+  ...
+}:
+
 {
   # User configuration
   users = {
