@@ -6,7 +6,10 @@
 }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./config/stylix.nix
+  ];
 
   # zram
   zramSwap = {
@@ -93,59 +96,6 @@
     wshowkeys.enable = true;
   };
 
-  # User configuration
-  users = {
-    users.rhylie = {
-      isNormalUser = true;
-      description = "Rhylie";
-      useDefaultShell = true;
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-      ];
-      packages = with pkgs; [
-        aseprite
-        discord
-        zoxide
-        eza
-        fastfetch
-        btop
-      ];
-    };
-
-    defaultUserShell = pkgs.zsh;
-  };
-
-  # Stylix theming
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-    image = ./rubiks-cube.png;
-    cursor = {
-      package = pkgs.rose-pine-cursor;
-      size = 24;
-      name = "BreezeX-RosePine-Linux";
-    };
-    fonts = {
-      monospace = {
-        package = pkgs.jetbrains-mono;
-        name = "JetBrains Mono";
-      };
-      sansSerif = {
-        package = pkgs.inter;
-        name = "Inter";
-      };
-      serif = {
-        package = pkgs.ibm-plex;
-        name = "IBM Plex Serif";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
-    };
-  };
-
   # Nix configuration
   nix.settings = {
     experimental-features = [
@@ -171,6 +121,7 @@
     # apps
     # gui
     deluge
+
     # tui
     neovim
     fzf
