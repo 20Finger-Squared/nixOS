@@ -4,6 +4,10 @@
     wayland.windowManager.sway = {
         enable = true;
         checkConfig = true;
+        extraConfig = ''
+            exec kitty
+            exec firefox
+        '';
         config = {
             input."*" = {
                 xkb_layout   = "gb";

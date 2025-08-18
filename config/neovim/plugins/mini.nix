@@ -2,18 +2,20 @@
 {
     plugin = pkgs.vimPlugins.mini-nvim;
     type = "lua";
-    config = ''
+    config = # lua
+        ''
         local plugins = {
             "ai",
             "align",
             "files",
             "surround",
         }
-    for _, plugin in ipairs(plugins) do
-	require("mini." .. plugin).setup()
-	    end
 
-    require('mini.statusline').setup({
+        for _, plugin in ipairs(plugins) do
+            require("mini." .. plugin).setup()
+        end
+
+        require('mini.statusline').setup({
             use_icons = true,
             content = {
             active = function()
@@ -32,9 +34,9 @@
                     })
             end,
             },
-    })
-    -- MiniFiles setup
-    vim.keymap.set("n", "<leader>ow", MiniFiles.open, { desc = "Open MiniFiles" })
+        })
 
-    '';
+        -- MiniFiles setup
+        vim.keymap.set("n", "<leader>ow", MiniFiles.open, { desc = "Open MiniFiles" })
+        '';
 }

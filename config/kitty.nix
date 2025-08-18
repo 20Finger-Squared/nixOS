@@ -1,10 +1,11 @@
-{ ... }:
+{ lib, ... }:
 {
   # Kitty terminal with Gruvbox theme and JetBrains Mono NF
   programs.kitty = {
     enable = true;
     settings = {
       # Gruvbox colors
+      background_opacity = lib.mkForce 0.90;
       background = "#282828";
       foreground = "#ebdbb2";
 
