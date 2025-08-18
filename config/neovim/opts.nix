@@ -14,6 +14,9 @@
   opt.relativenumber = true
   opt.cursorline = true
   opt.spell = true
+  vim.opt.clipboard = "unnamedplus"
+  opt.inccommand = 'split'
+  opt.confirm = true
 
   -- Tabs
   opt.tabstop = 4
@@ -45,11 +48,8 @@
   opt.linebreak = true
 
   -- Performance
-  opt.updatetime = 300
-  opt.timeoutlen = 500
-
-  opt.inccommand = 'split'
-  opt.confirm = true
+  opt.updatetime = 3000
+  opt.timeoutlen = 5000
 
   -- format on write
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {

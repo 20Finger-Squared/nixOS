@@ -13,7 +13,7 @@
                 xkb_layout   = "gb";
                 xkb_options  = "caps:escape";
                 repeat_delay = "250";
-                repeat_rate  = "5";
+                repeat_rate  = "25";
             };
 
             bars = [];
