@@ -48,7 +48,7 @@ opt.linebreak = true
 opt.updatetime = 300
 opt.timeoutlen = 500
 
-opt.incommand = 'split'
+opt.inccommand = 'split'
 opt.confirm = true
 
 -- remove trailspace on write
