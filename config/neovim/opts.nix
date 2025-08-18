@@ -1,56 +1,67 @@
 { ... }:
+/* lua */
 ''
+
+local opt = vim.opt
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- General
-vim.opt.wrap = false
-vim.opt.lazyredraw = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.spell = true
+opt.wrap = false
+opt.lazyredraw = true
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.spell = true
 
 -- Tabs
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.smarttab = false
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.smarttab = false
+opt.expandtab = true
+opt.smartindent = true
 
 -- Swap file
-vim.opt.swapfile = false
+opt.swapfile = false
 
-vim.opt.termguicolors = true
-vim.opt.showmode = false
-vim.opt.laststatus = 3
+opt.termguicolors = true
+opt.showmode = false
+opt.laststatus = 3
 
 -- Search
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.hlsearch = true
+opt.smartcase = true
+opt.incsearch = true
+opt.hlsearch = true
 
 -- Backup & undo
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.undofile = true
+opt.backup = false
+opt.writebackup = false
+opt.undofile = true
 
 -- Scrolling & wrapping
-vim.opt.scrolloff = 4
-vim.opt.sidescrolloff = 4
-vim.opt.linebreak = true
+opt.scrolloff = 4
+opt.sidescrolloff = 4
+opt.linebreak = true
 
 -- Performance
-vim.opt.updatetime = 300
-vim.opt.timeoutlen = 500
+opt.updatetime = 300
+opt.timeoutlen = 500
+
+opt.incommand = 'split'
+opt.confirm = true
 
 -- remove trailspace on write
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
+    pattern = {"*"},
+    callback = function()
+      local save_cursor = vim.fn.getpos(".")
+      pcall(function() vim.cmd [[%s/\s\+$//e]] end)
+      vim.fn.setpos(".", save_cursor)
+    end,
 })
 
--- Highlight all works under the cursor
+-- Highlight all words under the cursor
 vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {
   callback = function()
     pcall(vim.fn.matchdelete, vim.w.cursorword_match or -1)
@@ -59,6 +70,15 @@ vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {
       vim.w.cursorword_match = vim.fn.matchadd('CursorWord', [[\<]] .. word .. [[\>]])
     end
   end
+})
+
+-- highlight yanking
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
 
 vim.api.nvim_set_hl(0, 'CursorWord', { underline = true })
