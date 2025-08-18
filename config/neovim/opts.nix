@@ -44,14 +44,10 @@ vim.opt.linebreak = true
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
 
--- delete all trailspaces on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    local pos = vim.fn.getpos(".")
-    vim.cmd [[%s/\s\+$//e]]
-    vim.fn.setpos(".", pos)
-  end
+-- remove trailspace on write
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
 })
 
 -- Highlight all works under the cursor

@@ -36,10 +36,5 @@
     -- MiniFiles setup
     vim.keymap.set("n", "<leader>ow", MiniFiles.open, { desc = "Open MiniFiles" })
 
-    -- Window movement keymaps
-    vim.keymap.set({ 'n', 'i' }, '<C-h>', '<C-w>h')
-    vim.keymap.set({ 'n', 'i' }, '<C-j>', '<C-w>j')
-    vim.keymap.set({ 'n', 'i' }, '<C-k>', '<C-w>k')
-    vim.keymap.set({ 'n', 'i' }, '<C-l>', '<C-w>l')
     '';
 }
