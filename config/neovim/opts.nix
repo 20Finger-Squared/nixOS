@@ -14,7 +14,6 @@
   opt.relativenumber = true
   opt.cursorline = true
   opt.spell = true
-  vim.opt.clipboard = "unnamedplus"
   opt.inccommand = 'split'
   opt.confirm = true
 
@@ -51,19 +50,15 @@
   opt.updatetime = 3000
   opt.timeoutlen = 5000
 
-  -- format on write
-  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-          pattern = {"*"},
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
           callback = function()
-          -- Check if formatprg is set for current buffer
-          if vim.bo.formatprg and vim.bo.formatprg ~= "" then
-          vim.lsp.buf.format()
-          else
-          print("No formater set")
-          end
+          vim.lsp.buf.format({
+                  async = false,
+                  timeout_ms = 2000,
+                  })
           end,
           })
-
 
   -- remove trailspece on write
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -97,34 +92,34 @@
 
   vim.api.nvim_set_hl(0, 'CursorWord', { underline = true })
 
--- Diagnostic Config
--- See :help vim.diagnostic.Opts
-vim.diagnostic.config {
-    severity_sort = true,
-    float = { border = 'rounded', source = 'if_many' },
-    underline = { severity = vim.diagnostic.severity.ERROR },
-    signs = vim.g.have_nerd_font and {
-        text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
-        },
-    } or {},
-    virtual_text = {
-        source = 'if_many',
-        spacing = 2,
-        format = function(diagnostic)
-            local diagnostic_message = {
-                [vim.diagnostic.severity.ERROR] = diagnostic.message,
-                [vim.diagnostic.severity.WARN] = diagnostic.message,
-                [vim.diagnostic.severity.INFO] = diagnostic.message,
-                [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-        return diagnostic_message[diagnostic.severity]
-            end,
-    },
-}
+  -- Diagnostic Config
+  -- See :help vim.diagnostic.Opts
+  vim.diagnostic.config {
+      severity_sort = true,
+                    float = { border = 'rounded', source = 'if_many' },
+                    underline = { severity = vim.diagnostic.severity.ERROR },
+                    signs = vim.g.have_nerd_font and {
+                        text = {
+                            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+                            [vim.diagnostic.severity.WARN] = '󰀪 ',
+                            [vim.diagnostic.severity.INFO] = '󰋽 ',
+                            [vim.diagnostic.severity.HINT] = '󰌶 ',
+                        },
+                    } or {},
+                    virtual_text = {
+                        source = 'if_many',
+                        spacing = 2,
+                        format = function(diagnostic)
+                            local diagnostic_message = {
+                                [vim.diagnostic.severity.ERROR] = diagnostic.message,
+                                [vim.diagnostic.severity.WARN] = diagnostic.message,
+                                [vim.diagnostic.severity.INFO] = diagnostic.message,
+                                [vim.diagnostic.severity.HINT] = diagnostic.message,
+                            }
+                        return diagnostic_message[diagnostic.severity]
+                            end,
+                    },
+  }
 
 
 ''
