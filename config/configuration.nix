@@ -107,17 +107,18 @@
   };
 
   # System packages
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # system utils
-    wl-clipboard
-    bluez
-    networkmanager
+    pkgs.wl-clipboard
+    pkgs.bluez
+    pkgs.networkmanager
 
     # cli tools
-    networkmanagerapplet
-    wget
-    ripgrep
-    socat
+    pkgs.networkmanagerapplet
+    pkgs.wget
+    pkgs.ripgrep
+    pkgs.socat
+    pkgs.starship
 
     # apps
     # gui
