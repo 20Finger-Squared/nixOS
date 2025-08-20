@@ -1,4 +1,5 @@
 { ... }:
+# lua
 ''
   local set = vim.keymap.set
 
@@ -8,11 +9,12 @@
   set({ 'n', 'i' }, '<C-k>', '<C-w>k')
   set({ 'n', 'i' }, '<C-l>', '<C-w>l')
 
-  set({"n", "v"}, "gy", '"+y', { desc = "Yank to system clipboard" })
-  set("n", "gY", '"+y$', { desc = "Yank to system clipboard (to EOL)" })
-
   set({ 'n', 'i', 'v' }, '<Up>', '<Nop>')
   set({ 'n', 'i', 'v' }, '<Down>', '<Nop>')
   set({ 'n', 'i', 'v' }, '<Left>', '<Nop>')
   set({ 'n', 'i', 'v' }, '<Right>', '<Nop>')
+
+  -- terminal
+  set({"n", "t"}, "<leader>t", ":Floaterminal<CR>", { desc = "Toggle floating terminal" })
+  set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Toggle floating terminal" })
 ''
