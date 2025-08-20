@@ -122,24 +122,25 @@
 
     # apps
     # gui
-    deluge
+    pkgs.deluge
 
     # tui
-    neovim
-    fzf
+    pkgs.neovim
+    pkgs.fzf
 
     # wm specific stuff
-    rofi
-    mako
-    grim
+    pkgs.rofi
+    pkgs.mako
+    pkgs.grim
 
     # lsps
-    lua-language-server # lua
-    nil # nix
+    pkgs.lua-language-server # lua
+    pkgs.nil # nix
 
     # formaters
-    stylua # lua
-    nixfmt-rfc-style # nix
+    pkgs.stylua # lua
+    pkgs.nixfmt-rfc-style # nix
+
   ];
 
   # Allow unfree packages
