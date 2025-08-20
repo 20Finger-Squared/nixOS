@@ -54,7 +54,29 @@
   -- lsp configs
   vim.lsp.inlay_hint.enable(true)
 
+    -- folding with lsp/treesitter
+    opt.foldmethod = 'expr'
+    opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+    -- These are the key settings you're missing:
+    opt.foldlevel = 99        -- Start with all folds open
+    opt.foldlevelstart = 1   -- Always start with all folds open
+    opt.foldenable = true     -- Enable folding
+    opt.foldcolumn = "auto"
+    opt.foldclose = "all"
+    -- Optional: smoother folding
+    opt.foldminlines = 1      -- Allow folding single lines
+
+    -- Your LSP folding override
+    vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if client:supports_method('textDocument/foldingRange') then
+              local win = vim.api.nvim_get_current_win()
+              vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
             end
+        end,
+    })
 
   vim.api.nvim_create_autocmd("BufWritePre", {
           callback = function()
