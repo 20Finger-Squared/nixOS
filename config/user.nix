@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -15,13 +14,14 @@
         "wheel"
         "networkmanager"
       ];
-      packages = with pkgs; [
-        aseprite
-        discord
-        zoxide
-        eza
-        fastfetch
-        btop
+      packages = [
+        pkgs.aseprite
+        pkgs.discord
+        pkgs.zoxide
+        pkgs.eza
+        pkgs.fastfetch
+        pkgs.btop
+        pkgs.pavucontrol
       ];
     };
     defaultUserShell = pkgs.zsh;
