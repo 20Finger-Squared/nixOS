@@ -1,7 +1,6 @@
 { ... }:
 # lua
 ''
-
     local opt = vim.opt
 
     vim.g.mapleader = " "
@@ -14,9 +13,8 @@
     opt.relativenumber = true
     opt.cursorline = true
     opt.spell = true
-    opt.inccommand = 'split'
     opt.confirm = true
-    opt.winborder = "shadow"
+    opt.winborder = "single"
 
     -- Tabs
     opt.tabstop = 4
@@ -35,6 +33,7 @@
     -- Search
     opt.smartcase = true
     opt.incsearch = true
+    opt.inccommand = 'split'
     opt.hlsearch = true
 
     -- Backup & undo
@@ -51,7 +50,6 @@
     opt.updatetime = 3000
     opt.timeoutlen = 5000
 
-
   -- folding with lsp/treesitter
   opt.foldmethod = 'expr'
   opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -61,7 +59,6 @@
   opt.foldlevelstart = 1   -- Always start with all folds open
   opt.foldenable = true     -- Enable folding
   opt.foldcolumn = "auto"
-  -- Optional: smoother folding
 
 
     local state = {
@@ -73,8 +70,8 @@
 
     local function create_floating_window(opts)
     opts = opts or {}
-    local width = opts.width or math.floor(vim.o.columns * 0.8)
-    local height = opts.height or math.floor(vim.o.lines * 0.8)
+    local width = opts.width or math.floor(vim.o.columns * 0.9)
+    local height = opts.height or math.floor(vim.o.lines * 0.9)
 
     -- Calculate the position to center the window
     local col = math.floor((vim.o.columns - width) / 2)
@@ -95,8 +92,8 @@
         height = height,
         col = col,
         row = row,
-        style = "minimal", -- No borders or extra UI elements
-        border = "rounded",
+        style = "minimal", -- Disables stuff like relative numbers
+        border = "single",
     }
 
     -- Create the floating window
