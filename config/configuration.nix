@@ -8,8 +8,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./stylix.nix
     ./user.nix
+    ./stylix.nix
   ];
 
   # zram
@@ -19,6 +19,11 @@
     memoryPercent = 50; # 32GB compressed swap
     priority = 10;
   };
+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.open = false; # unless you want the open kernel module
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   # Keep more in memory
   boot.kernel.sysctl = {
@@ -60,8 +65,13 @@
   i18n.defaultLocale = "en_GB.UTF-8";
   console.keyMap = "uk";
 
-  # Audio
-  security.rtkit.enable = true;
+  # Audio and security
+  security = {
+    rtkit.enable = true; # Enables RealtimeKit for audio apps to get realtime priorities
+    sudo.extraConfig = ''
+      Defaults insults
+    '';
+  };
 
   # Services
   services = {
@@ -119,10 +129,12 @@
     pkgs.ripgrep
     pkgs.socat
     pkgs.starship
+    pkgs.nh
 
     # apps
     # gui
     pkgs.deluge
+    pkgs.steam
 
     # tui
     pkgs.neovim
