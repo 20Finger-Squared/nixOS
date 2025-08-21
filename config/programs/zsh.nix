@@ -12,9 +12,11 @@
     shellAliases = {
       wkeys = "wshowkeys -b '#282828' -f '#ebdbb2' -s '#458588' -t 1 -a bottom";
       ls = "eza --color auto --icons auto --show-symlinks --git --changed --grid";
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixOS/.#rhyliePC";
+      rebuild = "nh os switch ~/nixOS/";
       cdr = ''cd "$(git rev-parse --show-toplevel)"'';
       cd = "z";
+      fzf = "fzf --color=16 --reverse --border=sharp --border-label=rounded";
+      fvim = "nvim $(fzf)";
     };
     historySubstringSearch.enable = true;
 
