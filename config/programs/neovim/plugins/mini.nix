@@ -4,17 +4,6 @@
     type = "lua";
     config = # lua
         ''
-        local plugins = {
-            "ai",
-            "align",
-            "files",
-            "surround",
-        }
-
-        for _, plugin in ipairs(plugins) do
-            require("mini." .. plugin).setup()
-        end
-
         require('mini.statusline').setup({
             use_icons = true,
             content = {
