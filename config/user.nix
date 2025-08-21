@@ -22,6 +22,7 @@
         pkgs.fastfetch
         pkgs.btop
         pkgs.pavucontrol
+        pkgs.lazygit
       ];
     };
     defaultUserShell = pkgs.zsh;
