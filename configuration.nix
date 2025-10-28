@@ -52,6 +52,7 @@
 # Configure console keymap
 	console.keyMap = "uk";
 
+# Configure installed fonts
     fonts = {
       packages = [
         pkgs.noto-fonts-emoji
