@@ -52,6 +52,20 @@
 # Configure console keymap
 	console.keyMap = "uk";
 
+    fonts = {
+      packages = [
+        pkgs.noto-fonts-emoji
+        pkgs.nerd-fonts.jetbrains-mono
+      ];
+
+      fontconfig.defaultFonts = {
+        monospace = [ "JetBrainsMono Nerd Font" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+    };
+
+    home-manager.users.rhylie = import ./home.nix;
+
 # Enable CUPS to print documents.
 	services.printing.enable = true;
 
@@ -67,13 +81,11 @@
 
 	users.users.rhylie = {
 		isNormalUser = true;
-		description = "The main user i.e Rhylie M. Orton";
+		description = "Rhylie M. Orton";
 		extraGroups = [ "networkmanager" "wheel" ];
 		packages = [
-			pkgs.sway
-			pkgs.neovim
-			pkgs.fuzzel
 			pkgs.lazygit
+            pkgs.nil
 		];
 	};
 
@@ -88,9 +100,7 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
 	environment.systemPackages = [
-		pkgs.git
 		pkgs.tmux
-		pkgs.nano
 	];
 
 # Some programs need SUID wrappers, can be configured further or are
