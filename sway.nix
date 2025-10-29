@@ -6,6 +6,12 @@
     checkConfig = true;
     wrapperFeatures.gtk = true;
     config = {
+      input = {
+        "type:keyboard" = {
+          xkb_layout = "gb";
+          xkb_options = "caps:escape"; # Optional: remap CapsLock to Escape
+        };
+      };
       colors = let
         background_0 = "#282828";
         background_0_strong = "#928374";
