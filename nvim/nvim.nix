@@ -1,13 +1,12 @@
-{config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     programs.neovim = {
             enable = true;
             defaultEditor = true;
-            extraLuaConfig = "";
+            extraLuaConfig = import ./nvim-opts.nix;
             viAlias = true;
             vimAlias = true;
-            plugins = with pkgs.vimPlugins; [
-            ];
+	    plugins = import ./nvim-plugins.nix;
         };
 }

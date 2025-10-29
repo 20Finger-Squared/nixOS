@@ -6,8 +6,7 @@
   home.stateVersion = "25.05";
 
   imports = [
-  	./nvim.nix
-	./sway.nix
+  	./nvim/nvim.nix
   ];
   programs.home-manager.enable = true;
 
