@@ -1,30 +1,27 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+  [
+      ./hardware-configuration.nix
       ./environment.nix
-    ];
+      ./sevices-security.nix
+  ];
+
+  home-manager.users.tf = import ./home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+# networking and bluetooth
   networking.hostName = "tf-nixos"; # Define your hostname.
-
-# Enable networking
-    networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
 
 
   time.timeZone = "Europe/London";
 
   i18n.defaultLocale = "en_GB.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
@@ -37,19 +34,13 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-# Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  };
-
 # Configure console keymap
   console.keyMap = "uk";
 
 # Configure installed fonts
   fonts = {
     packages = [
-      pkgs.noto-fonts-emoji
+      	pkgs.noto-fonts-emoji
         pkgs.nerd-fonts.jetbrains-mono
     ];
 
@@ -58,8 +49,6 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
-
-  home-manager.users.tf = import ./home.nix;
 
 
   users.users.tf = {
@@ -74,21 +63,12 @@
     ];
   };
 
-# Install firefox.
-  programs.firefox.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  programs.sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
 
 # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-# List packages installed in system profile. To search, run:
-# $ nix search wget
-  environment.systemPackages = [
+  environment.systemPackages = [ # tiny unopinonated packages or those of which are not relevant to one particular user
     pkgs.tmux
     pkgs.wl-clipboard
     pkgs.ly
