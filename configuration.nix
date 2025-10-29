@@ -10,22 +10,16 @@
     ./hardware-configuration.nix
       ./environment.nix
     ];
-# Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
 
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "tf-nixos"; # Define your hostname.
 
 # Enable networking
     networking.networkmanager.enable = true;
 
-  hardware.opengl = {
-      enable = true;
-    };
 
   time.timeZone = "Europe/London";
 
