@@ -5,10 +5,12 @@
   home.homeDirectory = "/home/rhylie";
   home.stateVersion = "25.05";
 
+  imports = [
+  	./nvim.nix
+  ];
   programs.home-manager.enable = true;
 
   home.packages = [
-    pkgs.neovim
     pkgs.git
     pkgs.zsh
     pkgs.starship
