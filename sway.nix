@@ -12,6 +12,7 @@
           xkb_options = "caps:escape"; # Optional: remap CapsLock to Escape
         };
       };
+
       colors = let
         background_0 = "#282828";
         background_0_strong = "#928374";
@@ -204,18 +205,16 @@
 
       defaultWorkspace = "1";
 
-# default apps
+      # Default apps
       menu = "fuzzel";
       terminal = "${pkgs.kitty}/bin/kitty";
 
-# key binds
+      # Modifiers & navigation
       modifier = "Mod4";
       right = "h";
       left  = "l";
       up    = "k";
       down  = "j";
-
     };
-
   };
 }
