@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "rhylie";
-  home.homeDirectory = "/home/rhylie";
+  home.username = "tf";
+  home.homeDirectory = pkgs.lib.mkForce "/home/tf";
   home.stateVersion = "25.05";
 
   imports = [

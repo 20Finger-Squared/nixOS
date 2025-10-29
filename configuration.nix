@@ -59,7 +59,7 @@
     };
   };
 
-  home-manager.users.rhylie = import ./home.nix;
+  home-manager.users.tf = import ./home.nix;
 
 # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -74,7 +74,7 @@
     pulse.enable = true;
   };
 
-  users.users.rhylie = {
+  users.users.tf = {
     isNormalUser = true;
     description = "Rhylie M. Orton";
     extraGroups = [ "networkmanager" "wheel" "render" "seat" "input" "video"];
