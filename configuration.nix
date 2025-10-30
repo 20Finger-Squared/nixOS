@@ -58,7 +58,6 @@
         extraGroups = [ "networkmanager" "wheel" "render" "seat" "input" "video"];
         packages = [
             pkgs.lazygit
-            pkgs.nil
             pkgs.ripgrep
             pkgs.kitty
         ];
