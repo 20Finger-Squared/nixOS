@@ -60,6 +60,7 @@
             pkgs.lazygit
             pkgs.ripgrep
             pkgs.kitty
+            pkgs.eza
         ];
     };
 
@@ -73,6 +74,8 @@
         pkgs.wl-clipboard
         pkgs.ly
         pkgs.nil
+        pkgs.nixfmt-rfc-style
+        pkgs.fzf
     ];
 
     system.stateVersion = "25.05"; # Did you read the comment?
