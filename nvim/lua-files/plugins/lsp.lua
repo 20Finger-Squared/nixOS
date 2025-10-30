@@ -92,3 +92,23 @@ lspconfig.lua_ls.setup({
 	},
     },
 })
+
+-- Nil LSP (for Nix language)
+lspconfig.nil_ls.setup({
+    cmd = { "nil" }, -- or "nil-lsp" depending on your system package
+    filetypes = { "nix" },
+    root_dir = lspconfig.util.root_pattern(".git", "flake.nix", "default.nix", "shell.nix"),
+    capabilities = capabilities,
+    settings = {
+        ['nil'] = {
+            formatting = {
+                command = { "nixpkgs-fmt" }, -- or "alejandra" if you prefer
+            },
+            nix = {
+                flake = {
+                    autoEvalInputs = true,
+                },
+            },
+        },
+    },
+})
