@@ -82,7 +82,7 @@
 
       fonts = {
         names = ["JetbrainsMono NF"];
-        size = 11.0;
+        size = 9.0;
       };
 
       floating = {
@@ -176,6 +176,7 @@
         "${mod}+w" = "layout tabbed";
         "${mod}+y" = "layout toggle split";
         "${mod}+f" = "fullscreen toggle";
+        "${mod}+a" = "focus parent";
         "${altMod}+space" = "floating toggle";
         "${mod}+space" = "focus mode_toggle";
 
