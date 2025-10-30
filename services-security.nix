@@ -26,6 +26,12 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+# Btrfs
+  services.btrfs.autoScrub = {
+          enable = true;
+          interval = "weekly";
+      };
+
 # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
