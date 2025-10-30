@@ -6,7 +6,7 @@ with pkgs.vimPlugins; [
   gruvbox-nvim
   harpoon
   nvim-lspconfig
-  markdown-nvim
+  markdown-preview-nvim
   mini-nvim
   noice-nvim
   telescope-nvim
