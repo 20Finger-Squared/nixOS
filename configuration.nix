@@ -8,7 +8,6 @@
             ./services-security.nix
         ];
 
-    home-manager.users.tf = import ./home.nix;
 
 # Bootloader.
     boot.loader.systemd-boot.enable = true;

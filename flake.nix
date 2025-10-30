@@ -16,7 +16,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.tf = import ./home.nix;
+          home-manager.users.tf = import ./home-files/home.nix;
         }
       ];
     };
