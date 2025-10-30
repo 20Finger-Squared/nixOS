@@ -1,16 +1,19 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 
   home.username = "tf";
-  home.homeDirectory = pkgs.lib.mkForce "/home/tf";
+  home.homeDirectory = lib.mkForce "/home/tf";
   home.stateVersion = "25.05";
+
+
 
   imports = [
   	./nvim/nvim.nix
 	./sway.nix
     ./bash.nix
     ./kitty.nix
+    ./firefox.nix
   ];
 
   home.packages = [
@@ -22,12 +25,16 @@
     pkgs.fuzzel
     pkgs.mesa
     pkgs.discord
+    pkgs.zoxide
   ];
 
 
   programs.home-manager.enable = true;
-  programs.starship.enable     = true;
   programs.git.enable          = true;
+  programs.starship.enable     = true;
+
+  programs.zoxide.enableBashIntegration = true;
+  programs.starship.enableBashIntegration = true;
 
   programs.git.userEmail = "orhylie@gmail.com";
   programs.git.userName  = "20Finger-Squared";
