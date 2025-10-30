@@ -15,9 +15,11 @@
     boot.tmp.useTmpfs = true;
     boot.tmp.tmpfsSize = "25%";
 
+    home-manager.backupFileExtension = "bak";
+
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
-        networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
 
 
     time.timeZone = "Europe/London";
@@ -42,7 +44,7 @@
     fonts = {
         packages = [
             pkgs.noto-fonts-emoji
-                pkgs.nerd-fonts.jetbrains-mono
+            pkgs.nerd-fonts.jetbrains-mono
         ];
 
         fontconfig.defaultFonts = {
