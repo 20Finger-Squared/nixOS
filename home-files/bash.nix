@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ ... }:
 
 {
   programs.bash = {
@@ -11,14 +11,14 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
         tmux
     fi
 fi
+eval "$(zoxide init bash)"
       '';
       shellAliases = {
-          ".." = "cd ..";
-          "ls" = "eza -G --icons -F --group-directories-first";
+          "cd"      = "z";
+          ".."      = "z ..";
+          "ls"      = "eza -G --icons -F --group-directories-first";
           "rebuild" = "sudo nixos-rebuild switch --flake ~/nixOS/#tf";
-          "please" = "sudo $(fc -ln -1)";
+          "please"  = "sudo $(fc -ln -1)";
       };
   };
-  programs.zoxide.enableBashIntegration = true;
-  programs.starship.enableBashIntegration = true;
 }
