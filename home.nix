@@ -7,6 +7,7 @@
 
   imports = [
   	./nvim/nvim.nix
+	./sway.nix
   ];
   programs.home-manager.enable = true;
 
