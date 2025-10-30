@@ -19,6 +19,9 @@
 # Ly a simple login screen
   services.displayManager.ly.enable = true;
 
+# Make sure sway lock can work
+  security.pam.services.swaylock = {};
+
 # Enable CUPS to print documents.
   services.printing.enable = true;
 
