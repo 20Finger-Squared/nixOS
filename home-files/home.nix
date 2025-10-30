@@ -10,6 +10,7 @@
   	./nvim/nvim.nix
 	./sway.nix
     ./bash.nix
+    ./kitty.nix
   ];
 
   home.packages = [
