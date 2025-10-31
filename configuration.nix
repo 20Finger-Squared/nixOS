@@ -3,10 +3,9 @@
 {
     imports =
         [
-            ./hardware-configuration.nix
+        ./hardware-configuration.nix
             ./environment.nix
-            ./services-security.nix
-        ];
+            ./services-security.nix ];
 
 
 # Bootloader.
@@ -19,7 +18,7 @@
 
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
-    networking.networkmanager.enable = true;
+        networking.networkmanager.enable = true;
 
 
     time.timeZone = "Europe/London";
@@ -44,7 +43,7 @@
     fonts = {
         packages = [
             pkgs.noto-fonts-emoji
-            pkgs.nerd-fonts.jetbrains-mono
+                pkgs.nerd-fonts.jetbrains-mono
         ];
 
         fontconfig.defaultFonts = {
@@ -60,9 +59,10 @@
         extraGroups = [ "networkmanager" "wheel" "render" "seat" "input" "video"];
         packages = [
             pkgs.lazygit
-            pkgs.ripgrep
-            pkgs.kitty
-            pkgs.eza
+                pkgs.ripgrep
+                pkgs.kitty
+                pkgs.eza
+                pkgs.steam
         ];
     };
 
@@ -72,13 +72,34 @@
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = [ # tiny unopinonated packages or those of which are not relevant to one particular user
-        pkgs.tmux
         pkgs.wl-clipboard
+        pkgs.nixfmt-rfc-style
+        pkgs.xdg-desktop-portal
+        pkgs.tmux
         pkgs.ly
         pkgs.nil
-        pkgs.nixfmt-rfc-style
         pkgs.fzf
+        pkgs.jq
     ];
+
+    programs.steam = {
+        enable = true;
+        gamescopeSession.enable = true;  # optional, but recommended
+    };
+    hardware.opengl = {
+        enable = true;
+        extraPackages = with pkgs; [ mesa.drivers ];
+    };
+
+    xdg = {
+        portal = {
+            enable = true;
+            extraPortals = with pkgs; [
+                xdg-desktop-portal-wlr
+                    xdg-desktop-portal-gtk
+            ];
+        };
+    };
 
     system.stateVersion = "25.05"; # Did you read the comment?
 }
