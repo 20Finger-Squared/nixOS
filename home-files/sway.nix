@@ -194,9 +194,6 @@
         "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
         "XF86MonBrightnessDown" = "exec ${brightnessDown}";
         "XF86MonBrightnessUp" = "exec ${brightnessUp}";
-
-        # --- Screenshots ---
-        "${mod}+Print" = "exec ${screenshot} ~/Pictures/screenshot-$(date +'%Y-%m-%d-%H%M%S').png";
       };
 
       window = {
