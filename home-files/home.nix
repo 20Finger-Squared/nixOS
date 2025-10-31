@@ -10,10 +10,15 @@
 
   imports = [
   	./nvim/nvim.nix
-	./sway.nix
-    ./bash.nix
-    ./kitty.nix
-    ./firefox.nix
+
+	./sway.nix # wm
+    ./sway-lock.nix # lock
+
+    ./kitty.nix # terminal
+    ./bash.nix # shell
+
+    ./firefox.nix # web browser
+
     ./gtk.nix # gtk
   ];
 
@@ -27,6 +32,7 @@
     pkgs.mesa
     pkgs.discord
     pkgs.zoxide
+    pkgs.mako
   ];
 
 
@@ -39,5 +45,4 @@
 
   programs.git.userEmail = "orhylie@gmail.com";
   programs.git.userName  = "20Finger-Squared";
-
 }
