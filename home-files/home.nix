@@ -14,6 +14,7 @@
     ./bash.nix
     ./kitty.nix
     ./firefox.nix
+    ./gtk.nix # gtk
   ];
 
   home.packages = [
