@@ -3,7 +3,7 @@
 {
   programs.bash = {
       enable = true;
-      bashrcExtra = ''
+      initExtra = ''
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     if tmux ls &> /dev/null; then
         tmux attach
