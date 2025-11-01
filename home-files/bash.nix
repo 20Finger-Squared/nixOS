@@ -16,7 +16,7 @@ fi
           "cd"      = "z";
           ".."      = "z ..";
           "ls"      = "eza -G --icons -F --group-directories-first";
-          "rebuild" = "sudo nixos-rebuild switch --flake ~/nixOS/#tf";
+          "rebuild" = "sudo nixos-rebuild switch --flake ~/nixOS/?submodules=1#tf";
           "please"  = "sudo $(fc -ln -1)";
       };
   };
