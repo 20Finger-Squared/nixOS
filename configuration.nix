@@ -14,8 +14,6 @@
     boot.tmp.useTmpfs = true;
     boot.tmp.tmpfsSize = "25%";
 
-    home-manager.backupFileExtension = "bak";
-
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
         networking.networkmanager.enable = true;
