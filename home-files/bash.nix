@@ -11,7 +11,6 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
         tmux
     fi
 fi
-eval "$(zoxide init bash)"
       '';
       shellAliases = {
           "cd"      = "z";

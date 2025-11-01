@@ -40,7 +40,9 @@
   programs.git.enable          = true;
   programs.starship.enable     = true;
 
+  programs.zoxide.enable = true;
   programs.zoxide.enableBashIntegration = true;
+
   programs.starship.enableBashIntegration = true;
 
   programs.git.userEmail = "orhylie@gmail.com";
