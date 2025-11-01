@@ -78,6 +78,7 @@
         pkgs.nil
         pkgs.fzf
         pkgs.jq
+        pkgs.xfce.thunar
     ];
 
     programs.steam = {
