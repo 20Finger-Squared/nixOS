@@ -51,7 +51,17 @@
     };
 
 
-    users.users.tf = {
+    users.users.tf =
+    let
+        customDwlPackage = (pkgs.dwl.override {
+            configH = ./dwl/config.h;
+         }).overrideAttrs (oldAttrs: {
+            patches = (oldAttrs.patches or []) ++ [];
+            buildInputs = oldAttrs.buildInputs or [] ++ [ pkgs.libdrm pkgs.fcft ];
+        });
+    in
+
+    {
         isNormalUser = true;
         description = "Rhylie M. Orton";
         extraGroups = [ "networkmanager" "wheel" "render" "seat" "input" "video"];
@@ -61,6 +71,7 @@
                 pkgs.kitty
                 pkgs.eza
                 pkgs.steam
+                customDwlPackage
         ];
     };
 
