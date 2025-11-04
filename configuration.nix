@@ -5,7 +5,9 @@
         [
         ./hardware-configuration.nix
             ./environment.nix
-            ./services-security.nix ];
+            ./services-security.nix
+            ./dwl-wm/package.nix
+        ];
 
 
 # Bootloader.
@@ -52,15 +54,6 @@
 
 
     users.users.tf =
-    let
-        customDwlPackage = (pkgs.dwl.override {
-            configH = ./dwl/config.h;
-         }).overrideAttrs (oldAttrs: {
-            patches = (oldAttrs.patches or []) ++ [];
-            buildInputs = oldAttrs.buildInputs or [] ++ [ pkgs.libdrm pkgs.fcft ];
-        });
-    in
-
     {
         isNormalUser = true;
         description = "Rhylie M. Orton";
@@ -71,7 +64,6 @@
                 pkgs.kitty
                 pkgs.eza
                 pkgs.steam
-                customDwlPackage
         ];
     };
 
