@@ -92,6 +92,7 @@
         pkgs.xfce.thunar
     ];
 
+    programs.dconf.enable = true;
     programs.steam = {
         enable = true;
         gamescopeSession.enable = true;  # optional, but recommended
