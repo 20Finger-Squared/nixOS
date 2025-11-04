@@ -36,7 +36,7 @@
     (pkgs.writeTextFile {
             name = "dwl";
             destination = "/share/wayland-sessions/dwl.desktop";
-            text = builtins.readFile ./dwl/dwl.desktop;
+            text = builtins.readFile ./dwl-wm/dwl/dwl.desktop;
             passthru.providedSessions = [ "dwl" ];
         })
     ];
