@@ -15,7 +15,17 @@
     boot.loader.efi.canTouchEfiVariables = true;
     boot.tmp.useTmpfs = true;
     boot.tmp.tmpfsSize = "25%";
+    boot = {
+        loader = {
+            systemd-boot.enable      = true;
+            efi.canTouchEfiVariables = true;
+        };
 
+        tmp = {
+            useTmpfs  = true;
+            tmpfsSize = "10%";
+        };
+    };
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
         networking.networkmanager.enable = true;
