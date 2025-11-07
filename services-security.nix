@@ -14,6 +14,8 @@
   };
 
   hardware = {
+      bluetooth.enable = true;
+      opentabletdriver.enable = true;
       opengl = {
           enable = true;
           extraPackages = with pkgs; [ mesa.drivers ];
