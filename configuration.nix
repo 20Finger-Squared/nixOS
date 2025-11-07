@@ -10,6 +10,7 @@
         ];
     powerManagement.cpuFreq.Governor = "schedutil";
     powerManagement.powertop.enable = true;
+    console.earlySetup = true;
     zramSwap.enable = true;
     zramSwap.memoryPercent = 25;
     zramSwap.algorithm = "zstd";
