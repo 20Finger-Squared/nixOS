@@ -2,7 +2,13 @@
 {
 # Security and services
 
+# Make sure sway lock can work
+  security = {
+      pam.services.swaylock = {}; # enables sway lock to use pam
 
+      sudo.wheelNeedsPassword = true;
+      apparmor.enable = true;
+      auditd.enable = true;
 
       openssh.settings.PermitRootLogin = "no";
   };
@@ -34,8 +40,20 @@
         };
       };
 
-# Make sure sway lock can work
-  security.pam.services.swaylock = {};
+      displayManager = {
+        enable = true;
+        ly={
+            enable = true; # Ly a simple login screen
+            package = pkgs.ly;
+            settings = {
+                    allow_empty_password = false;
+                    animation = "doom";
+                    auth_fails = 1;
+                    box_title = "Best place to login";
+                    clear_password = true;
+                    clock = "%x";
+                };
+        };
 
         sessionPackages =
         [
