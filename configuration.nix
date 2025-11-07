@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 
 {
-    imports =
-        [
-        ./hardware-configuration.nix
+    imports = [
+            ./hardware-configuration.nix
             ./environment.nix
             ./services-security.nix
             ./dwl-wm/package.nix
-        ];
+    ];
+
+
     powerManagement.cpuFreq.Governor = "schedutil";
     powerManagement.powertop.enable = true;
     console.earlySetup = true;
@@ -37,8 +38,7 @@
     };
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
-        networking.networkmanager.enable = true;
-
+    networking.networkmanager.enable = true;
 
     time.timeZone = "Europe/London";
 
@@ -79,10 +79,11 @@
         extraGroups = [ "networkmanager" "wheel" "render" "seat" "input" "video"];
         packages = [
             pkgs.lazygit
-                pkgs.ripgrep
-                pkgs.kitty
-                pkgs.eza
-                pkgs.steam
+            pkgs.ripgrep
+            pkgs.kitty
+            pkgs.eza
+            pkgs.steam
+            pkgs.krita
         ];
     };
 
