@@ -36,6 +36,8 @@
             tmpfsSize = "10%";
         };
     };
+
+
 # networking and bluetooth
     networking.hostName = "tf-nixos"; # Define your hostname.
     networking.networkmanager.enable = true;
@@ -95,6 +97,7 @@
         max-jobs = "auto";
         cores = 0;
         warn-dirty = false;
+
         experimental-features = [ "nix-command" "flakes" ];
         gc = {
             automatic = true;
