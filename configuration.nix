@@ -8,6 +8,10 @@
             ./services-security.nix
             ./dwl-wm/package.nix
         ];
+    zramSwap.enable = true;
+    zramSwap.memoryPercent = 25;
+    zramSwap.algorithm = "zstd";
+    zramSwap.priority = 10;
 
 
 # Bootloader.
