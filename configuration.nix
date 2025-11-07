@@ -9,7 +9,7 @@
     ];
 
 
-    powerManagement.cpuFreq.Governor = "schedutil";
+    powerManagement.cpuFreqGovernor = "schedutil";
     powerManagement.powertop.enable = true;
     console.earlySetup = true;
     zramSwap.enable = true;
@@ -74,7 +74,6 @@
     };
 
 
-    users.mutableUsers = false;
     users.users.tf =
     {
         isNormalUser = true;
@@ -90,15 +89,18 @@
         ];
     };
 
-    nix.settings = {
-        auto-optimise-store = true;
-        keep-outputs        = true;
-        keep-deriviations   = true;
-        max-jobs = "auto";
-        cores = 0;
-        warn-dirty = false;
+    nix = {
+        settings = {
+            auto-optimise-store = true;
+            keep-outputs        = true;
+            keep-derivations = true;
+            max-jobs = "auto";
+            cores = 0;
+            warn-dirty = false;
 
-        experimental-features = [ "nix-command" "flakes" ];
+            experimental-features = [ "nix-command" "flakes" ];
+        };
+
         gc = {
             automatic = true;
             options = "--delete-older-than 30d";
