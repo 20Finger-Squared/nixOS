@@ -120,6 +120,7 @@
         pkgs.fzf
         pkgs.jq
         pkgs.xfce.thunar
+        pkgs.slurp
     ];
 
     programs.dconf.enable = true;
