@@ -11,14 +11,16 @@
 
 
 # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.tmp.useTmpfs = true;
-    boot.tmp.tmpfsSize = "25%";
     boot = {
+        kernel.sysctl."vm.swappiness" = 180;
+        kernel.sysctl."kernel.unprivileged_bpf_disabled" = 1;
+        kernel.sysctl."net.core.bpf_jit_harden" = 2;
+        initrd.systemd.enable = true;
+        kernelParams = [ "quiet" "splash" ];
         loader = {
             systemd-boot.enable      = true;
             efi.canTouchEfiVariables = true;
+            timeout = 1;
         };
 
         tmp = {
