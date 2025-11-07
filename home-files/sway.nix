@@ -11,6 +11,9 @@
           xkb_layout = "gb";
           xkb_options = "caps:escape"; # Optional: remap CapsLock to Escape
         };
+        "0:0:OpenTabletDriver_Virtual_Artist_Tablet" = {
+                map_to_output = "HDMI-A-1";
+            };
       };
 
       colors = let
