@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
 
 let
 addons = inputs.firefox-addons.packages.${pkgs.system};
@@ -96,7 +96,6 @@ in
                     addons.vimium-c
                     addons.gruvbox-dark-theme
                     addons.ublock-origin
-                    addons.tree-style-tab
                     addons.clearurls
                     addons.private-relay
                     addons.privacy-badger
