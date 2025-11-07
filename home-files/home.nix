@@ -33,6 +33,8 @@
     pkgs.discord
     pkgs.zoxide
     pkgs.mako
+    pkgs.gruvbox-dark-gtk
+    pkgs.gruvbox-dark-icons-gtk
   ];
 
 
