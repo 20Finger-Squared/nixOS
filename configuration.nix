@@ -122,10 +122,6 @@
         enable = true;
         gamescopeSession.enable = true;  # optional, but recommended
     };
-    hardware.opengl = {
-        enable = true;
-        extraPackages = with pkgs; [ mesa.drivers ];
-    };
 
     xdg = {
         portal = {

@@ -40,6 +40,11 @@
             passthru.providedSessions = [ "dwl" ];
         })
     ];
+  hardware = {
+      opengl = {
+          enable = true;
+          extraPackages = with pkgs; [ mesa.drivers ];
+      };
   };
 
 
