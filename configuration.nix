@@ -89,6 +89,8 @@
     };
 
     nix.settings = {
+        max-jobs = "auto";
+        cores = 0;
         experimental-features = [ "nix-command" "flakes" ];
         gc = {
             automatic = true;
