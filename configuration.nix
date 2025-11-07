@@ -8,6 +8,8 @@
             ./services-security.nix
             ./dwl-wm/package.nix
         ];
+    powerManagement.cpuFreq.Governor = "schedutil";
+    powerManagement.powertop.enable = true;
     zramSwap.enable = true;
     zramSwap.memoryPercent = 25;
     zramSwap.algorithm = "zstd";
