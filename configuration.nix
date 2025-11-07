@@ -90,6 +90,8 @@
 
     nix.settings = {
         auto-optimise-store = true;
+        keep-outputs        = true;
+        keep-deriviations   = true;
         max-jobs = "auto";
         cores = 0;
         warn-dirty = false;
