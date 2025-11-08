@@ -2,6 +2,18 @@
 {
   users.users.tf.packages =
     let
+      customWmenu = pkgs.wmenu.overrideAttrs (oldAttrs: rec {
+        src = ./wmenu/build/wmenu-run; # path to your copy of wmenu source
+        # Or if you just patch the upstream, you might skip src override
+
+        patches = (oldAttrs.patches or [ ]) ++ [ ];
+
+        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
+          pkgs.wlroots # example: if wmenu needs a wayland layer
+          pkgs.libxkbcommon # example: keyboard input library
+        ];
+      });
+
       customDwlPackage =
         (pkgs.dwl.override {
           configH = ./dwl/config.h;
@@ -17,5 +29,8 @@
             ];
           });
     in
-    [ customDwlPackage ];
+    [
+      customDwlPackage
+      customWmenu
+    ];
 }

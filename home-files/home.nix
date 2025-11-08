@@ -26,7 +26,6 @@
     pkgs.starship
     pkgs.fuzzel
     pkgs.tmux
-    pkgs.fuzzel
     pkgs.mesa
     pkgs.discord
     pkgs.zoxide
