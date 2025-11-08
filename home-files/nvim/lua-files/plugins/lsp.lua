@@ -102,7 +102,7 @@ lspconfig.nil_ls.setup({
     settings = {
         ['nil'] = {
             formatting = {
-                command = { "nixpkgs-fmt" }, -- or "alejandra" if you prefer
+                command = { "nixfmt" }, -- or "alejandra" if you prefer
             },
             nix = {
                 flake = {

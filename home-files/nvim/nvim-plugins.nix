@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-with pkgs.vimPlugins; [
+with pkgs.vimPlugins;
+[
   blink-cmp
   gitsigns-nvim
   gruvbox-nvim
@@ -13,4 +14,3 @@ with pkgs.vimPlugins; [
   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
   luasnip
 ]
-

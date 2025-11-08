@@ -1,7 +1,7 @@
-{config, ...}:
+{ config, ... }:
 
 {
-	environment.sessionVariables = rec {
-		XDG_BIN_HOME = "$HOME/.bin";
-	};
+  environment.sessionVariables = rec {
+    XDG_BIN_HOME = "$HOME/.bin";
+  };
 }

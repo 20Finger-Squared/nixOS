@@ -6,12 +6,10 @@
   home.homeDirectory = lib.mkForce "/home/tf";
   home.stateVersion = "25.05";
 
-
-
   imports = [
-  	./nvim/nvim.nix
+    ./nvim/nvim.nix
 
-	./sway.nix # wm
+    ./sway.nix # wm
     ./sway-lock.nix # lock
 
     ./kitty.nix # terminal
@@ -37,10 +35,9 @@
     pkgs.gruvbox-dark-icons-gtk
   ];
 
-
   programs.home-manager.enable = true;
-  programs.git.enable          = true;
-  programs.starship.enable     = true;
+  programs.git.enable = true;
+  programs.starship.enable = true;
 
   programs.zoxide.enable = true;
   programs.zoxide.enableBashIntegration = true;
@@ -48,9 +45,9 @@
   programs.starship.enableBashIntegration = true;
 
   programs.git.userEmail = "orhylie@gmail.com";
-  programs.git.userName  = "20Finger-Squared";
+  programs.git.userName = "20Finger-Squared";
 
-    # XDG portal config
+  # XDG portal config
   xdg.configFile."xdg-desktop-portal/portals.conf".text = ''
     [preferred]
     default=wlr;gtk
