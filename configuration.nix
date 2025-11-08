@@ -132,6 +132,7 @@
     pkgs.jq
     pkgs.xfce.thunar
     pkgs.slurp
+    pkgs.libreoffice
   ];
 
   programs.dconf.enable = true;
