@@ -1,3 +1,3 @@
 [submodule "dwl"]
-	path = ./dwl-wm/dwl/
+	path = ./suckless/dwl/
 	url = https://codeberg.org/20Finger-Squared/dwl.git

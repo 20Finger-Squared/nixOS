@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ./environment.nix
     ./services-security.nix
-    ./dwl-wm/package.nix
+    ./suckless/package.nix
   ];
 
   powerManagement.cpuFreqGovernor = "schedutil";
