@@ -1,3 +1,6 @@
 [submodule "dwl"]
 	path = ./suckless/dwl/
 	url = https://codeberg.org/20Finger-Squared/dwl.git
+
+[submodule "wmenu"]
+	path = ./suckless/wmenu/
