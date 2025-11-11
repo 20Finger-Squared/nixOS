@@ -22,23 +22,15 @@
 
   home.packages = [
     pkgs.zsh
-    pkgs.starship
     pkgs.tmux
     pkgs.mesa
     pkgs.discord
-    pkgs.zoxide
     pkgs.gruvbox-dark-gtk
     pkgs.gruvbox-dark-icons-gtk
     ./git.nix # git conf
   ];
 
   programs.home-manager.enable = true;
-  programs.starship.enable = true;
-
-  programs.zoxide.enable = true;
-  programs.zoxide.enableBashIntegration = true;
-
-  programs.starship.enableBashIntegration = true;
 
   # XDG portal config
   xdg.configFile."xdg-desktop-portal/portals.conf".text = ''

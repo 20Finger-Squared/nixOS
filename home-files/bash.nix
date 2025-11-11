@@ -1,6 +1,16 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = [
+    pkgs.starship
+    pkgs.zoxide
+  ];
+  programs.zoxide.enable = true;
+  programs.zoxide.enableBashIntegration = true;
+
+  programs.starship.enable = true;
+  programs.starship.enableBashIntegration = true;
+
   programs.bash = {
     enable = true;
     initExtra = ''
