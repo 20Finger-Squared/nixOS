@@ -15,7 +15,6 @@
     ./bash.nix # shell
 
     ./firefox.nix # web browser
-  ];
     ./git.nix # git conf
   ];
 
