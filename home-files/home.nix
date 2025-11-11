@@ -18,7 +18,6 @@
 
   ];
   home.packages = [
-    pkgs.mesa
     pkgs.discord
     ./git.nix # git conf
   ];
