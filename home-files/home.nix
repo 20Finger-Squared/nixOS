@@ -15,10 +15,7 @@
     ./bash.nix # shell
 
     ./firefox.nix # web browser
-
   ];
-  home.packages = [
-    pkgs.discord
     ./git.nix # git conf
   ];
 
