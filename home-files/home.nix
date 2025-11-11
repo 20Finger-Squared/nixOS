@@ -17,15 +17,12 @@
 
     ./firefox.nix # web browser
 
-    ./gtk.nix # gtk
   ];
 
   home.packages = [
     pkgs.zsh
     pkgs.mesa
     pkgs.discord
-    pkgs.gruvbox-dark-gtk
-    pkgs.gruvbox-dark-icons-gtk
     ./git.nix # git conf
   ];
 
