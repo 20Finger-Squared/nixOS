@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = [
+    pkgs.mako
+    pkgs.fuzzel
+  ];
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;

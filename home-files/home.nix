@@ -23,12 +23,10 @@
   home.packages = [
     pkgs.zsh
     pkgs.starship
-    pkgs.fuzzel
     pkgs.tmux
     pkgs.mesa
     pkgs.discord
     pkgs.zoxide
-    pkgs.mako
     pkgs.gruvbox-dark-gtk
     pkgs.gruvbox-dark-icons-gtk
     ./git.nix # git conf
