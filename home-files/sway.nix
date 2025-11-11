@@ -5,6 +5,7 @@
     pkgs.mako
     pkgs.fuzzel
   ];
+
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
@@ -13,13 +14,21 @@
       input = {
         "type:keyboard" = {
           xkb_layout = "gb";
-          xkb_options = "caps:escape"; # Optional: remap CapsLock to Escape
+          xkb_options = "caps:escape";
         };
         "0:0:OpenTabletDriver_Virtual_Artist_Tablet" = {
           map_to_output = "HDMI-A-1";
         };
       };
 
+      output = {
+        "HDMI-A-1" = {
+          position = "0,0";
+        };
+        "DP-1" = {
+          position = "3440,0";
+        };
+      };
       colors =
         let
           background_0 = "#282828";
