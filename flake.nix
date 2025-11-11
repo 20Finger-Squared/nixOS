@@ -26,17 +26,20 @@
       nixosConfigurations.tf = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = ".bak";
-            home-manager.users.tf = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = ".bak";
+
+            users.tf = {
               _module.args = { inherit inputs; };
               imports = [ ./home-files/home.nix ];
             };
+
           }
+
+          ./nix-config/configuration.nix
         ];
       };
     };

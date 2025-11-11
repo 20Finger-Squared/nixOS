@@ -27,6 +27,10 @@
     openssh.settings.PermitRootLogin = "no";
     # Enable Bluetooth
     blueman.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "gb";
+    };
     kanata = {
       enable = true;
       keyboards.main = {
@@ -61,6 +65,20 @@
           destination = "/share/wayland-sessions/dwl.desktop";
           text = builtins.readFile ./suckless/dwl/dwl.desktop;
           passthru.providedSessions = [ "dwl" ];
+        })
+        (pkgs.writeTextFile {
+          name = "dwm";
+          destination = "/share/xsessions/dwm.desktop";
+          text = ''
+            [Desktop Entry]
+            Encoding=UTF-8
+            Name=dwm
+            Comment=Dynamic window manager
+            Exec=${pkgs.dwm}/bin/dwm
+            Icon=dwm
+            Type=Application
+          '';
+          passthru.providedSessions = [ "dwm" ];
         })
       ];
     };

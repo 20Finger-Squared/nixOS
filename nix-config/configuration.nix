@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -86,7 +86,7 @@
     ];
     packages = [
       pkgs.lazygit
-      pkgs.ripgrep
+      pkgs.discord
       pkgs.kitty
       pkgs.eza
       pkgs.steam
@@ -122,17 +122,23 @@
 
   environment.systemPackages = [
     # tiny unopinonated packages or those of which are not relevant to one particular user
-    pkgs.wl-clipboard
-    pkgs.nixfmt-rfc-style
-    pkgs.xdg-desktop-portal
-    pkgs.tmux
-    pkgs.ly
-    pkgs.nil
-    pkgs.fzf
-    pkgs.jq
-    pkgs.xfce.thunar
-    pkgs.slurp
     pkgs.libreoffice
+
+    # wayland needs
+    pkgs.wl-clipboard
+    pkgs.xdg-desktop-portal
+
+    # dev setup for nixOS
+    pkgs.nixfmt-rfc-style # formatter for dot-nix
+    pkgs.nil
+
+    # cli tools
+    pkgs.tmux
+    pkgs.jq
+    pkgs.ripgrep
+    pkgs.fzf
+
+    pkgs.ly
   ];
 
   programs.dconf.enable = true;
