@@ -21,7 +21,6 @@
   ];
 
   home.packages = [
-    pkgs.git
     pkgs.zsh
     pkgs.starship
     pkgs.fuzzel
@@ -32,19 +31,16 @@
     pkgs.mako
     pkgs.gruvbox-dark-gtk
     pkgs.gruvbox-dark-icons-gtk
+    ./git.nix # git conf
   ];
 
   programs.home-manager.enable = true;
-  programs.git.enable = true;
   programs.starship.enable = true;
 
   programs.zoxide.enable = true;
   programs.zoxide.enableBashIntegration = true;
 
   programs.starship.enableBashIntegration = true;
-
-  programs.git.userEmail = "orhylie@gmail.com";
-  programs.git.userName = "20Finger-Squared";
 
   # XDG portal config
   xdg.configFile."xdg-desktop-portal/portals.conf".text = ''
