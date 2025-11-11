@@ -22,7 +22,6 @@
 
   home.packages = [
     pkgs.zsh
-    pkgs.tmux
     pkgs.mesa
     pkgs.discord
     pkgs.gruvbox-dark-gtk
