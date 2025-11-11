@@ -1,7 +1,6 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 
 {
-
   home.username = "tf";
   home.homeDirectory = lib.mkForce "/home/tf";
   home.stateVersion = "25.05";
@@ -18,9 +17,7 @@
     ./firefox.nix # web browser
 
   ];
-
   home.packages = [
-    pkgs.zsh
     pkgs.mesa
     pkgs.discord
     ./git.nix # git conf
