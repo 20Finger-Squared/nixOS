@@ -11,12 +11,8 @@
   powerManagement.powertop.enable = true;
   console.earlySetup = true;
   environment = import ./boot.nix { };
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 25;
-  zramSwap.algorithm = "zstd";
-  zramSwap.priority = 10;
 
-
+  zramSwap = import ./swap.nix { };
   boot = import ./boot.nix { };
 
   # networking and bluetooth
