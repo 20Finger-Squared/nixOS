@@ -17,33 +17,13 @@
   users = import ./users.nix { inherit pkgs; };
   i18n = import ./locale.nix { inherit lib; };
   boot = import ./boot.nix { };
+  nix = import ./nix-settings.nix { };
 
   # networking and bluetooth
   networking.hostName = "tf-nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      keep-outputs = true;
-      keep-derivations = true;
-      max-jobs = "auto";
-      cores = 0;
-      warn-dirty = false;
-
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-    };
-  };
 
   documentation.dev.enable = true;
 
