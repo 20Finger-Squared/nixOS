@@ -2,10 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ./environment.nix
     ./services-security.nix
-    ./suckless/package.nix
   ];
 
   powerManagement.cpuFreqGovernor = "schedutil";
