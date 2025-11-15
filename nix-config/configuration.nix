@@ -18,6 +18,7 @@
   i18n = import ./locale.nix { inherit lib; };
   boot = import ./boot.nix { };
   nix = import ./nix-settings.nix { };
+  xdg = import ./xdg-portal.nix { inherit pkgs; };
 
   # networking and bluetooth
   networking.hostName = "tf-nixos"; # Define your hostname.
@@ -34,16 +35,6 @@
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true; # optional, but recommended
-  };
-
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-    };
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
