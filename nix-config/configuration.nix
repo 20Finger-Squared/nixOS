@@ -1,12 +1,6 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./services-security.nix
-    ./suckless/package.nix
-  ];
-
   powerManagement.cpuFreqGovernor = "schedutil";
   powerManagement.powertop.enable = true;
 
