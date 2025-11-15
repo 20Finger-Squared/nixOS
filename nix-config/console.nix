@@ -1,0 +1,5 @@
+{ ... }:
+{
+  keyMap = "uk";
+  earlySetup = true;
+}
