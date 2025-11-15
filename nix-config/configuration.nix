@@ -9,10 +9,10 @@
 
   powerManagement.cpuFreqGovernor = "schedutil";
   powerManagement.powertop.enable = true;
-  console.earlySetup = true;
   environment = import ./boot.nix { };
 
   zramSwap = import ./swap.nix { };
+  console = import ./console.nix { };
   boot = import ./boot.nix { };
 
   # networking and bluetooth
@@ -33,9 +33,6 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-
-  # Configure console keymap
-  console.keyMap = "uk";
 
   # Configure installed fonts
   fonts = {
