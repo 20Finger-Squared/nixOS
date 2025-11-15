@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./environment.nix
     ./services-security.nix
     ./suckless/package.nix
   ];
@@ -11,6 +10,7 @@
   powerManagement.cpuFreqGovernor = "schedutil";
   powerManagement.powertop.enable = true;
   console.earlySetup = true;
+  environment = import ./boot.nix { };
   zramSwap.enable = true;
   zramSwap.memoryPercent = 25;
   zramSwap.algorithm = "zstd";
