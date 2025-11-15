@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 {
-  environment.sessionVariables = {
+  sessionVariables = {
     XDG_BIN_HOME = "$HOME/.bin";
   };
 
-  environment.systemPackages = [
+  systemPackages = [
     # tiny unopinonated packages or those of which are not relevant to one particular user
     pkgs.libreoffice
 
