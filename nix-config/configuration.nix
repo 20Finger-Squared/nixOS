@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  dwl-desktop-file,
+  ...
+}:
 
 {
   powerManagement.cpuFreqGovernor = "schedutil";
@@ -6,7 +11,7 @@
 
   environment = import ./environment.nix { inherit pkgs; };
   zramSwap = import ./swap.nix { };
-  console = import ./console.nix { };
+  console = import ./console.nix { inherit pkgs; };
   fonts = import ./fonts.nix { inherit pkgs; };
   users = import ./users.nix { inherit pkgs; };
   i18n = import ./locale.nix { inherit lib; };
