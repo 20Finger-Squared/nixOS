@@ -7,4 +7,7 @@
     enable = true;
     extraPackages = with pkgs; [ mesa ];
   };
+  sudo.extraConfig = ''
+    Defaults insults
+  '';
 }
