@@ -13,6 +13,7 @@
 
   zramSwap = import ./swap.nix { };
   console = import ./console.nix { };
+  fonts = import ./fonts.nix { inherit pkgs; };
   i18n = import ./locale.nix { inherit lib; };
   boot = import ./boot.nix { };
 
@@ -21,19 +22,6 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
-
-  # Configure installed fonts
-  fonts = {
-    packages = [
-      pkgs.noto-fonts-emoji
-      pkgs.nerd-fonts.jetbrains-mono
-    ];
-
-    fontconfig.defaultFonts = {
-      monospace = [ "JetBrainsMono Nerd Font" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
 
   users.users.tf = {
     isNormalUser = true;
