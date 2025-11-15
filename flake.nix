@@ -13,34 +13,5 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-
-      nixosConfigurations.tf = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          home-manager.nixosModules.home-manager.home-manager
-          {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = ".bak";
-
-            users.tf = {
-              _module.args = { inherit inputs; };
-              imports = [ ./home-files/home.nix ];
-            };
-
-          }
-
-          ./nix-config/configuration.nix
-        ];
-      };
-    };
+  outputs = inputs: import ./outputs.nix inputs;
 }
