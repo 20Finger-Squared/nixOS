@@ -89,6 +89,7 @@
       pkgs.eza
       pkgs.steam
       pkgs.krita
+      pkgs.opentabletdriver
     ];
   };
 
