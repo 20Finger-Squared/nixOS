@@ -16,6 +16,7 @@ in
     system = "x86_64-linux";
     modules = [
       ./nix-config/configuration.nix
+      ./suckless/package.nix
       ./hardware-configuration.nix
 
       home-manager.nixosModules.home-manager
