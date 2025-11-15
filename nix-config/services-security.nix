@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, dwl-desktop-file, ... }:
 {
   # Security and services
 
@@ -63,7 +63,7 @@
         (pkgs.writeTextFile {
           name = "dwl";
           destination = "/share/wayland-sessions/dwl.desktop";
-          text = builtins.readFile ./suckless/dwl/dwl.desktop;
+          text = builtins.readFile "${dwl-desktop-file}";
           passthru.providedSessions = [ "dwl" ];
         })
         (pkgs.writeTextFile {
