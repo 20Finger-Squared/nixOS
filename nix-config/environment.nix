@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     XDG_BIN_HOME = "$HOME/.bin";
   };
 
