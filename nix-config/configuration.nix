@@ -9,8 +9,8 @@
 
   powerManagement.cpuFreqGovernor = "schedutil";
   powerManagement.powertop.enable = true;
-  environment = import ./boot.nix { };
 
+  environment = import ./environment.nix { inherit pkgs; };
   zramSwap = import ./swap.nix { };
   console = import ./console.nix { };
   fonts = import ./fonts.nix { inherit pkgs; };
