@@ -3,11 +3,6 @@
   users.users.tf.packages =
     let
 
-      customdmenu = pkgs.dmenu.overrideAttrs (oldAttrs: rec {
-        src = ./dmenu;
-        #patches = (oldAttrs.patches or [ ]) ++ [ ];
-      });
-
       customWmenu = pkgs.wmenu.overrideAttrs (oldAttrs: rec {
         src = ./wmenu; # path to your copy of wmenu source
         # Or if you just patch the upstream, you might skip src override
@@ -35,7 +30,6 @@
     [
       customDwlPackage
       customWmenu
-      customdmenu
     ];
 
   services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
