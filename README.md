@@ -17,7 +17,7 @@ This alias is only made in bash so if you use another shell you can't use it.
 - Fix Dwm not using config.h.
 - Create Dmenu configuration.
 - Create tmux configuration.
-- Create qutebrowser configuration.
+- ~~Create qutebrowser configuration.~~
 
 # Features
 The whole system is aiming to be Gruvbox themed using the Jetbrains Mono font.
