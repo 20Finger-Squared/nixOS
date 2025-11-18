@@ -27,6 +27,8 @@ in
       ./suckless/package.nix
       ./hardware-configuration.nix
 
+      ./colorscheme-module.nix
+
       home-manager.nixosModules.home-manager
     ];
   };
