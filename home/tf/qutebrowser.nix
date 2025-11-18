@@ -27,6 +27,8 @@
 
     settings = {
       confirm_quit = [ "always" ];
+      fonts.default_family = "JetbrainMono NF";
+      fonts.default_size = "14px";
 
       colors = {
         completion = {
