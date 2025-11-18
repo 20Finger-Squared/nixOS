@@ -8,6 +8,7 @@
       "wheel"
       "render"
       "seat"
+      "uinput"
       "input"
       "video"
     ];
