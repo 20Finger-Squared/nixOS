@@ -27,12 +27,15 @@ in
       home-manager.nixosModules.home-manager
       {
         home-manager = {
+          extraSpecialArgs = {
+            inherit nixpkgs-24-11;
+            inherit inputs;
+          };
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = ".bak";
 
           users.tf = {
-            _module.args = { inherit inputs; };
             imports = [ ./home-files/home.nix ];
           };
         };
