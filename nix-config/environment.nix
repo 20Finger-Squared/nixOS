@@ -9,6 +9,7 @@
   systemPackages = [
     # tiny unopinonated packages or those of which are not relevant to one particular user
     pkgs.libreoffice
+    pkgs.firefox
 
     # wayland needs
     pkgs.wl-clipboard
@@ -17,6 +18,9 @@
     # dev setup for nixOS
     pkgs.nixfmt-rfc-style # formatter for dot-nix
     pkgs.nil
+
+    # Default terminal emulator
+    pkgs.kitty
 
     # cli tools
     pkgs.tmux
