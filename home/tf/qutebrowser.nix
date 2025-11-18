@@ -9,19 +9,20 @@
     enableDefaultBindings = true;
     package = nixpkgs-24-11.qutebrowser;
 
-    quickmarks = {
-      nixpkgs = "";
-      nixlib = "";
-      ytm = "";
-      yt = "";
-    };
+    # quickmarks = {
+    #   nixpkgs = "";
+    #   nixlib = "";
+    #   ytm = "";
+    #   yt = "";
+    # };
 
-    searchEngines = {
-      np = "";
-      no = "";
-      yt = "";
-      ytm = "";
-    };
+    # searchEngines = {
+    #   np = "";
+    #   no = "";
+    #   yt = "";
+    #   ytm = "";
+    # };
+
     settings = {
       confirm_quit = true;
 
