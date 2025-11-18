@@ -31,10 +31,14 @@
       fonts.default_family = "JetbrainMono NF";
       fonts.default_size = "14px";
 
+      hints.min_chars = 1;
+
       scrolling.smooth = true;
+
       tabs.position = "left";
       tabs.show = "switching";
       tabs.wrap = true;
+
       colors = {
         completion = {
           category = {
