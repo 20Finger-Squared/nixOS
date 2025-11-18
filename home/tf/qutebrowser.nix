@@ -1,4 +1,8 @@
-{ config, inputs, ... }:
+{
+  colorscheme,
+  nixpkgs-24-11,
+  ...
+}:
 {
   programs.qutebrowser = {
     enable = true;

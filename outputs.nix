@@ -11,6 +11,9 @@ let
 in
 {
   formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+  nixosModules = {
+    colorscheme = import ./colorscheme-module.nix;
+  };
 
   nixosConfigurations.tf-nixos = nixpkgs.lib.nixosSystem {
     specialArgs = {
@@ -27,9 +30,8 @@ in
       ./suckless/package.nix
       ./hardware-configuration.nix
 
-      ./colorscheme-module.nix
-
       home-manager.nixosModules.home-manager
+      self.nixosModules.colorscheme
     ];
   };
 }
