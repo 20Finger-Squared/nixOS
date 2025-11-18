@@ -29,225 +29,231 @@
       colors = {
         completion = {
           category = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
             border = {
-              bottom = config.colorscheme.bg .0;
-              top = config.colorscheme.bg .0;
+              bottom = colorscheme.hex.muted.aqua;
+              top = colorscheme.hex.bg.one;
             };
           };
-          even.bg = config.colorscheme.bg .0;
-          odd.bg = config.colorscheme.bg .0;
-          fg = config.colorscheme.bg .0;
+
+          even.bg = colorscheme.hex.bg.zero;
+          odd.bg = colorscheme.hex.bg.one;
+          fg = colorscheme.hex.fg.one;
           item = {
             selected = {
-              fg = config.colorscheme.bg .0;
-              bg = config.colorscheme.bg .0;
+              fg = colorscheme.hex.strong.yellow;
+              bg = colorscheme.hex.bg.two;
+              match.fg = colorscheme.hex.muted.yellow;
               border = {
-                top = config.colorscheme.bg .0;
-                bottom = config.colorscheme.bg .0;
+                top = colorscheme.hex.bg.two;
+                bottom = colorscheme.hex.muted.yellow;
               };
-              match.fg = config.colorscheme.bg .0;
             };
           };
-          match.fg = config.colorscheme.bg .0;
+          match.fg = colorscheme.hex.muted.yellow;
+
           scrollbar = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.four;
+            bg = colorscheme.hex.bg.two;
           };
         };
 
         contextmenu = {
           disabled = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.bg.three;
+            bg = colorscheme.hex.bg.one;
           };
           menu = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
           };
           selected = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.muted.yellow;
+            bg = colorscheme.hex.bg.one;
           };
         };
 
         downloads = {
-          bar.bg = config.colorscheme.bg .0;
+          bar.bg = colorscheme.rgb.muted.blue;
           error = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.rgb.muted.red;
+            bg = colorscheme.rgb.bg.one;
           };
           start = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.rgb.strong.blue;
+            bg = colorscheme.rgb.bg.one;
           };
           stop = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.rgb.muted.orange;
+            bg = colorscheme.rgb.bg.one;
           };
           system = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = "rgb";
+            bg = "rgb";
           };
         };
 
         hints = {
-          bg = config.colorscheme.bg .0;
-          fg = config.colorscheme.bg .0;
-          match.fg = config.colorscheme.bg .0;
+          bg = colorscheme.hex.bg.one;
+          fg = colorscheme.hex.fg.one;
+          match.fg = colorscheme.hex.muted.yellow;
         };
 
         keyhint = {
-          fg = config.colorscheme.bg .0;
-          bg = config.colorscheme.bg .0;
-          suffix = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
-          };
+          fg = colorscheme.hex.fg.one;
+          bg = colorscheme.hex.bg.one;
+          suffix.fg = colorscheme.hex.strong.yellow;
         };
 
         messages = {
           error = {
-            border = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            border = colorscheme.hex.muted.red;
+            fg = colorscheme.hex.strong.red;
+            bg = colorscheme.hex.bg.one;
           };
           info = {
-            border = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            border = colorscheme.hex.muted.aqua;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
           };
           warning = {
-            border = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            border = colorscheme.hex.muted.orange;
+            fg = colorscheme.hex.bg.one;
+            bg = colorscheme.hex.bg.one;
           };
         };
 
         prompts = {
-          border = config.colorscheme.bg .0;
-          fg = config.colorscheme.bg .0;
-          bg = config.colorscheme.bg .0;
+          border = colorscheme.hex.bg.two;
+          fg = colorscheme.hex.fg.two;
+          bg = colorscheme.hex.bg.two;
           selected = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
           };
         };
 
         statusbar = {
           caret = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
             selection = {
-              fg = config.colorscheme.bg .0;
-              bg = config.colorscheme.bg .0;
-            };
-            command = {
-              fg = config.colorscheme.bg .0;
-              bg = config.colorscheme.bg .0;
-              private = {
-                fg = config.colorscheme.bg .0;
-                bg = config.colorscheme.bg .0;
-              };
+              fg = colorscheme.hex.muted.blue;
+              bg = colorscheme.hex.bg.one;
             };
           };
+
+          command = {
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
+            private = {
+              fg = colorscheme.hex.fg.one;
+              bg = colorscheme.hex.bg.one;
+            };
+          };
+
           insert = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.muted.yellow;
+            bg = colorscheme.hex.bg.one;
           };
+
           normal = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.one;
+            bg = colorscheme.hex.bg.one;
           };
+
           passthrough = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.fg.three;
+            bg = colorscheme.hex.bg.one;
           };
+
           private = {
-            fg = config.colorscheme.bg .0;
-            bg = config.colorscheme.bg .0;
+            fg = colorscheme.hex.bg.one;
+            bg = colorscheme.hex.strong.purple;
           };
-          progress.bg = config.colorscheme.bg .0;
+
+          progress.bg = colorscheme.hex.muted.aqua;
+
           url = {
-            error.fg = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
-            hover.fg = config.colorscheme.bg .0;
+            error.fg = colorscheme.hex.muted.red;
+            fg = colorscheme.hex.fg.one;
+            hover.fg = colorscheme.hex.strong.orange;
+            warn.fg = colorscheme.hex.muted.purple;
             success = {
-              http.fg = config.colorscheme.bg .0;
-              https.fg = config.colorscheme.bg .0;
+              http.fg = colorscheme.hex.muted.yellow;
+              https.fg = colorscheme.hex.strong.yellow;
             };
-            warn.fg = config.colorscheme.bg .0;
           };
+
         };
 
         tabs = {
-          bar.bg = config.colorscheme.bg .0;
+          bar.bg = colorscheme.hex.bg.one;
+
           even = {
-            bg = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
-          };
-          indicator = {
-            error = config.colorscheme.bg .0;
-            start = config.colorscheme.bg .0;
-            stop = config.colorscheme.bg .0;
-            system = config.colorscheme.bg .0;
+            bg = colorscheme.hex.bg.one;
+            fg = colorscheme.hex.fg.one;
           };
           odd = {
-            bg = config.colorscheme.bg .0;
-            fg = config.colorscheme.bg .0;
+            bg = colorscheme.hex.bg.two;
+            fg = colorscheme.hex.fg.one;
           };
+
+          indicator = {
+            error = colorscheme.hex.muted.red;
+            start = colorscheme.hex.muted.aqua;
+            stop = colorscheme.hex.bg.one;
+            system = "rgb";
+          };
+
           pinned = {
             even = {
-              bg = config.colorscheme.bg .0;
-              fg = config.colorscheme.bg .0;
+              bg = colorscheme.hex.muted.purple;
+              fg = colorscheme.hex.fg.one;
             };
             odd = {
-              bg = config.colorscheme.bg .0;
-              fg = config.colorscheme.bg .0;
+              bg = colorscheme.hex.strong.purple;
+              fg = colorscheme.hex.bg.one;
             };
+
             selected = {
               even = {
-                bg = config.colorscheme.bg .0;
-                fg = config.colorscheme.bg .0;
+                bg = colorscheme.hex.muted.yellow;
+                fg = colorscheme.hex.bg.one;
               };
               odd = {
-                bg = config.colorscheme.bg .0;
-                fg = config.colorscheme.bg .0;
+                bg = colorscheme.hex.muted.yellow;
+                fg = colorscheme.hex.bg.one;
               };
             };
           };
+
           selected = {
             even = {
-              bg = config.colorscheme.bg .0;
-              fg = config.colorscheme.bg .0;
+              bg = colorscheme.hex.muted.yellow;
+              fg = colorscheme.hex.bg.one;
             };
             odd = {
-              bg = config.colorscheme.bg .0;
-              fg = config.colorscheme.bg .0;
+              bg = colorscheme.hex.muted.yellow;
+              fg = colorscheme.hex.bg.one;
             };
           };
         };
 
         tooltip = {
-          bg = config.colorscheme.bg .0;
-          fg = config.colorscheme.bg .0;
+          bg = colorscheme.hex.bg.one;
+          fg = colorscheme.hex.fg.one;
         };
 
         webpage = {
-          bg = config.colorscheme.bg .0;
-          preferred_color_scheme = config.colorscheme.bg .0;
+          bg = colorscheme.hex.bg.one;
+          preferred_color_scheme = "dark";
           darkmode = {
-            algorithm = config.colorscheme.bg .0;
-            contrast = config.colorscheme.bg .0;
-            enabled = config.colorscheme.bg .0;
+            enabled = true;
             policy = {
-              images = config.colorscheme.bg .0;
-              page = config.colorscheme.bg .0;
-            };
-            threshold = {
-              background = config.colorscheme.bg .0;
-              foreground = config.colorscheme.bg .0;
+              images = "smart";
+              page = "smart";
             };
           };
         };
