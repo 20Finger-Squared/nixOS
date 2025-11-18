@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ nixpkgs-24-11, pkgs, ... }:
 
 {
   sessionVariables = {
@@ -24,5 +24,7 @@
     pkgs.fzf
 
     pkgs.ly
+
+    nixpkgs-24-11.qutebrowser
   ];
 }
