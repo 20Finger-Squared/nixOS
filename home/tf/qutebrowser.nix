@@ -9,19 +9,21 @@
     enableDefaultBindings = true;
     package = nixpkgs-24-11.qutebrowser;
 
-    # quickmarks = {
-    #   nixpkgs = "";
-    #   nixlib = "";
-    #   ytm = "";
-    #   yt = "";
-    # };
+    quickmarks = {
+      nixpkgs = "https://search.nixos.org/packages";
+      nixopts = "https://search.nixos.org/options";
+      nixlib = "https://teu5us.github.io/nix-lib.html";
+      ytm = "https://music.youtube.com/";
+      yt = "https://youtube.com/";
+    };
 
-    # searchEngines = {
-    #   np = "";
-    #   no = "";
-    #   yt = "";
-    #   ytm = "";
-    # };
+    searchEngines = {
+      np = "https://search.nixos.org/packages?channel=25.05&query={}";
+      no = "https://search.nixos.org/options?channel=25.05&query={}";
+      hm = "https://home-manager-options.extranix.com/?query={}";
+      yt = "https://youtube.com/search?q={}";
+      ytm = "https://music.youtube.com/search?q={}";
+    };
 
     settings = {
       confirm_quit = [ "always" ];
