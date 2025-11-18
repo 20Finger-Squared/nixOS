@@ -3,6 +3,7 @@
 {
   sessionVariables = {
     XDG_BIN_HOME = "$HOME/.bin";
+    EDITOR = "nvim";
   };
 
   systemPackages = [
