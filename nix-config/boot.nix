@@ -4,6 +4,9 @@
   kernel.sysctl."kernel.unprivileged_bpf_disabled" = 1;
   kernel.sysctl."net.core.bpf_jit_harden" = 2;
   initrd.systemd.enable = true;
+  kernelModules = [
+    "uinput"
+  ];
   kernelParams = [
     "quiet"
     "splash"
