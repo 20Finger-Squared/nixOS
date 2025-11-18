@@ -7,7 +7,7 @@
   programs.qutebrowser = {
     enable = true;
     enableDefaultBindings = true;
-    package = [ inputs.nixpkgs-24-11.qutebrowser ];
+    package = nixpkgs-24-11.qutebrowser;
 
     quickmarks = {
       nixpkgs = "";
