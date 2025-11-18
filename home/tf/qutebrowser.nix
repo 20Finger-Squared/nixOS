@@ -27,6 +27,7 @@
 
     settings = {
       confirm_quit = [ "always" ];
+      auto_save.session = true;
       fonts.default_family = "JetbrainMono NF";
       fonts.default_size = "14px";
 
