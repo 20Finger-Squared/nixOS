@@ -32,6 +32,9 @@
       fonts.default_size = "14px";
 
       scrolling.smooth = true;
+      tabs.position = "left";
+      tabs.show = "switching";
+      tabs.wrap = true;
       colors = {
         completion = {
           category = {
