@@ -5,4 +5,7 @@
   sudo.wheelNeedsPassword = true;
   apparmor.enable = true;
   auditd.enable = true;
+  sudo.extraConfig = ''
+    Defaults insults
+  '';
 }
