@@ -24,7 +24,7 @@
     # };
 
     settings = {
-      confirm_quit = true;
+      confirm_quit = [ "always" ];
 
       colors = {
         completion = {
