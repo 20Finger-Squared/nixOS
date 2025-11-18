@@ -1,0 +1,78 @@
+# My new nixOS config
+
+My nixOS configuration including any tools I am experimenting with.
+When i consider this configuration to be "stable" i will change it to the main branch, not saying the main branch is usable either.
+
+# Installation instructions
+You first need to copy your generated hardware-configuration.nix
+`cp /etc/nixos/hardware-configuration.nix ~/nixOS`
+
+Then to run the build command
+`nixos-rebuild switch --flake ~/nixOS/?submodules=1#tf-nixos`
+
+Then for future rebuilds you can use the `rebuild` alias.
+This alias is only made in bash so if you use another shell you can't use it.
+
+# TODO
+- Fix Dwm not using config.h.
+- Create Dmenu configuration.
+- Create tmux configuration.
+- Create qutebrowser configuration.
+
+# Features
+The whole system is aiming to be Gruvbox themed using the Jetbrains Mono font.
+
+## GUI tools
+Windows managers are:
+- Dwl
+- Dwm
+
+App launchers are:
+- Wmenu
+- Dmenu
+
+Current webbrowsers are:
+- qutebrowser
+- firefox
+
+The desktop suite is libreoffice.
+
+## Terminal Related
+Terminal: kitty (X11 and Wayland compatible).
+Terminal multiplexer: Tmux.
+
+Login: Ly due to it's simplicity.
+
+### The shell
+Shell: BASH
+CLI tools:
+- Jq
+- ripgrep
+- fzf
+
+# Known Issues
+- Sometimes keyboard input stops working. The reason of which I have no idea.
+- Dwm does not use it's config.h
+
+# Structure
+## home/
+This contains all the home-manager related settings.
+- `home/default.nix` contains all settings that apply to all users.
+- `home/<user-name>/` is where you should put your user settings.
+
+## nix-config/
+The core file of this dir is `configuration.nix` of which imports all other files into it.
+
+This was just a matter of taste on how I did the imports you can change the structure back,
+but you would have to edit the other files to not get a build error.
+
+If you don't want UK settings for your pc you should edit
+- `nix-config/configuration.nix` line 36.
+- `nix-config/console.nix` line 3
+> TIP: Neovim supports `:e <file> +<line>` out of the box.
+> Example: `:e nix-config/configuration.nix +36`
+
+## suckless/
+The core file of this dir is `package.nix` of which installs and compiles the suckless software.
+
+If you wish to remove this folder you need to edit `.gitmodules` `outputs.nix`.
