@@ -2,9 +2,17 @@
 {
   portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-    ];
+    wlr.enable = true; # Enables xdg-desktop-portal-wlr
+
+    config = {
+      common = {
+        default = [
+          "wlr"
+          "gtk"
+        ];
+      };
+    };
+
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }
