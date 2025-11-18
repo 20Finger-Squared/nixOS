@@ -1,4 +1,5 @@
 {
+  nixpkgs-24-11,
   pkgs,
   lib,
   dwl-desktop-file,
@@ -9,7 +10,10 @@
   powerManagement.cpuFreqGovernor = "schedutil";
   powerManagement.powertop.enable = true;
 
-  environment = import ./environment.nix { inherit pkgs; };
+  environment = import ./environment.nix {
+    inherit pkgs;
+    inherit nixpkgs-24-11;
+  };
   zramSwap = import ./swap.nix { };
   console = import ./console.nix { inherit pkgs; };
   fonts = import ./fonts.nix { inherit pkgs; };
