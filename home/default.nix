@@ -1,9 +1,15 @@
-{ nixpkgs-24-11, inputs, ... }:
+{
+  config,
+  inputs,
+  nixpkgs-24-11,
+  ...
+}:
 {
   home-manager = {
     extraSpecialArgs = {
       inherit nixpkgs-24-11;
       inherit inputs;
+      inherit config;
     };
 
     useGlobalPkgs = true;
