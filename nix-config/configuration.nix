@@ -22,12 +22,12 @@
   boot = import ./boot.nix { };
   nix = import ./nix-settings.nix { };
   xdg = import ./xdg-portal.nix { inherit pkgs; };
+  hardware = import ./hardware.nix { inherit pkgs; };
+  security = import ./security.nix { };
   services = import ./services.nix {
     inherit pkgs;
     inherit dwl-desktop-file;
   };
-  hardware = import ./hardware.nix { inherit pkgs; };
-  security = import ./security.nix;
 
   # networking and bluetooth
   networking.hostName = "tf-nixos"; # Define your hostname.
