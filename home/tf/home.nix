@@ -3,7 +3,6 @@
 {
   home.username = "tf";
   home.homeDirectory = lib.mkForce "/home/tf";
-  home.stateVersion = "25.05";
 
   imports = [
     ./nvim/nvim.nix
@@ -18,5 +17,4 @@
     ./git.nix # git conf
   ];
 
-  programs.home-manager.enable = true;
 }
