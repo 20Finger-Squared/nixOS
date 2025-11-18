@@ -1,2 +1,3 @@
 hardware-configuration.nix
 nix.log
+flake.lock
