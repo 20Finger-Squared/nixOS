@@ -14,6 +14,7 @@
     ./bash.nix # shell
 
     ./firefox.nix # web browser
+    ./qutebrowser.nix # vim like web browser
     ./git.nix # git conf
   ];
 
