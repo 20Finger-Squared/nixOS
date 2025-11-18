@@ -31,6 +31,7 @@
       fonts.default_family = "JetbrainMono NF";
       fonts.default_size = "14px";
 
+      scrolling.smooth = true;
       colors = {
         completion = {
           category = {
