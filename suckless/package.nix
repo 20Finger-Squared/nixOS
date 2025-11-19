@@ -1,39 +1,35 @@
 { pkgs, ... }:
 let
-
   customWmenu = pkgs.wmenu.overrideAttrs (oldAttrs: rec {
-    src = ./wmenu; # path to your copy of wmenu source
-    # Or if you just patch the upstream, you might skip src override
-
-    #patches = (oldAttrs.patches or [ ]) ++ [ ];
-
-    buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
-      pkgs.wlroots # example: if wmenu needs a wayland layer
-      pkgs.libxkbcommon # example: keyboard input library
+    patches = (oldAttrs.patches or [ ]) ++ [
+      ./Vim-motions-and-gruvbox.patch
     ];
   });
 
-  customDwmPackage = pkgs.dwm.overrideAttrs (oldAttrs: rec {
-    src = ./dwm;
-    conf = ./dwm/config.h;
-    patches = [ ];
+  customDmenuPackage =
+    (pkgs.dmenu.override {
+      # conf = ./dmenu/config.h;
+    }).overrideAttrs
+      (oldAttrs: {
+        # patches = (oldAttrs.patches or [ ]) ++ [ ];
+      });
+
+  customDwmPackage = (pkgs.dwm.override { conf = ./dwm/config.h; }).overrideAttrs (oldAttrs: {
+    # patches = (oldAttrs.patches or [ ]) ++ [ ];
   });
 
   customDwlPackage = (pkgs.dwl.override { configH = ./dwl/config.h; }).overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or [ ]) ++ [
-      ./dwl-patches/warpcursor.patch
-      ./dwl-patches/gaps.patch
-    ];
-
-    buildInputs = oldAttrs.buildInputs or [ ] ++ [
-      pkgs.libdrm
-      pkgs.fcft
+      ./dwl/warpcursor.patch
+      ./dwl/gaps.patch
     ];
   });
 in
 {
   users.users.tf.packages = [
     customDwlPackage
+    customDwmPackage
+    customDmenuPackage
     customWmenu
   ];
 
@@ -45,8 +41,6 @@ in
       autoRepeatDelay = 200;
       autoRepeatInterval = 32;
       windowManager.qtile.enable = true;
-      windowManager.dwm.enable = true;
-      windowManager.dwm.package = customDwmPackage;
     };
   };
 }
