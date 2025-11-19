@@ -1,4 +1,4 @@
-{ pkgs, dwl-desktop-file, ... }:
+{ pkgs, ... }:
 {
   pulseaudio.enable = false;
   printing.enable = true;
@@ -42,7 +42,13 @@
       (pkgs.writeTextFile {
         name = "dwl";
         destination = "/share/wayland-sessions/dwl.desktop";
-        text = builtins.readFile "${dwl-desktop-file}";
+        text = ''
+          [Desktop Entry]
+          Name=dwl
+          Comment=dwm for Wayland
+          Exec=dwl
+          Type=Application
+        '';
         passthru.providedSessions = [ "dwl" ];
       })
       (pkgs.writeTextFile {

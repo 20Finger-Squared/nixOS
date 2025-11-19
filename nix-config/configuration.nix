@@ -2,7 +2,6 @@
   nixpkgs-24-11,
   pkgs,
   lib,
-  dwl-desktop-file,
   ...
 }:
 
@@ -26,7 +25,6 @@
   security = import ./security.nix { };
   services = import ./services.nix {
     inherit pkgs;
-    inherit dwl-desktop-file;
   };
 
   # networking and bluetooth

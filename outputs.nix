@@ -6,7 +6,6 @@
   ...
 }@inputs:
 let
-  dwl-desktop-file = "${self}/suckless/dwl/dwl.desktop";
   system-type = "x86_64-linux";
 in
 {
@@ -17,7 +16,6 @@ in
 
   nixosConfigurations.tf-nixos = nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit dwl-desktop-file;
       inherit inputs;
       nixpkgs-24-11 = nixpkgs-24-11.legacyPackages."${system-type}";
     };
