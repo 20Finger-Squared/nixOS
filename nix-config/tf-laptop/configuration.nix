@@ -27,7 +27,7 @@
   };
 
   # networking and bluetooth
-  networking.hostName = "tf-nixos"; # Define your hostname.
+  networking.hostName = "tf-laptop"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
