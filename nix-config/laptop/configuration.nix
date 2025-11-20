@@ -7,7 +7,6 @@
 
 {
   powerManagement.cpuFreqGovernor = "schedutil";
-  powerManagement.powertop.enable = true;
 
   environment = import ./environment.nix {
     inherit pkgs;
