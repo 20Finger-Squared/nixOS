@@ -11,7 +11,7 @@ let
     hostname:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs hostname;
+        inherit inputs;
         nixpkgs-24-11 = nixpkgs-24-11.legacyPackages."${system-type}";
       };
       system = system-type;
