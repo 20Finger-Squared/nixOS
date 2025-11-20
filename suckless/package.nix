@@ -2,7 +2,7 @@
 let
   customWmenu = pkgs.wmenu.overrideAttrs (oldAttrs: rec {
     patches = (oldAttrs.patches or [ ]) ++ [
-      ./Vim-motions-and-gruvbox.patch
+      ./wmenu/Vim-motions-and-gruvbox.patch
     ];
   });
 
