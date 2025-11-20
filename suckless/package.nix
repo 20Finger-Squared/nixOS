@@ -14,8 +14,9 @@ let
         # patches = (oldAttrs.patches or [ ]) ++ [ ];
       });
 
-  customDwmPackage = (pkgs.dwm.override { conf = ./dwm/config.h; }).overrideAttrs (oldAttrs: {
+  customDwmPackage = pkgs.dwm.overrideAttrs (oldAttrs: {
     # patches = (oldAttrs.patches or [ ]) ++ [ ];
+    postPatch = "cp ./dwm/config.h config.h";
   });
 
   customDwlPackage = (pkgs.dwl.override { configH = ./dwl/config.h; }).overrideAttrs (oldAttrs: {
