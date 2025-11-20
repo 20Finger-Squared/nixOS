@@ -16,11 +16,11 @@ let
       };
       system = system-type;
       modules = [
-        ./${hostname}/hardware-configuration.nix
-        ./${hostname}/nix-config/configuration.nix
-        ./${hostname}/suckless/package.nix
+        ./nix-config/${hostname}/hardware-configuration.nix
+        ./nix-config/${hostname}/configuration.nix
+        ./suckless/package.nix
 
-        ./${hostname}/home/default.nix
+        ./home/default.nix
         home-manager.nixosModules.home-manager
 
         self.nixosModules.colorscheme
