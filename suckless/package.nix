@@ -8,7 +8,7 @@ let
 
   customDmenuPackage =
     (pkgs.dmenu.override {
-      # conf = ./dmenu/config.h;
+      conf = ./dmenu/config.def.h;
     }).overrideAttrs
       (oldAttrs: {
         # patches = (oldAttrs.patches or [ ]) ++ [ ];
