@@ -10,8 +10,6 @@
     package = nixpkgs-24-11.qutebrowser;
 
     quickmarks = {
-      nixpkgs = "https://search.nixos.org/packages";
-      nixopts = "https://search.nixos.org/options";
       nixlib = "https://teu5us.github.io/nix-lib.html";
       ytm = "https://music.youtube.com/";
       yt = "https://youtube.com/";
