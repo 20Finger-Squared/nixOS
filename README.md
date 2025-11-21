@@ -3,6 +3,8 @@
 My nixOS configuration including any tools I am experimenting with.
 When i consider this configuration to be "stable" i will change it to the main branch, not saying the main branch is usable either.
 
+This configuration is most likely going to be stable once I have done the current TODO tasks.
+
 # Installation instructions
 You first need to copy your generated hardware-configuration.nix
 `cp /etc/nixos/hardware-configuration.nix ~/nixOS`
