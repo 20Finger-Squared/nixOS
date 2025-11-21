@@ -12,6 +12,7 @@
     quickmarks = {
       nixlib = "https://teu5us.github.io/nix-lib.html";
       ytm = "https://music.youtube.com/";
+      nixsource = "https://github.com/NixOS/nixpkgs/tree/master/doc";
       yt = "https://youtube.com/";
     };
 
