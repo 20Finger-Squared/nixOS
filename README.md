@@ -7,10 +7,14 @@ When i consider this configuration to be "stable" i will change it to the main b
 You first need to copy your generated hardware-configuration.nix
 `cp /etc/nixos/hardware-configuration.nix ~/nixOS`
 
-Then to run the build command
-`nixos-rebuild switch --flake ~/nixOS/?submodules=1#tf-nixos`
+Then to run the build command.
+If your system does not use btrfs then for now you should chose the `tf-laptop` hostname.
+This is because this does not as of now have the btrfs service enabled.
+
+`nixos-rebuild switch --flake ~/nixOS/?submodules=1#<hostname>`
 
 Then for future rebuilds you can use the `rebuild` alias.
+This alias does not specify the hostname so your current one will be used.
 This alias is only made in bash so if you use another shell you can't use it.
 
 # TODO
