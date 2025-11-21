@@ -42,11 +42,11 @@ App launchers are:
 - Wmenu
 - Dmenu
 
-Current webbrowsers are:
+Current web browsers are:
 - qutebrowser
 - firefox
 
-The desktop suite is libreoffice.
+The desktop suite is Libreoffice.
 
 ## Terminal Related
 Terminal: kitty (X11 and Wayland compatible).
