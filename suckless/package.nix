@@ -41,7 +41,10 @@ in
       enable = true;
       autoRepeatDelay = 200;
       autoRepeatInterval = 32;
-      windowManager.qtile.enable = true;
+      windowManager.dwm = {
+        enable = true;
+        package = customDwmPackage;
+      };
     };
   };
 }
