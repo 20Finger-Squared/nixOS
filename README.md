@@ -30,6 +30,9 @@ This alias is only made in bash so if you use another shell you can't use it.
 # Features
 The whole system is aiming to be Gruvbox themed using the Jetbrains Mono font.
 
+This config is also moving towards X11 due to me having a hoard of problems with the current wayland.
+With the movement towards X11 i will be prioritising suckless software due to speed and ease of config.
+
 ## GUI tools
 Windows managers are:
 - Dwl
