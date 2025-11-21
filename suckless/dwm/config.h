@@ -1,21 +1,28 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Jetbrains Mono NF 12" };
-static const char dmenufont[]       = "Jetbrains Mono NF:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const unsigned int borderpx   = 3;        /* border pixel of windows */
+static const unsigned int snap       = 16;       /* snap pixel */
+static const int showbar             = 1;        /* 0 means no bar */
+static const int topbar              = 0;        /* 0 means bottom bar */
+static const char *fonts[]           = { "Jetbrains Mono NF 12" };
+static const char dmenufont[]        = "Jetbrains Mono NF:size = 10";
+static const char col_bg1[]          = "#1D2021";
+static const char col_bg2[]          = "#32302F";
+static const char col_bg3[]          = "#3C3836";
+static const char col_bg4[]          = "#503945";
+
+static const char col_fg1[]          = "#FBF1C7";
+static const char col_fg2[]          = "#EBDBB2";
+static const char col_fg3[]          = "#D5C4A1";
+static const char col_fg4[]          = "#BDAE93";
+
+static const char col_yellow_muted[] = "#D79921";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_fg1, col_bg1, col_bg2 },
+	[SchemeSel]  = { col_fg3, col_yellow_muted,  col_yellow_muted  },
 };
 
 /* tagging */
@@ -59,7 +66,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg1, "-nf", col_bg3, "-sb", col_yellow_muted, "-sf", col_bg4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *webcmd[]   = { "qutebrowser", NULL };
 
@@ -77,7 +84,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ AltMODKEY,                    XK_c,      killclient,     {0} },
+	{ AltMODKEY,                    XK_Q,      killclient,     {0} },
 	{ MODKEY,                       XK_i,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
