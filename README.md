@@ -18,9 +18,13 @@ This alias does not specify the hostname so your current one will be used.
 This alias is only made in bash so if you use another shell you can't use it.
 
 # TODO
-- Fix Dwm not using config.h.
 - Create Dmenu configuration.
 - Create tmux configuration.
+- Create Dwm configuration.
+- Create template for dwm config.h
+
+## Done
+- ~~Fix Dwm not using config.h.~~
 - ~~Create qutebrowser configuration.~~
 
 # Features
