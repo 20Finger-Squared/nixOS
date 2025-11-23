@@ -99,7 +99,7 @@ let
   };
 in
 {
-  options.programs.my-dwm = {
+  options.programs.dwm = {
     enable = mkEnableOption "my-dwm";
 
     showBar = mkEnableOption "show bar";
