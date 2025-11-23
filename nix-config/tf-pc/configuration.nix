@@ -26,6 +26,8 @@
     inherit pkgs;
   };
 
+  programs.dwm = import ./dwm.nix { };
+
   # networking and bluetooth
   networking.hostName = "tf-pc"; # Define your hostname.
   networking.networkmanager.enable = true;
