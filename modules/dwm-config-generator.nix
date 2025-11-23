@@ -6,9 +6,9 @@
 }:
 with lib;
 let
-  cfg = config.services.my-dwm;
+  cfg = config.programs.dwm;
   file = pkgs.writeText "config.h" ''
-    ${file.prepend}
+    ${cfg.file.prepend}
       static const unsigned int borderpx = ${toString cfg.borderpx};
       static const unsigned int snap = ${toString cfg.snap};
       static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
@@ -85,11 +85,11 @@ let
           TAGKEYS(XK_8, 7)
           TAGKEYS(XK_9, 8)
           };
-    ${file.append}
+    ${cfg.file.append}
   '';
   dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
-    src = "${package.src}";
-    patches = "${package.patches}";
+    src = "${cfg.package.src}";
+    patches = "${cfg.package.patches}";
     postUnpack = " cp ${file} config.h ";
   });
 
