@@ -48,7 +48,22 @@ in
       autoRepeatDelay = 200;
       autoRepeatInterval = 32;
       windowManager.dwm = {
-        package = customDwmPackage;
+        # enable = true;
+        # package = customDwmPackage;
+      };
+    };
+  };
+  services.my-dwm = {
+    enable = true;
+    borderpx = 3;
+    snap = 16;
+    modifier = "MOD4MASK";
+    showBar = true;
+    topBar = true;
+    dmenu = {
+      font = {
+        name = "JetbrainsMono;
+        size = 12";
       };
     };
   };
