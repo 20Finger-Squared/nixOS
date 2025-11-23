@@ -16,6 +16,7 @@ let
       };
       system = system-type;
       modules = [
+        ./modules/dwm-config-generator.nix
         ./nix-config/${hostname}/hardware-configuration.nix
         ./nix-config/${hostname}/configuration.nix
         ./suckless/package.nix
