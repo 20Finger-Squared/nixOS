@@ -51,20 +51,6 @@
         '';
         passthru.providedSessions = [ "dwl" ];
       })
-      (pkgs.writeTextFile {
-        name = "dwm";
-        destination = "/share/xsessions/dwm.desktop";
-        text = ''
-          [Desktop Entry]
-          Encoding=UTF-8
-          Name=dwm
-          Comment=Dynamic window manager
-          Exec=${pkgs.dwm}/bin/dwm
-          Icon=dwm
-          Type=Application
-        '';
-        passthru.providedSessions = [ "dwm" ];
-      })
     ];
   };
 
