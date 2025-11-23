@@ -87,10 +87,11 @@ let
           };
     ${cfg.file.append}
   '';
+
   dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
-    src = "${cfg.package.src}";
-    patches = "${cfg.package.patches}";
-    postUnpack = " cp ${file} config.h ";
+    src = if cfg.package.src != null then cfg.package.src else oldAttrs.src;
+    patches = (oldAttrs.patches or [ ]) ++ cfg.package.patches;
+    postPatch = "cp ${file} config.h; cp ${file} config.def.h";
   });
 
   types = lib.types // {
