@@ -53,18 +53,4 @@ in
       };
     };
   };
-  services.my-dwm = {
-    enable = true;
-    borderpx = 3;
-    snap = 16;
-    modifier = "MOD4MASK";
-    showBar = true;
-    topBar = true;
-    dmenu = {
-      font = {
-        name = "JetbrainsMono;
-        size = 12";
-      };
-    };
-  };
 }
