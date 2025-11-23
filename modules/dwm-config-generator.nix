@@ -96,10 +96,14 @@ in
       example = 5;
       description = "The value for which is the thickness of a border in pixels.";
     };
+
     modifier = mkOption {
       type = types.str;
       default = "Mod4Mask";
+      example = "Mod1Mask";
+      description = "The default modifier for keybinds";
     };
+
     snap = mkOption {
       type = types.int;
       default = 32;
@@ -148,22 +152,26 @@ in
         bg = mkOption {
           type = types.hexColor;
           default = "#1D2021";
+          example = "#fff";
           description = "The default bg for dmenu";
         };
         fg = mkOption {
           type = types.hexColor;
           default = "#32302F";
+          example = "#fff";
           description = "The default fg for dmenu";
         };
         selected = {
           bg = mkOption {
             type = types.hexColor;
             default = "#3C3836";
+            example = "#fff";
             description = "The default selected bg for dmenu";
           };
           fg = mkOption {
             type = types.hexColor;
             default = "#EBDBB2";
+            example = "#fff";
             description = "The default selected fg for dmenu";
           };
         };
@@ -176,26 +184,31 @@ in
       mfact = mkOption {
         type = types.float;
         default = 0.55;
+        example = "0.70";
         description = "factor of master area size [0.05..0.95]";
       };
       nmaster = mkOption {
         type = types.int;
         default = 1;
+        example = 2;
         description = "number of clients in master area";
       };
       resizehints = mkOption {
         type = types.int;
         default = 1;
+        example = 0;
         description = "1 means respect size hints in tiled resizals";
       };
       lockfullscreen = mkOption {
         type = types.int;
         default = 1;
+        example = 0;
         description = "1 will force focus on the fullscreen window";
       };
       refreshrate = mkOption {
         type = types.int;
         default = 120;
+        example = 60;
         description = "refresh rate (per second) for client move/resize";
       };
 
@@ -222,7 +235,13 @@ in
             arrageFunction = "monocle";
           }
         ];
-        description = "";
+        example = ''
+          {
+            symbol = "[]=";
+            arrageFunction = "tile";
+          }
+        '';
+        description = "The layout definitions";
       };
     };
 
@@ -237,6 +256,14 @@ in
           };
         }
       );
+      example = ''
+        {
+           scheme = "SchemeNorm";
+           fg = "#FBF1C7";
+           bg = "#1D2021";
+           border = "#32302F";
+        }
+      '';
       default = [
         {
 
@@ -244,7 +271,6 @@ in
           fg = "#FBF1C7";
           bg = "#1D2021";
           border = "#32302F";
-
         }
         {
           scheme = "SchemeSel";
@@ -283,6 +309,17 @@ in
           };
         }
       );
+      example = ''
+        {
+          class = "Gimp";
+          instance = "NULL";
+          title = "NULL";
+          tagsMask = 0;
+          isFloating = true;
+          monitor = -1;
+        }
+      '';
+      description = "The rules for specfic windows to follow.";
       default = [
         {
           class = "Gimp";
@@ -476,6 +513,15 @@ in
           argument = "0";
         }
       ];
+      description = "The definitions for keybindings";
+      example = ''
+        {
+          modifier = "AltMODKEY";
+          key = "XK_Escape";
+          function = "quit";
+          argument = "0";
+        }
+      '';
     };
 
     tags = mkOption {
@@ -491,6 +537,8 @@ in
         8
         9
       ];
+      description = "The workspace numbers or 'tags'";
+      example = " [ 1 ]; ";
     };
   };
   config = mkIf cfg.enable {
