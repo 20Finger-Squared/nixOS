@@ -92,15 +92,15 @@ in
     enable = mkEnableOption "my-dwm";
     borderpx = mkOption {
       type = types.int;
-      default = 3;
+      default = 1;
       example = 5;
-      description = "The value for which is the thickness of a border in pixels.";
+      description = "border pixel of windows";
     };
 
     modifier = mkOption {
       type = types.str;
-      default = "Mod4Mask";
-      example = "Mod1Mask";
+      default = "Mod1Mask";
+      example = "Mod4Mask";
       description = "The default modifier for keybinds";
     };
 
@@ -108,14 +108,14 @@ in
       type = types.int;
       default = 32;
       example = 16;
-      description = "The value for the points windows snap to.";
+      description = "snap pixel";
     };
 
     dmenu = {
       font = {
         name = mkOption {
           type = types.str;
-          default = "JetbrainsMono NF";
+          default = "monospace";
           example = "FiraCode";
           description = "Font name";
         };
@@ -151,26 +151,26 @@ in
       colors = {
         bg = mkOption {
           type = types.hexColor;
-          default = "#1D2021";
+          default = "#222222";
           example = "#fff";
           description = "The default bg for dmenu";
         };
         fg = mkOption {
           type = types.hexColor;
-          default = "#32302F";
+          default = "#bbbbbb";
           example = "#fff";
           description = "The default fg for dmenu";
         };
         selected = {
           bg = mkOption {
             type = types.hexColor;
-            default = "#3C3836";
+            default = "#005577";
             example = "#fff";
             description = "The default selected bg for dmenu";
           };
           fg = mkOption {
             type = types.hexColor;
-            default = "#EBDBB2";
+            default = "#eeeeee";
             example = "#fff";
             description = "The default selected fg for dmenu";
           };
@@ -259,24 +259,24 @@ in
       example = ''
         {
            scheme = "SchemeNorm";
-           fg = "#FBF1C7";
-           bg = "#1D2021";
-           border = "#32302F";
+           fg = "#bbbbbb";
+           bg = "#222222";
+           border = "#444444";
         }
       '';
       default = [
         {
 
           scheme = "SchemeNorm";
-          fg = "#FBF1C7";
-          bg = "#1D2021";
-          border = "#32302F";
+          fg = "#bbbbbb";
+          bg = "#222222";
+          border = "#444444";
         }
         {
           scheme = "SchemeSel";
-          fg = "#D5C4A1";
-          bg = "#D79921";
-          border = "#D79921";
+          fg = "#eeeeee";
+          bg = "#005577";
+          border = "#005577";
         }
       ];
     };
@@ -351,7 +351,7 @@ in
             };
             key = mkOption {
               type = types.str;
-              default = "XK_d";
+              default = "XK_p";
               description = "Uses X11 keys remember that SHIFT will modify the keycode";
             };
             function = mkOption {
@@ -370,13 +370,13 @@ in
       default = [
         {
           modifier = "MODKEY";
-          key = "XK_d";
+          key = "XK_p";
           function = "spawn";
           argument = ".v = dmenucmd";
         }
         {
-          modifier = "MODKEY";
-          key = "XK_t";
+          modifier = "MODKEY|ShiftMask";
+          key = "XK_Return";
           function = "spawn";
           argument = ".v = termcmd";
         }
@@ -399,14 +399,14 @@ in
           argument = ".i = -1";
         }
         {
-          modifier = "AltMODKEY";
-          key = "XK_J";
+          modifier = "MODKEY";
+          key = "XK_i";
           function = "incnmaster";
           argument = ".i = +1";
         }
         {
-          modifier = "AltMODKEY";
-          key = "XK_K";
+          modifier = "MODKEY";
+          key = "XK_d";
           function = "incnmaster";
           argument = ".i = -1";
         }
@@ -435,14 +435,14 @@ in
           argument = "0";
         }
         {
-          modifier = "AltMODKEY";
-          key = "XK_Q";
+          modifier = "MODKEY|ShiftMask";
+          key = "XK_c";
           function = "killclient";
           argument = "0";
         }
         {
           modifier = "MODKEY";
-          key = "XK_i";
+          key = "XK_t";
           function = "setlayout";
           argument = ".v = &layouts[0]";
         }
@@ -465,7 +465,7 @@ in
           argument = "0";
         }
         {
-          modifier = "AltMODKEY";
+          modifier = "MODKEY|ShiftMask";
           key = "XK_space";
           function = "togglefloating";
           argument = "0";
@@ -477,7 +477,7 @@ in
           argument = ".ui = ~0";
         }
         {
-          modifier = "AltMODKEY";
+          modifier = "MODKEY|ShiftMask";
           key = "XK_0";
           function = "tag";
           argument = ".ui = ~0";
@@ -495,20 +495,20 @@ in
           argument = ".i = +1";
         }
         {
-          modifier = "AltMODKEY";
+          modifier = "MODKEY|ShiftMask";
           key = "XK_comma";
           function = "tagmon";
           argument = ".i = -1";
         }
         {
-          modifier = "AltMODKEY";
+          modifier = "MODKEY|ShiftMask";
           key = "XK_period";
           function = "tagmon";
           argument = ".i = +1";
         }
         {
-          modifier = "AltMODKEY";
-          key = "XK_Escape";
+          modifier = "MODKEY|ShiftMask";
+          key = "XK_q";
           function = "quit";
           argument = "0";
         }
@@ -516,8 +516,8 @@ in
       description = "The definitions for keybindings";
       example = ''
         {
-          modifier = "AltMODKEY";
-          key = "XK_Escape";
+          modifier = "MODKEY|ShiftMask";
+          key = "XK_q";
           function = "quit";
           argument = "0";
         }
