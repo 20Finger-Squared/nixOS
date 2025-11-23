@@ -8,88 +8,129 @@ with lib;
 let
   cfg = config.services.my-dwm;
   file = pkgs.writeText "config.h" ''
-    static const unsigned int borderpx = ${toString cfg.borderpx};
-    static const unsigned int snap = ${toString cfg.snap};
-    static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
-    static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
+    ${file.prepend}
+      static const unsigned int borderpx = ${toString cfg.borderpx};
+      static const unsigned int snap = ${toString cfg.snap};
+      static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
+      static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
 
-    static const char *colors[][3] = {
-        ${concatMapStringsSep "\n    " (
-          colors:
-          ''[${toString colors.scheme}] = { "${toString colors.fg}", "${toString colors.bg}", "${toString colors.border}" },''
-        ) cfg.colors}
-      };
-
-    static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
-
-    static const Rule rules[] = {
-            ${concatMapStringsSep "\n    " (
-              rule:
-              ''{ "${toString rule.class}", ${toString rule.instance}, ${toString rule.title}, ${toString rule.tagsMask}, ${
-                if rule.isFloating then "1" else "0"
-              }, ${toString rule.monitor} },''
-            ) cfg.rules}
+      static const char *colors[][3] = {
+          ${concatMapStringsSep "\n    " (
+            colors:
+            ''[${toString colors.scheme}] = { "${toString colors.fg}", "${toString colors.bg}", "${toString colors.border}" },''
+          ) cfg.colors}
         };
-    static const unsigned int mfact          = ${toString cfg.layout.mfact};
-    static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
-    static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
-    static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
-    static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
 
-    static const Layout layouts[] = {
-        ${concatMapStringsSep "\n    " (
-          layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
-        ) cfg.layout.layouts}
-      };
+      static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
 
-    #define MODKEY ${cfg.modifier}
-    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-    #define AltMODKEY MODKEY|ShiftMask
-    #define TAGKEYS(KEY,TAG) \
-    { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
-    { AltMODKEY,                    KEY, tag,        {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },
+      static const Rule rules[] = {
+              ${concatMapStringsSep "\n    " (
+                rule:
+                ''{ "${toString rule.class}", ${toString rule.instance}, ${toString rule.title}, ${toString rule.tagsMask}, ${
+                  if rule.isFloating then "1" else "0"
+                }, ${toString rule.monitor} },''
+              ) cfg.rules}
+          };
+      static const unsigned int mfact          = ${toString cfg.layout.mfact};
+      static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
+      static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
+      static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
+      static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
 
-    /* commands */
-    static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-    static const char *dmenucmd[] = {
-        "dmenu_run",
-        "-m", dmenumon,
-        "-fn", "${cfg.dmenu.font.name}:size=${toString cfg.dmenu.font.size}",
-        "-nb", "${cfg.dmenu.colors.bg}",
-        "-nf", "${cfg.dmenu.colors.fg}",
-       "-sb",  "${cfg.dmenu.colors.selected.bg}",
-        "-sf", "${cfg.dmenu.colors.selected.fg}", NULL };
-    static const char *termcmd[]  = { "kitty", NULL };
-
-
-    static const Key keys[] = {
-        ${concatMapStringsSep "\n    " (
-          key: ''{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },''
-        ) cfg.keys}
-        TAGKEYS(XK_1, 0)
-        TAGKEYS(XK_2, 1)
-        TAGKEYS(XK_3, 2)
-        TAGKEYS(XK_4, 3)
-        TAGKEYS(XK_5, 4)
-        TAGKEYS(XK_6, 5)
-        TAGKEYS(XK_7, 6)
-        TAGKEYS(XK_8, 7)
-        TAGKEYS(XK_9, 8)
+      static const Layout layouts[] = {
+          ${concatMapStringsSep "\n    " (
+            layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
+          ) cfg.layout.layouts}
         };
+
+      #define MODKEY ${cfg.modifier}
+      #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+      #define AltMODKEY MODKEY|ShiftMask
+      #define TAGKEYS(KEY,TAG) \
+      { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \
+      { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
+      { AltMODKEY,                    KEY, tag,        {.ui = 1 << TAG} }, \
+      { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },
+
+      /* commands */
+      static char dmenumon[2] = "0";
+      static const char *appLauncher [] = {
+          "${cfg.appLauncher.appCmd}",
+          ${concatMapStringsSep "\n        " (
+            arg: ''"${arg.flag}", "${arg.argument}",''
+          ) cfg.appLauncher.appArgs}
+          NULL };
+
+      static const char *termcmd[]  = { "${cfg.terminal.appCmd}"${
+        if cfg.terminal.appArgs != [ ] then
+          ", " + concatMapStringsSep ", " (arg: "\"${arg.flag}\", \"${arg.argument}\"") cfg.terminal.appArgs
+        else
+          ""
+      }, NULL };
+
+
+      static const Key keys[] = {
+          { ${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, { .v = termcmd } },
+          { ${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, { .v = appLauncher } },
+          ${concatMapStringsSep "\n    " (
+            key: ''{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },''
+          ) cfg.keys}
+          TAGKEYS(XK_1, 0)
+          TAGKEYS(XK_2, 1)
+          TAGKEYS(XK_3, 2)
+          TAGKEYS(XK_4, 3)
+          TAGKEYS(XK_5, 4)
+          TAGKEYS(XK_6, 5)
+          TAGKEYS(XK_7, 6)
+          TAGKEYS(XK_8, 7)
+          TAGKEYS(XK_9, 8)
+          };
+    ${file.append}
   '';
   dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
+    src = "${package.src}";
+    patches = "${package.patches}";
     postUnpack = " cp ${file} config.h ";
   });
 
   types = lib.types // {
     hexColor = types.strMatching "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$";
+    modifier = types.strMatching "^(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask)(\\|(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask))*$";
   };
 in
 {
-  options.services.my-dwm = {
+  options.programs.my-dwm = {
     enable = mkEnableOption "my-dwm";
+
+    showBar = mkEnableOption "show bar";
+    topBar = mkEnableOption "top bar";
+
+    file = {
+      prepend = mkOption {
+        type = types.str;
+        default = "";
+        description = "Custom config written in c to prepend to the file";
+      };
+      append = mkOption {
+        type = types.str;
+        default = "";
+        description = "Custom config written in c to append to the file";
+      };
+    };
+
+    package = {
+      patches = mkOption {
+        type = types.listOf types.path;
+        default = [ ];
+        description = "Custom patches to add to the dwm package";
+      };
+      src = mkOption {
+        type = types.nullOr types.path;
+        default = null;
+        description = "Custom source for the dwm package";
+      };
+    };
+
     borderpx = mkOption {
       type = types.int;
       default = 1;
@@ -98,7 +139,7 @@ in
     };
 
     modifier = mkOption {
-      type = types.str;
+      type = types.modifier;
       default = "Mod1Mask";
       example = "Mod4Mask";
       description = "The default modifier for keybinds";
@@ -111,75 +152,112 @@ in
       description = "snap pixel";
     };
 
-    dmenu = {
-      font = {
-        name = mkOption {
-          type = types.str;
-          default = "monospace";
-          example = "FiraCode";
-          description = "Font name";
-        };
-        size = mkOption {
-          type = types.int;
-          default = 10;
-          example = 12;
-          description = "The font size";
-        };
+    appLauncher = {
+      modifier = mkOption {
+        type = types.modifier;
+        default = "MODKEY";
       };
-
-      enable = mkOption {
-        type = types.bool;
-        default = true;
-        example = false;
-        description = ''
-          If you aren't using dmenu disable this as dmenu
-          requires another variable to be stored.
-          If not disabled it won't break anything,
-          it'll just do nothing.
+      launchKey = mkOption {
+        type = types.str;
+        default = "XK_d";
+      };
+      appCmd = mkOption {
+        type = types.str;
+        default = "dmenu_run";
+        example = "rofi";
+        description = "The application launcher command";
+      };
+      appArgs = mkOption {
+        type = types.listOf (
+          types.submodule {
+            options = {
+              flag = mkOption {
+                type = types.str;
+                description = "The flag or argument name";
+              };
+              argument = mkOption {
+                type = types.str;
+                description = "The value for the flag";
+              };
+            };
+          }
+        );
+        default = [
+          {
+            flag = "-m";
+            argument = "dmenumon";
+          }
+          {
+            flag = "-fn";
+            argument = "monospace:size=10";
+          }
+          {
+            flag = "-nb";
+            argument = "#222222";
+          }
+          {
+            flag = "-nf";
+            argument = "#bbbbbb";
+          }
+          {
+            flag = "-sb";
+            argument = "#005577";
+          }
+          {
+            flag = "-sf";
+            argument = "#eeeeee";
+          }
+        ];
+        example = ''
+          [
+            { flag = "-m"; argument = "0"; }
+          ]
         '';
-      };
-      monitor = mkOption {
-        type = types.int;
-        default = Null;
-        example = -1;
-        description = ''
-          What monitor to force dmenu to spawn on.
-          If not set will use default dwm behavior.
-        '';
-      };
-
-      colors = {
-        bg = mkOption {
-          type = types.hexColor;
-          default = "#222222";
-          example = "#fff";
-          description = "The default bg for dmenu";
-        };
-        fg = mkOption {
-          type = types.hexColor;
-          default = "#bbbbbb";
-          example = "#fff";
-          description = "The default fg for dmenu";
-        };
-        selected = {
-          bg = mkOption {
-            type = types.hexColor;
-            default = "#005577";
-            example = "#fff";
-            description = "The default selected bg for dmenu";
-          };
-          fg = mkOption {
-            type = types.hexColor;
-            default = "#eeeeee";
-            example = "#fff";
-            description = "The default selected fg for dmenu";
-          };
-        };
+        description = "Arguments to pass to the application launcher command";
       };
     };
 
-    showBar = mkEnableOption "show bar";
-    topBar = mkEnableOption "top bar";
+    terminal = {
+      modifier = mkOption {
+        type = types.modifier;
+        default = "MODKEY";
+      };
+      launchKey = mkOption {
+        type = types.str;
+        default = "XK_t";
+      };
+
+      appCmd = mkOption {
+        type = types.str;
+        default = "st";
+        example = "kitty";
+        description = "The terminal command to launch";
+      };
+      appArgs = mkOption {
+        type = types.listOf (
+          types.submodule {
+            options = {
+              flag = mkOption {
+                type = types.str;
+                description = "The flag or argument name";
+              };
+              argument = mkOption {
+                type = types.str;
+                description = "The value for the flag";
+              };
+            };
+          }
+        );
+        default = [ ];
+        example = ''
+          [
+            { flag = "-e"; argument = "nvim"; }
+          ]
+        '';
+        description = "Arguments to pass to the terminal command";
+      };
+    };
+
     layout = {
       mfact = mkOption {
         type = types.float;
@@ -345,7 +423,7 @@ in
         types.submodule {
           options = {
             modifier = mkOption {
-              type = types.str;
+              type = types.modifier;
               default = "MODKEY";
               description = "If left unbound will use default modifier";
             };
@@ -368,18 +446,6 @@ in
         }
       );
       default = [
-        {
-          modifier = "MODKEY";
-          key = "XK_p";
-          function = "spawn";
-          argument = ".v = dmenucmd";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_Return";
-          function = "spawn";
-          argument = ".v = termcmd";
-        }
         {
           modifier = "MODKEY";
           key = "XK_b";
@@ -542,6 +608,7 @@ in
     };
   };
   config = mkIf cfg.enable {
+    system.build.dwm-config = file;
     services = {
       libinput.enable = true;
       xserver = {
