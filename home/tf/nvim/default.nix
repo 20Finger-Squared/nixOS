@@ -21,6 +21,6 @@
 
     viAlias = true;
     vimAlias = true;
-    plugins = import ./nvim-plugins.nix { inherit pkgs; };
+    plugins = import ./plugins.nix { inherit pkgs; };
   };
 }
