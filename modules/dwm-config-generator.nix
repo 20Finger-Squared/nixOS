@@ -126,18 +126,20 @@ let
     static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
     static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
 
+    static const unsigned int mfact          = ${toString cfg.layout.mfact};
+    static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
+    static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
+    static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
+    static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
+
     static const char *colors[][3] = {
           ${concatMapStringsSep "\n    " (
             colors:
             ''[${toString colors.scheme}] = { "${toString colors.fg}", "${toString colors.bg}", "${toString colors.border}" },''
           ) cfg.colors}
       };
-
     static const char *fonts[] = { ${concatMapStringsSep ", " (f: "\"${f}\"") cfg.fonts} };
-
-
     static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
-
     static const Rule rules[] = {
             ${concatMapStringsSep "\n    " (
               rule:
@@ -146,29 +148,11 @@ let
               }, ${toString rule.monitor} },''
             ) cfg.rules}
         };
-    static const unsigned int mfact          = ${toString cfg.layout.mfact};
-    static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
-    static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
-    static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
-    static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
-
     static const Layout layouts[] = {
         ${concatMapStringsSep "\n    " (
           layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
         ) cfg.layout.layouts}
       };
-
-    #define MODKEY ${cfg.modifier}
-    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-    #define AltMODKEY MODKEY|ShiftMask
-    #define TAGKEYS(KEY,TAG) \
-    { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
-    { AltMODKEY,                    KEY, tag,        {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },
-
-
-    /* commands */
     static char dmenumon[2] = "0";
     static const char *dmenucmd [] = {
         "${cfg.appLauncher.appCmd}",
@@ -176,13 +160,22 @@ let
           arg: ''"${arg.flag}", "${arg.argument}",''
         ) cfg.appLauncher.appArgs}
         NULL };
-
     static const char *termcmd[]  = { "${cfg.terminal.appCmd}"${
       if cfg.terminal.appArgs != [ ] then
         ", " + concatMapStringsSep ", " (arg: "\"${arg.flag}\", \"${arg.argument}\"") cfg.terminal.appArgs
       else
         ""
     }, NULL };
+
+
+    #define MODKEY ${cfg.modifier}
+    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+    #define TAGKEYS(KEY,TAG) \
+    { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \ // view only this tag
+    { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \ // toggle this tag in view
+    { MODKEY|ShiftMask,             KEY, tag,        {.ui = 1 << TAG} }, \ // move window to this tag
+    { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },   // toggle window on this tag
+
 
 
     static const Key keys[] = {
