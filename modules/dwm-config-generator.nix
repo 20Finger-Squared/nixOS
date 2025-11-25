@@ -241,6 +241,19 @@ in
 
     showBar = mkEnableOption "show bar";
     topBar = mkEnableOption "top bar";
+    showBar = mkOption {
+      type = types.bool;
+      default = true;
+      example = false;
+      description = "Whether to enable show bar";
+    };
+
+    topBar = mkOption {
+      type = types.bool;
+      default = true;
+      example = false;
+      description = "Whether to enable top bar if false then it's on the bottom";
+    };
 
     file = {
       prepend = mkOption {
