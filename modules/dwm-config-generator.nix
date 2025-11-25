@@ -11,135 +11,111 @@ let
   defaultKeys = [
     {
       modifier = "MODKEY";
-      key = "XK_b";
-      function = "togglebar";
-      argument = "0";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_j";
-      function = "focusstack";
-      argument = ".i = +1";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_k";
-      function = "focusstack";
-      argument = ".i = -1";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_i";
-      function = "incnmaster";
-      argument = ".i = +1";
-    }
-    {
-      modifier = "MODKEY";
       key = "XK_d";
       function = "incnmaster";
-      argument = ".i = -1";
+      argument = "{.i = -1 }";
     }
     {
       modifier = "MODKEY";
       key = "XK_h";
       function = "setmfact";
-      argument = ".f = -0.05";
+      argument = "{.f = -0.05}";
     }
     {
       modifier = "MODKEY";
       key = "XK_l";
       function = "setmfact";
-      argument = ".f = +0.05";
+      argument = "{.f = +0.05}";
     }
     {
       modifier = "MODKEY";
       key = "XK_Return";
       function = "zoom";
-      argument = "0";
+      argument = "{0}";
     }
     {
       modifier = "MODKEY";
       key = "XK_Tab";
       function = "view";
-      argument = "0";
+      argument = "{0}";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_c";
       function = "killclient";
-      argument = "0";
+      argument = "{0}";
     }
     {
       modifier = "MODKEY";
       key = "XK_t";
       function = "setlayout";
-      argument = ".v = &layouts[0]";
+      argument = "{.v = &layouts[0]}";
     }
     {
       modifier = "MODKEY";
       key = "XK_f";
       function = "setlayout";
-      argument = ".v = &layouts[1]";
+      argument = "{.v = &layouts[1]}";
     }
     {
       modifier = "MODKEY";
       key = "XK_m";
       function = "setlayout";
-      argument = ".v = &layouts[2]";
+      argument = "{.v = &layouts[2]}";
     }
     {
       modifier = "MODKEY";
       key = "XK_space";
       function = "setlayout";
-      argument = "0";
+      argument = "{0}";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_space";
       function = "togglefloating";
-      argument = "0";
+      argument = "{0}";
     }
     {
       modifier = "MODKEY";
       key = "XK_0";
       function = "view";
-      argument = ".ui = ~0";
+      argument = "{.ui = ~0 }";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_0";
       function = "tag";
-      argument = ".ui = ~0";
+      argument = "{.ui = ~0 }";
     }
     {
       modifier = "MODKEY";
       key = "XK_comma";
       function = "focusmon";
-      argument = ".i = -1";
+      argument = "{.i = -1 }";
     }
     {
       modifier = "MODKEY";
       key = "XK_period";
       function = "focusmon";
-      argument = ".i = +1";
+      argument = "{.i = +1 }";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_comma";
       function = "tagmon";
-      argument = ".i = -1";
+      argument = "{.i = -1 }";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_period";
       function = "tagmon";
-      argument = ".i = +1";
+      argument = "{.i = +1 }";
     }
     {
       modifier = "MODKEY|ShiftMask";
       key = "XK_q";
       function = "quit";
-      argument = "0";
+      argument = "{0}";
     }
   ];
 
