@@ -183,20 +183,15 @@ let
         { ${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, { .v = dmenucmd } },
 
         ${
-          concatMapStringsSep "\n    " (
-            key: ''{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },''
+          concatMapStringsSep "\n        " (
+            key: "{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },"
           ) (if cfg.key.defaultKeys then cfg.key.keys ++ defaultKeys else cfg.key.keys)
         };
 
-        TAGKEYS(XK_1, 0)
-        TAGKEYS(XK_2, 1)
-        TAGKEYS(XK_3, 2)
-        TAGKEYS(XK_4, 3)
-        TAGKEYS(XK_5, 4)
-        TAGKEYS(XK_6, 5)
-        TAGKEYS(XK_7, 6)
-        TAGKEYS(XK_8, 7)
-        TAGKEYS(XK_9, 8)
+        ${
+          concatMapStringsSep "\n        " (item: "TAGKEYS(${item.key}, ${item.tag})") cfg.tagKeys.definitions
+        };
+
     };
 
     static const Button buttons[] = {
@@ -221,6 +216,85 @@ in
 {
   options.programs.dwm = {
     enable = mkEnableOption "my-dwm";
+
+    tagKeys = {
+      modifiers = {
+        viewOnlyThisTag = mkOption {
+          type = types.modifier;
+          default = "MODKEY";
+          example = "MODKEY";
+        };
+        toggleThisTagInView = mkOption {
+          type = types.modifier;
+          default = "MODKEY|ControlMask";
+          example = "MODKEY";
+        };
+        moveWindowToThisTag = mkOption {
+          type = types.modifier;
+          default = "MODKEY|ShiftMask";
+          example = "MODKEY";
+        };
+        toggleWindowOnThisTag = mkOption {
+          type = types.modifier;
+          default = "MODKEY|ControlMask|ShiftMask";
+          example = "MODKEY";
+        };
+      };
+      definitions = mkOption {
+        type = types.listOf (
+          types.submodule {
+            key = {
+              type = types.str;
+            };
+            tag = {
+              type = types.int.s8;
+              default = 0;
+              example = 9;
+            };
+          }
+        );
+      };
+
+      default = [
+        {
+          key = "XK_1";
+          tag = 0;
+        }
+        {
+          key = "XK_2";
+          tag = 1;
+        }
+        {
+          key = "XK_3";
+          tag = 2;
+        }
+        {
+          key = "XK_4";
+          tag = 3;
+        }
+        {
+          key = "XK_5";
+          tag = 4;
+        }
+        {
+          key = "XK_6";
+          tag = 5;
+        }
+        {
+          key = "XK_7";
+          tag = 6;
+        }
+        {
+          key = "XK_8";
+          tag = 7;
+        }
+        {
+          key = "XK_9";
+          tag = 8;
+        }
+      ];
+
+    };
 
     showBar = mkOption {
       type = types.bool;
