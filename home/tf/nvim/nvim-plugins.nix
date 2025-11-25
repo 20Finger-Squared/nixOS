@@ -1,16 +1,15 @@
 { pkgs, ... }:
 
-with pkgs.vimPlugins;
 [
-  blink-cmp
-  gitsigns-nvim
-  gruvbox-nvim
-  harpoon
-  nvim-lspconfig
-  markdown-preview-nvim
-  mini-nvim
-  noice-nvim
-  telescope-nvim
+  pkgs.vimPlugins.blink-cmp
+  pkgs.vimPlugins.gitsigns-nvim
+  pkgs.vimPlugins.gruvbox-nvim
+  pkgs.vimPlugins.harpoon
+  pkgs.vimPlugins.nvim-lspconfig
+  pkgs.vimPlugins.markdown-preview-nvim
+  pkgs.vimPlugins.mini-nvim
+  pkgs.vimPlugins.noice-nvim
+  pkgs.vimPlugins.telescope-nvim
   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  luasnip
+  pkgs.vimPlugins.luasnip
 ]
