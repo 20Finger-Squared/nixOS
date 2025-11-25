@@ -7,72 +7,72 @@
 with lib;
 let
   cfg = config.programs.dwm;
-  file = pkgs.writeText "config.h" ''
+  file = pkgs.writeText "config.h" /* c */ ''
     ${cfg.file.prepend}
-      static const unsigned int borderpx = ${toString cfg.borderpx};
-      static const unsigned int snap = ${toString cfg.snap};
-      static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
-      static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
+    static const unsigned int borderpx = ${toString cfg.borderpx};
+    static const unsigned int snap = ${toString cfg.snap};
+    static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
+    static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
 
-      static const char *colors[][3] = {
+    static const char *colors[][3] = {
           ${concatMapStringsSep "\n    " (
             colors:
             ''[${toString colors.scheme}] = { "${toString colors.fg}", "${toString colors.bg}", "${toString colors.border}" },''
           ) cfg.colors}
+      };
+
+    static const char *fonts[] = { ${concatMapStringsSep ", " (f: "\"${f}\"") cfg.fonts} };
+
+
+    static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
+
+    static const Rule rules[] = {
+            ${concatMapStringsSep "\n    " (
+              rule:
+              ''{ "${toString rule.class}", ${toString rule.instance}, ${toString rule.title}, ${toString rule.tagsMask}, ${
+                if rule.isFloating then "1" else "0"
+              }, ${toString rule.monitor} },''
+            ) cfg.rules}
         };
+    static const unsigned int mfact          = ${toString cfg.layout.mfact};
+    static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
+    static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
+    static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
+    static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
 
-      static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
+    static const Layout layouts[] = {
+        ${concatMapStringsSep "\n    " (
+          layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
+        ) cfg.layout.layouts}
+      };
 
-      static const Rule rules[] = {
-              ${concatMapStringsSep "\n    " (
-                rule:
-                ''{ "${toString rule.class}", ${toString rule.instance}, ${toString rule.title}, ${toString rule.tagsMask}, ${
-                  if rule.isFloating then "1" else "0"
-                }, ${toString rule.monitor} },''
-              ) cfg.rules}
-          };
-      static const unsigned int mfact          = ${toString cfg.layout.mfact};
-      static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
-      static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
-      static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
-      static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
-
-      static const Layout layouts[] = {
-          ${concatMapStringsSep "\n    " (
-            layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
-          ) cfg.layout.layouts}
-        };
-
-      #define MODKEY ${cfg.modifier}
-      #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-      #define AltMODKEY MODKEY|ShiftMask
-      #define TAGKEYS(KEY,TAG) \
-      { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \
-      { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
-      { AltMODKEY,                    KEY, tag,        {.ui = 1 << TAG} }, \
-      { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },
-
-      /* commands */
-      static char dmenumon[2] = "0";
-      static const char *appLauncher [] = {
-          "${cfg.appLauncher.appCmd}",
-          ${concatMapStringsSep "\n        " (
-            arg: ''"${arg.flag}", "${arg.argument}",''
-          ) cfg.appLauncher.appArgs}
-          NULL };
-
-      static const char *termcmd[]  = { "${cfg.terminal.appCmd}"${
-        if cfg.terminal.appArgs != [ ] then
-          ", " + concatMapStringsSep ", " (arg: "\"${arg.flag}\", \"${arg.argument}\"") cfg.terminal.appArgs
-        else
-          ""
-      }, NULL };
+    #define MODKEY ${cfg.modifier}
+    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+    #define AltMODKEY MODKEY|ShiftMask
+    #define TAGKEYS(KEY,TAG) \
+    { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \
+    { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
+    { AltMODKEY,                    KEY, tag,        {.ui = 1 << TAG} }, \
+    { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },
 
 
-      static const Key keys[] = {
-          { ${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, { .v = termcmd } },
-          { ${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, { .v = appLauncher } },
-          ${concatMapStringsSep "\n    " (
+    /* commands */
+    static char dmenumon[2] = "0";
+    static const char *dmenucmd [] = {
+        "${cfg.appLauncher.appCmd}",
+        ${concatMapStringsSep "\n        " (
+          arg: ''"${arg.flag}", "${arg.argument}",''
+        ) cfg.appLauncher.appArgs}
+        NULL };
+
+    static const char *termcmd[]  = { "${cfg.terminal.appCmd}"${
+      if cfg.terminal.appArgs != [ ] then
+        ", " + concatMapStringsSep ", " (arg: "\"${arg.flag}\", \"${arg.argument}\"") cfg.terminal.appArgs
+      else
+        ""
+    }, NULL };
+
+
             key: ''{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },''
           ) cfg.keys}
           TAGKEYS(XK_1, 0)
