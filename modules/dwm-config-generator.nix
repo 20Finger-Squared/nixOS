@@ -230,6 +230,11 @@ let
         TAGKEYS(XK_9, 8)
     };
 
+    static const Button buttons[] = {
+        ${concatMapStringsSep ",\n  " (
+          b: "{ ${b.click}, ${b.mask}, ${b.button}, ${b.function}, ${b.argument} }"
+        ) cfg.buttons}
+    };
     ${cfg.file.append}
   '';
 
@@ -260,6 +265,105 @@ in
       default = true;
       example = false;
       description = "Whether to enable top bar if false then it's on the bottom";
+    };
+
+    buttons = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            click = mkOption { type = types.str; };
+            mask = mkOption { type = types.str; };
+            button = mkOption { type = types.str; };
+            function = mkOption { type = types.str; };
+            argument = mkOption { type = types.str; };
+          };
+        }
+      );
+      default = [
+        {
+          click = "ClkLtSymbol";
+          mask = "0";
+          button = "Button1";
+          function = "setlayout";
+          argument = "{0}";
+        }
+        {
+          click = "ClkLtSymbol";
+          mask = "0";
+          button = "Button3";
+          function = "setlayout";
+          argument = "{.v = &layouts[2]}";
+        }
+        {
+          click = "ClkWinTitle";
+          mask = "0";
+          button = "Button2";
+          function = "zoom";
+          argument = "{0}";
+        }
+        {
+          click = "ClkStatusText";
+          mask = "0";
+          button = "Button2";
+          function = "spawn";
+          argument = "{.v = termcmd}";
+        }
+        {
+          click = "ClkClientWin";
+          mask = "MODKEY";
+          button = "Button1";
+          function = "movemouse";
+          argument = "{0}";
+        }
+        {
+          click = "ClkClientWin";
+          mask = "MODKEY";
+          button = "Button2";
+          function = "togglefloating";
+          argument = "{0}";
+        }
+        {
+          click = "ClkClientWin";
+          mask = "MODKEY";
+          button = "Button3";
+          function = "resizemouse";
+          argument = "{0}";
+        }
+        {
+          click = "ClkTagBar";
+          mask = "0";
+          button = "Button1";
+          function = "view";
+          argument = "{0}";
+        }
+        {
+          click = "ClkTagBar";
+          mask = "0";
+          button = "Button3";
+          function = "toggleview";
+          argument = "{0}";
+        }
+        {
+          click = "ClkTagBar";
+          mask = "MODKEY";
+          button = "Button1";
+          function = "tag";
+          argument = "{0}";
+        }
+        {
+          click = "ClkTagBar";
+          mask = "MODKEY";
+          button = "Button3";
+          function = "toggletag";
+          argument = "{0}";
+        }
+      ];
+    };
+
+    fonts = mkOption {
+      type = types.listOf types.str;
+      default = [ "monospace:size=10" ];
+      description = "Fonts for dwm";
     };
 
     file = {
