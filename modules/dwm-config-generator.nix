@@ -209,18 +209,27 @@ let
     }, NULL };
 
 
+    static const Key keys[] = {
+        { ${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, { .v = termcmd } },
+        { ${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, { .v = dmenucmd } },
+
+        ${
+          concatMapStringsSep "\n    " (
             key: ''{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },''
-          ) cfg.keys}
-          TAGKEYS(XK_1, 0)
-          TAGKEYS(XK_2, 1)
-          TAGKEYS(XK_3, 2)
-          TAGKEYS(XK_4, 3)
-          TAGKEYS(XK_5, 4)
-          TAGKEYS(XK_6, 5)
-          TAGKEYS(XK_7, 6)
-          TAGKEYS(XK_8, 7)
-          TAGKEYS(XK_9, 8)
-          };
+          ) (if cfg.key.defaultKeys then cfg.key.keys ++ defaultKeys else cfg.key.keys)
+        };
+
+        TAGKEYS(XK_1, 0)
+        TAGKEYS(XK_2, 1)
+        TAGKEYS(XK_3, 2)
+        TAGKEYS(XK_4, 3)
+        TAGKEYS(XK_5, 4)
+        TAGKEYS(XK_6, 5)
+        TAGKEYS(XK_7, 6)
+        TAGKEYS(XK_8, 7)
+        TAGKEYS(XK_9, 8)
+    };
+
     ${cfg.file.append}
   '';
 
@@ -239,8 +248,6 @@ in
   options.programs.dwm = {
     enable = mkEnableOption "my-dwm";
 
-    showBar = mkEnableOption "show bar";
-    topBar = mkEnableOption "top bar";
     showBar = mkOption {
       type = types.bool;
       default = true;
@@ -568,176 +575,51 @@ in
       ];
     };
 
-    keys = mkOption {
-      type = types.listOf (
-        types.submodule {
-          options = {
-            modifier = mkOption {
-              type = types.modifier;
-              default = "MODKEY";
-              description = "If left unbound will use default modifier";
+    key = {
+      useDefault = mkOption {
+        type = types.bool;
+        default = true;
+        example = false;
+        description = "Create default key config, best if you don't want to manually define all keys";
+      };
+
+      keys = mkOption {
+        type = types.listOf (
+          types.submodule {
+            options = {
+              modifier = mkOption {
+                type = types.modifier;
+                default = "MODKEY";
+                description = "If left unbound will use default modifier";
+              };
+              key = mkOption {
+                type = types.str;
+                default = "XK_p";
+                description = "Uses X11 keys remember that SHIFT will modify the keycode";
+              };
+              function = mkOption {
+                type = types.str;
+                default = "spawn";
+                description = "The function to call once the keybind is pressed";
+              };
+              argument = mkOption {
+                type = types.str;
+                default = ".v = dmenucmd";
+                description = "The argument for the function";
+              };
             };
-            key = mkOption {
-              type = types.str;
-              default = "XK_p";
-              description = "Uses X11 keys remember that SHIFT will modify the keycode";
-            };
-            function = mkOption {
-              type = types.str;
-              default = "spawn";
-              description = "The function to call once the keybind is pressed";
-            };
-            argument = mkOption {
-              type = types.str;
-              default = ".v = dmenucmd";
-              description = "The argument for the function";
-            };
-          };
-        }
-      );
-      default = [
-        {
-          modifier = "MODKEY";
-          key = "XK_b";
-          function = "togglebar";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_j";
-          function = "focusstack";
-          argument = ".i = +1";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_k";
-          function = "focusstack";
-          argument = ".i = -1";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_i";
-          function = "incnmaster";
-          argument = ".i = +1";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_d";
-          function = "incnmaster";
-          argument = ".i = -1";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_h";
-          function = "setmfact";
-          argument = ".f = -0.05";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_l";
-          function = "setmfact";
-          argument = ".f = +0.05";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_Return";
-          function = "zoom";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_Tab";
-          function = "view";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_c";
-          function = "killclient";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_t";
-          function = "setlayout";
-          argument = ".v = &layouts[0]";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_f";
-          function = "setlayout";
-          argument = ".v = &layouts[1]";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_m";
-          function = "setlayout";
-          argument = ".v = &layouts[2]";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_space";
-          function = "setlayout";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_space";
-          function = "togglefloating";
-          argument = "0";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_0";
-          function = "view";
-          argument = ".ui = ~0";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_0";
-          function = "tag";
-          argument = ".ui = ~0";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_comma";
-          function = "focusmon";
-          argument = ".i = -1";
-        }
-        {
-          modifier = "MODKEY";
-          key = "XK_period";
-          function = "focusmon";
-          argument = ".i = +1";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_comma";
-          function = "tagmon";
-          argument = ".i = -1";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_period";
-          function = "tagmon";
-          argument = ".i = +1";
-        }
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_q";
-          function = "quit";
-          argument = "0";
-        }
-      ];
-      description = "The definitions for keybindings";
-      example = ''
-        {
-          modifier = "MODKEY|ShiftMask";
-          key = "XK_q";
-          function = "quit";
-          argument = "0";
-        }
-      '';
+          }
+        );
+        description = "The definitions for keybindings";
+        example = ''
+          {
+            modifier = "MODKEY|ShiftMask";
+            key = "XK_q";
+            function = "quit";
+            argument = "0";
+          }
+        '';
+      };
     };
 
     tags = mkOption {
