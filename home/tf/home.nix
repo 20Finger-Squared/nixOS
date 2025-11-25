@@ -12,8 +12,8 @@
 
     ./kitty.nix # terminal
     ./bash.nix # shell
+    ./tmux.nix # terminal multiplexer
 
-    ./firefox.nix # web browser
     ./qutebrowser.nix # vim like web browser
     ./git.nix # git conf
   ];
