@@ -9,7 +9,7 @@ opt.cursorline = true
 opt.spell = true
 opt.confirm = true
 opt.winborder = "single"
-opt.cmdheight = 1
+opt.cmdheight = 0
 
 -- Tabs
 opt.tabstop = 4
