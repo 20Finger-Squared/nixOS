@@ -82,17 +82,6 @@ content = {
 	    bold = true,
 	})
 
-	-- VSCode-safe Noice integration
-	local noice_command, noice_mode
-	if not vim.g.vscode then
-	    local noice   = require("noice")
-	    noice_command = noice.api.status.command.get()
-	    noice_mode    = noice.api.status.mode.get()
-	else
-	    noice_command = ""
-	    noice_mode    = ""
-	end
-
 	return MiniStatusline.combine_groups({
 	    -- Left side: Git / Diff / Diagnostics / LSP
 	    { hl = 'MiniStatuslineDevinfo',  strings = { git, diff, diagnostics, lsp } },
@@ -101,8 +90,6 @@ content = {
 	    { hl = 'MiniStatuslineFilename', strings = { filename } },
 	    '%=', -- end left alignment
 	    -- Right side: Noice (if available), file info, search/location
-	    { hl = 'MiniStatuslineFilename', strings = { noice_command } },
-	    { hl = 'MiniStatusLineMacro',    strings = { noice_mode } },
 	    { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
 	    { hl = mode_hl,                  strings = { search, location } },
 	})

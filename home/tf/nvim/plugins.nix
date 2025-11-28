@@ -8,7 +8,6 @@
   pkgs.vimPlugins.nvim-lspconfig
   pkgs.vimPlugins.markdown-preview-nvim
   pkgs.vimPlugins.mini-nvim
-  pkgs.vimPlugins.noice-nvim
   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
   pkgs.vimPlugins.luasnip
   pkgs.vimPlugins.fzf-lua
