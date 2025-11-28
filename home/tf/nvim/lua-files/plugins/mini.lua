@@ -1,11 +1,22 @@
 local MiniStatusline = require('mini.statusline')
+local MiniClue = require('mini.clue')
+local MiniIndentscope = require('mini.indentscope')
 require("mini.surround").setup()
 require("mini.align").setup()
 require("mini.ai").setup()
 require("mini.comment").setup()
 
-local miniclue = require('mini.clue')
-miniclue.setup({
+MiniIndentscope.setup(
+{
+  draw = { delay = 0 },
+
+  options = {
+    indent_at_cursor = true,
+  },
+  symbol = '│',
+})
+
+MiniClue.setup({
 triggers = {
     -- Leader triggers
     { mode = 'n', keys = '<Leader>' },
