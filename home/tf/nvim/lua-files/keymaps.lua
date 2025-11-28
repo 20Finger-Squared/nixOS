@@ -5,21 +5,21 @@ map({ 'n', 'i' }, '<M-C-H>', '<cmd>vertical resize -1<CR>', { silent = true, des
 map({ 'n', 'i' }, '<M-C-L>', '<cmd>vertical resize +1<CR>', { silent = true, desc = "󰍠 Increase width" })
 map({ 'n', 'i' }, '<M-N-L>', '<cmd>resize -1<CR>', { silent = true, desc = "󰍡 Decrease height" })
 map({ 'n', 'i' }, '<M-C-K>', '<cmd>resize +1<CR>', { silent = true, desc = "󰍡 Increase height" })
-local builtin = require("telescope.builtin")
 
--- 󰍉 Telescope fuzzy finding
-map("n", "<leader>fb", builtin.buffers, { desc = "󰸕 Find buffers" })
-map("n", "<leader>fc", builtin.command_history, { desc = "󰆊 Command history" })
-map("n", "<leader>fd", builtin.diagnostics, { desc = "󰔧 Find diagnostics" })
-map("n", "<leader>ff", builtin.find_files, { desc = "󰈔 Find files" })
-map("n", "<leader>fg", builtin.live_grep, { desc = "󰱼 Live grep" })
-map("n", "<leader>fh", builtin.help_tags, { desc = "󰋖 Help tags" })
-map("n", "<leader>fm", builtin.keymaps, { desc = "󰌌 Find keymaps" })
-map("n", "<leader>f\"", builtin.registers, { desc = "󰌌 Find registers" })
-map("n", "<leader>f'", builtin.marks, { desc = "󰋖 Find marks" })
-map("n", "<leader>fo", builtin.oldfiles, { desc = "󰋚 Recent files" })
+-- Fzf bindings
+local fzf = require("fzf-lua")
 
-map("n", "<C-s>", builtin.spell_suggest, { desc = "󰓆 Spell suggestions" })
+-- buffer cmds
+map("n", "<leader>fb",   fzf.buffers,    { desc = "󰋚 Recent files" })
+map("n", "<leader>ff",   fzf.files,      { desc = "󰋚 Recent files" })
+map("n", "<leader>fq",   fzf.quickfix,   { desc = "󰋚 Recent files" })
+map("n", "<leader>fl",  fzf.lines,      { desc = "󰋚 Recent files" })
+map("n", "<leader>fL", fzf.blines,     { desc = "󰋚 Recent files" })
+map("n", "<leader>ft",  fzf.tabs,       { desc = "󰋚 Recent files" })
+
+-- search
+map("n", "<leader>fs",  fzf.live_grep_resume, { desc = "󰋚 Recent files" })
+map("n", "<leader>fg",  fzf.live_grep_native, { desc = "󰋚 Recent files" })
 
 -- Disable arrow keys
 map({ 'n', 'i', 'v' }, '<Up>', '<Nop>', { desc = " Arrow keys disabled" })
