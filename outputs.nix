@@ -16,23 +16,19 @@ let
       };
       system = system-type;
       modules = [
-        ./modules/dwm-config-generator.nix
+        ./modules/dwm/dwm-config-generator.nix
+        ./modules/colorscheme-module.nix
         ./nix-config/${hostname}/hardware-configuration.nix
         ./nix-config/${hostname}/configuration.nix
         ./suckless/package.nix
 
         ./home/default.nix
         home-manager.nixosModules.home-manager
-
-        self.nixosModules.colorscheme
       ];
     };
 in
 {
   formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-  nixosModules = {
-    colorscheme = import ./colorscheme-module.nix;
-  };
 
   nixosConfigurations.tf-laptop = mkSystem "tf-laptop";
   nixosConfigurations.tf-pc = mkSystem "tf-pc";
