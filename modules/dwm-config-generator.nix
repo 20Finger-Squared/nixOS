@@ -11,6 +11,30 @@ let
   defaultKeys = [
     {
       modifier = "MODKEY";
+      key = "XK_b";
+      function = "togglebar";
+      argument = "{0}";
+    }
+    {
+      modifier = "MODKEY";
+      key = "XK_j";
+      function = "focusstack";
+      argument = "{.i = +1 }";
+    }
+    {
+      modifier = "MODKEY";
+      key = "XK_k";
+      function = "focusstack";
+      argument = "{.i = -1 }";
+    }
+    {
+      modifier = "MODKEY";
+      key = "XK_i";
+      function = "incnmaster";
+      argument = "{.i = +1 }";
+    }
+    {
+      modifier = "MODKEY";
       key = "XK_d";
       function = "incnmaster";
       argument = "{.i = -1 }";
@@ -121,90 +145,95 @@ let
 
   file = pkgs.writeText "config.h" /* c */ ''
     ${cfg.file.prepend}
+    #define MODKEY ${cfg.modifier}
+    #define TAGKEYS(KEY, TAG) \
+        {${cfg.tagKeys.modifiers.viewOnlyThisTag},       KEY, view,       {.ui = 1 << TAG} }, \
+        {${cfg.tagKeys.modifiers.toggleThisTagInView},   KEY, toggleview, {.ui = 1 << TAG} }, \
+        {${cfg.tagKeys.modifiers.moveWindowToThisTag},   KEY, tag,        {.ui = 1 << TAG} }, \
+        {${cfg.tagKeys.modifiers.toggleWindowOnThisTag}, KEY, toggletag,  {.ui = 1 << TAG} },
+    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
     static const unsigned int borderpx = ${toString cfg.borderpx};
-    static const unsigned int snap = ${toString cfg.snap};
-    static const unsigned int showbar = ${if cfg.showBar then "1" else "0"};
-    static const unsigned int topbar = ${if cfg.topBar then "1" else "0"};
+    static const unsigned int gappx    = ${toString cfg.patches.gaps.width};
+    static const unsigned int snap     = ${toString cfg.snap};
+    static const int showbar           = ${if cfg.showBar then "1" else "0"};
+    static const int topbar            = ${if cfg.showBar then "1" else "0"};
+    static const char *fonts[]         = { "${cfg.font.name}:size=${toString cfg.font.size}" };
+    static const char *colors[][3] = { ${
+      concatMapStringsSep ",\n" (color: ''
+        [ ${color.scheme} ] = { "${color.fg}", "${color.bg}", "${color.border}" }
+      '') cfg.colors
+    } };
 
-    static const unsigned int mfact          = ${toString cfg.layout.mfact};
-    static const unsigned int nmaster        = ${toString cfg.layout.nmaster};
-    static const unsigned int resizehints    = ${toString cfg.layout.resizehints};
-    static const unsigned int lockfullscreen = ${toString cfg.layout.lockfullscreen};
-    static const unsigned int refreshrate    = ${toString cfg.layout.refreshrate};
-
-    static const char *colors[][3] = {
-          ${concatMapStringsSep "\n    " (
-            colors:
-            ''[${toString colors.scheme}] = { "${toString colors.fg}", "${toString colors.bg}", "${toString colors.border}" },''
-          ) cfg.colors}
-      };
-    static const char *fonts[] = { ${concatMapStringsSep ", " (f: "\"${f}\"") cfg.fonts} };
-    static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
-    static const Rule rules[] = {
-            ${concatMapStringsSep "\n    " (
-              rule:
-              ''{ "${toString rule.class}", ${toString rule.instance}, ${toString rule.title}, ${toString rule.tagsMask}, ${
-                if rule.isFloating then "1" else "0"
-              }, ${toString rule.monitor} },''
-            ) cfg.rules}
-        };
-    static const Layout layouts[] = {
-        ${concatMapStringsSep "\n    " (
-          layout: ''{ "${layout.symbol}", ${layout.arrageFunction} },''
-        ) cfg.layout.layouts}
-      };
-    static char dmenumon[2] = "0";
-    static const char *dmenucmd [] = {
-        "${cfg.appLauncher.appCmd}",
-        ${concatMapStringsSep "\n        " (
-          arg: ''"${arg.flag}", "${arg.argument}",''
-        ) cfg.appLauncher.appArgs}
-        NULL };
-    static const char *termcmd[]  = { "${cfg.terminal.appCmd}"${
-      if cfg.terminal.appArgs != [ ] then
-        ", " + concatMapStringsSep ", " (arg: "\"${arg.flag}\", \"${arg.argument}\"") cfg.terminal.appArgs
-      else
-        ""
+    static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+    static const char *dmenucmd[] = { "${cfg.appLauncher.appCmd}", ${
+      concatMapStringsSep ", " (
+        arg: ''"${toString arg.flag}", ${toString arg.argument}''
+      ) cfg.appLauncher.appArgs
     }, NULL };
 
+    static const char *termcmd[]  = { "${cfg.terminal.appCmd}", ${
+      concatMapStringsSep ", " (
+        arg: ''"${toString arg.flag}, ${toString arg.argument}"''
+      ) cfg.terminal.appArgs
+    } NULL };
 
-    #define MODKEY ${cfg.modifier}
-    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-    #define TAGKEYS(KEY,TAG) \
-    { MODKEY,                       KEY, view,       {.ui = 1 << TAG} }, \ // view only this tag
-    { MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \ // toggle this tag in view
-    { MODKEY|ShiftMask,             KEY, tag,        {.ui = 1 << TAG} }, \ // move window to this tag
-    { MODKEY|ControlMask|ShiftMask, KEY, toggletag,  {.ui = 1 << TAG} },   // toggle window on this tag
+    /* layout(s) */
+    static const float mfact        = ${toString cfg.layout.mfact}; /* factor of master area size [0.05..0.95] */
+    static const int nmaster        = ${toString cfg.layout.nmaster};    /* number of clients in master area */
+    static const int resizehints    = ${toString cfg.layout.resizehints};    /* 1 means respect size hints in tiled resizals */
+    static const int lockfullscreen = ${toString cfg.layout.lockfullscreen}; /* 1 will force focus on the fullscreen window */
+
+    static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
 
 
+    static const Layout layouts[] = {
+    ${concatMapStringsSep ",\n " (
+      layout: ''{"${layout.symbol}", ${layout.arrangeFunction}}''
+    ) cfg.layout.layouts}
+    };
+
+    static const Rule rules[] = {
+    ${concatMapStringsSep ",\n " (rule: ''
+      {
+      "${rule.class}", ${rule.instance}, ${rule.title}, ${toString rule.tagsMask}, ${
+        if rule.isFloating then "1" else "0"
+      }, ${toString rule.monitor}
+      }
+    '') cfg.rules}
+    };
 
     static const Key keys[] = {
-        { ${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, { .v = termcmd } },
-        { ${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, { .v = dmenucmd } },
+        {${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, {.v=termcmd}},
+        {${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, {.v=dmenucmd}},
 
         ${
-          concatMapStringsSep "\n        " (
-            key: "{ ${key.modifier}, ${key.key}, ${key.function}, {${key.argument}} },"
-          ) (if cfg.key.defaultKeys then cfg.key.keys ++ defaultKeys else cfg.key.keys)
-        };
+          concatMapStringsSep ",\n        " (
+            key: ''{${key.modifier}, ${key.key}, ${key.function}, ${key.argument} }''
+          ) (if cfg.key.useDefault then cfg.key.keys ++ defaultKeys else cfg.key.keys)
+        },
 
-        ${
-          concatMapStringsSep "\n        " (item: "TAGKEYS(${item.key}, ${item.tag})") cfg.tagKeys.definitions
-        };
-
+        ${concatMapStringsSep "\n        " (
+          tag: ''TAGKEYS(${tag.key}, ${toString tag.tag})''
+        ) cfg.tagKeys.definitions}
     };
 
     static const Button buttons[] = {
-        ${concatMapStringsSep ",\n  " (
-          b: "{ ${b.click}, ${b.mask}, ${b.button}, ${b.function}, ${b.argument} }"
-        ) cfg.buttons}
+        ${
+          concatMapStringsSep ",\n        " (
+            button: ''{${button.click},${button.mask},${button.button},${button.function},${button.argument}}''
+          ) cfg.buttons
+        },
     };
+
     ${cfg.file.append}
   '';
 
   dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
     src = if cfg.package.src != null then cfg.package.src else oldAttrs.src;
-    patches = (oldAttrs.patches or [ ]) ++ cfg.package.patches;
+    patches =
+      (oldAttrs.patches or [ ])
+      ++ cfg.package.patches
+      ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ]);
     postPatch = "cp ${file} config.h; cp ${file} config.def.h";
   });
 
@@ -215,7 +244,18 @@ let
 in
 {
   options.programs.dwm = {
-    enable = mkEnableOption "my-dwm";
+    enable = mkEnableOption "dwm";
+    patches = {
+      gaps = {
+        enable = mkEnableOption "gaps patch";
+        width = mkOption {
+          type = types.int;
+          default = 1;
+          description = "The width of the gaps between windows";
+          example = 3;
+        };
+      };
+    };
 
     tagKeys = {
       modifiers = {
@@ -240,60 +280,64 @@ in
           example = "MODKEY";
         };
       };
+
       definitions = mkOption {
         type = types.listOf (
           types.submodule {
-            key = {
-              type = types.str;
-            };
-            tag = {
-              type = types.int.s8;
-              default = 0;
-              example = 9;
+            options = {
+              key = mkOption {
+                type = types.str;
+                default = "XK_1";
+                example = "XK_9";
+              };
+              tag = mkOption {
+                type = types.int;
+                default = 0;
+                example = 9;
+              };
             };
           }
         );
+
+        default = [
+          {
+            key = "XK_1";
+            tag = 0;
+          }
+          {
+            key = "XK_2";
+            tag = 1;
+          }
+          {
+            key = "XK_3";
+            tag = 2;
+          }
+          {
+            key = "XK_4";
+            tag = 3;
+          }
+          {
+            key = "XK_5";
+            tag = 4;
+          }
+          {
+            key = "XK_6";
+            tag = 5;
+          }
+          {
+            key = "XK_7";
+            tag = 6;
+          }
+          {
+            key = "XK_8";
+            tag = 7;
+          }
+          {
+            key = "XK_9";
+            tag = 8;
+          }
+        ];
       };
-
-      default = [
-        {
-          key = "XK_1";
-          tag = 0;
-        }
-        {
-          key = "XK_2";
-          tag = 1;
-        }
-        {
-          key = "XK_3";
-          tag = 2;
-        }
-        {
-          key = "XK_4";
-          tag = 3;
-        }
-        {
-          key = "XK_5";
-          tag = 4;
-        }
-        {
-          key = "XK_6";
-          tag = 5;
-        }
-        {
-          key = "XK_7";
-          tag = 6;
-        }
-        {
-          key = "XK_8";
-          tag = 7;
-        }
-        {
-          key = "XK_9";
-          tag = 8;
-        }
-      ];
-
     };
 
     showBar = mkOption {
@@ -403,10 +447,20 @@ in
       ];
     };
 
-    fonts = mkOption {
+    font = {
       type = types.listOf types.str;
-      default = [ "monospace:size=10" ];
-      description = "Fonts for dwm";
+      name = mkOption {
+        type = types.str;
+        default = "monospace";
+        example = "JetbrainsMono NF";
+      };
+      size = mkOption {
+        type = types.int;
+        default = 10;
+        example = 12;
+      };
+
+      description = "Font for dwm";
     };
 
     file = {
@@ -463,7 +517,7 @@ in
       };
       launchKey = mkOption {
         type = types.str;
-        default = "XK_d";
+        default = "XK_p";
       };
       appCmd = mkOption {
         type = types.str;
@@ -493,23 +547,23 @@ in
           }
           {
             flag = "-fn";
-            argument = "monospace:size=10";
+            argument = ''"monospace:size=10"'';
           }
           {
             flag = "-nb";
-            argument = "#222222";
+            argument = ''"#222222"'';
           }
           {
             flag = "-nf";
-            argument = "#bbbbbb";
+            argument = ''"#bbbbbb"'';
           }
           {
             flag = "-sb";
-            argument = "#005577";
+            argument = ''"#005577"'';
           }
           {
             flag = "-sf";
-            argument = "#eeeeee";
+            argument = ''"#eeeeee"'';
           }
         ];
         example = ''
@@ -524,11 +578,11 @@ in
     terminal = {
       modifier = mkOption {
         type = types.modifier;
-        default = "MODKEY";
+        default = "MODKEY|ShiftMask";
       };
       launchKey = mkOption {
         type = types.str;
-        default = "XK_t";
+        default = "XK_Return";
       };
 
       appCmd = mkOption {
@@ -587,34 +641,28 @@ in
         example = 0;
         description = "1 will force focus on the fullscreen window";
       };
-      refreshrate = mkOption {
-        type = types.int;
-        default = 120;
-        example = 60;
-        description = "refresh rate (per second) for client move/resize";
-      };
 
       layouts = mkOption {
         type = types.listOf (
           types.submodule {
             options = {
               symbol = mkOption { type = types.str; };
-              arrageFunction = mkOption { type = types.str; };
+              arrangeFunction = mkOption { type = types.str; };
             };
           }
         );
         default = [
           {
             symbol = "[]=";
-            arrageFunction = "tile";
+            arrangeFunction = "tile";
           }
           {
             symbol = "><>";
-            arrageFunction = "NULL";
+            arrangeFunction = "NULL";
           }
           {
             symbol = "[M]";
-            arrageFunction = "monocle";
+            arrangeFunction = "monocle";
           }
         ];
         example = ''
@@ -758,6 +806,7 @@ in
           }
         );
         description = "The definitions for keybindings";
+        default = [ ];
         example = ''
           {
             modifier = "MODKEY|ShiftMask";
