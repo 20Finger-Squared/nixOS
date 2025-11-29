@@ -2,6 +2,7 @@
   nixpkgs-24-11,
   pkgs,
   lib,
+  config,
   ...
 }:
 
@@ -26,7 +27,7 @@
     inherit pkgs;
   };
 
-  programs.dwm = import ./dwm.nix { };
+  programs.dwm = import ./dwm.nix { inherit config; };
 
   # networking and bluetooth
   networking.hostName = "tf-pc"; # Define your hostname.
