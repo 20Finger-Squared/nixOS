@@ -23,9 +23,9 @@ This alias is only made in bash so if you use another shell you can't use it.
 - Create Dmenu configuration.
 - Create tmux configuration.
 - Create Dwm configuration.
-- Create template for dwm config.h
 
 ## Done
+- ~~Create module for dwm config.h~~
 - ~~Fix Dwm not using config.h.~~
 - ~~Create qutebrowser configuration.~~
 
@@ -64,6 +64,8 @@ CLI tools:
 - fzf
 
 # Known Issues
+
+## Fixed
 - Sometimes keyboard input stops working. The reason of which I have no idea.
 - Dwm does not use it's config.h
 
