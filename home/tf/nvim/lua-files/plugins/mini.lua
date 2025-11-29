@@ -56,12 +56,12 @@ triggers = {
 clues = {
     -- Enhance this by adding descriptions for <Leader> mapping groups
     -- miniclue.gen_clues.square_brackets(),
-    miniclue.gen_clues.builtin_completion(),
-    miniclue.gen_clues.g(),
-    miniclue.gen_clues.marks(),
-    miniclue.gen_clues.registers(),
-    miniclue.gen_clues.windows(),
-    miniclue.gen_clues.z(),
+    MiniClue.gen_clues.builtin_completion(),
+    MiniClue.gen_clues.g(),
+    MiniClue.gen_clues.marks(),
+    MiniClue.gen_clues.registers(),
+    MiniClue.gen_clues.windows(),
+    MiniClue.gen_clues.z(),
 },
 -- Clue window settings
 window = {
