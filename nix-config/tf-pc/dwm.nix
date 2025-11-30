@@ -6,12 +6,12 @@ in
   enable = true;
   modifier = "Mod4Mask";
   terminal.appCmd = "kitty";
-  layout.mfact = 0.70;
+  layout.mfact = 0.60;
   snap = 16;
   borderpx = 3;
   patches.gaps = {
     enable = true;
-    width = 6;
+    width = 8;
   };
 
   colors = [
