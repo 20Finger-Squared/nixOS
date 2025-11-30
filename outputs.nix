@@ -16,10 +16,12 @@ let
       };
       system = system-type;
       modules = [
-        ./modules/dwm/dwm-config-generator.nix
-        ./modules/colorscheme-module.nix
+        ./custom-modules/dwm/dwm-config-generator.nix
+        ./custom-modules/colorscheme-module.nix
+
         ./nix-config/${hostname}/hardware-configuration.nix
         ./nix-config/${hostname}/configuration.nix
+
         ./suckless/package.nix
 
         ./home/default.nix
