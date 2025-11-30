@@ -19,8 +19,8 @@ let
         ./custom-modules/dwm/dwm-config-generator.nix
         ./custom-modules/colorscheme-module.nix
 
-        ./nix-config/${hostname}/hardware-configuration.nix
-        ./nix-config/${hostname}/configuration.nix
+        ./modules/${hostname}/hardware-configuration.nix
+        ./modules/${hostname}/configuration.nix
 
         ./suckless/package.nix
 
