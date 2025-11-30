@@ -675,41 +675,33 @@ in
       };
     };
 
-    colors = mkOption {
-      type = types.listOf (
-        types.submodule {
-          options = {
-            scheme = mkOption { type = types.str; };
-            fg = mkOption { type = types.hexColor; };
-            bg = mkOption { type = types.hexColor; };
-            border = mkOption { type = types.hexColor; };
+    colors =
+      mapAttrs
+        (
+          name: default:
+          mkOption {
+            type = types.submodule {
+              options = {
+                fg = mkOption { type = types.hexColor; };
+                bg = mkOption { type = types.hexColor; };
+                border = mkOption { type = types.hexColor; };
+              };
+            };
+            inherit default;
+          }
+        )
+        {
+          SchemeNorm = {
+            fg = "#bbbbbb";
+            bg = "#222222";
+            border = "#444444";
           };
-        }
-      );
-      example = ''
-        {
-           scheme = "SchemeNorm";
-           fg = "#bbbbbb";
-           bg = "#222222";
-           border = "#444444";
-        }
-      '';
-      default = [
-        {
-
-          scheme = "SchemeNorm";
-          fg = "#bbbbbb";
-          bg = "#222222";
-          border = "#444444";
-        }
-        {
-          scheme = "SchemeSel";
-          fg = "#eeeeee";
-          bg = "#005577";
-          border = "#005577";
-        }
-      ];
-    };
+          SchemeSel = {
+            fg = "#eeeeee";
+            bg = "#005577";
+            border = "#005577";
+          };
+        };
 
     rules = mkOption {
       type = types.listOf (
