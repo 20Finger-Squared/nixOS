@@ -14,11 +14,9 @@
       set -g status-left-length 10
       set -g status-right-length 10
       set -g status-justify centre
-
       # status bar settings
       set -g status-position top
-      set -g status-left  "#{session_name} #{?client_prefix,#[bg=${colorscheme.hex.muted.red}]PREFIX#[default],} "
-
+      set -g status-left  "#{session_name} #{?client_prefix,#[bg=#${colorscheme.base08}]PREFIX#[default],} "
       set-option -sg escape-time 10
       set-option -g focus-events on
       set-option -g default-terminal "screen-256color"

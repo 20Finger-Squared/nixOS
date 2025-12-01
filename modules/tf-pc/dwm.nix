@@ -13,19 +13,16 @@ in
     enable = true;
     width = 8;
   };
-
-  colors = [
-    {
-      scheme = "SchemeNorm";
-      fg = "${colorscheme.hex.fg.three}";
-      bg = "${colorscheme.hex.bg.one}";
-      border = "${colorscheme.hex.bg.four}";
-    }
-    {
-      scheme = "SchemeSel";
-      fg = "${colorscheme.hex.muted.yellow}";
-      bg = "${colorscheme.hex.bg.soft}";
-      border = "${colorscheme.hex.muted.yellow}";
-    }
-  ];
+  colors = {
+    SchemeNorm = {
+      fg = "#${colorscheme.base05}";
+      bg = "#${colorscheme.base00}";
+      border = "#${colorscheme.base03}";
+    };
+    SchemeSel = {
+      fg = "#${colorscheme.base0A}";
+      bg = "#${colorscheme.base02}";
+      border = "#${colorscheme.base0A}";
+    };
+  };
 }

@@ -37,68 +37,67 @@
       tabs.position = "left";
       tabs.show = "switching";
       tabs.wrap = true;
-
       colors = {
         completion = {
           category = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
             border = {
-              bottom = colorscheme.hex.muted.aqua;
-              top = colorscheme.hex.bg.one;
+              bottom = "#${colorscheme.base0C}";
+              top = "#${colorscheme.base00}";
             };
           };
 
-          even.bg = colorscheme.hex.bg.zero;
-          odd.bg = colorscheme.hex.bg.one;
-          fg = colorscheme.hex.fg.one;
+          even.bg = "#${colorscheme.base00}";
+          odd.bg = "#${colorscheme.base00}";
+          fg = "#${colorscheme.base05}";
           item = {
             selected = {
-              fg = colorscheme.hex.strong.yellow;
-              bg = colorscheme.hex.bg.two;
-              match.fg = colorscheme.hex.muted.yellow;
+              fg = "#${colorscheme.base0A}";
+              bg = "#${colorscheme.base02}";
+              match.fg = "#${colorscheme.base0A}";
               border = {
-                top = colorscheme.hex.bg.two;
-                bottom = colorscheme.hex.muted.yellow;
+                top = "#${colorscheme.base02}";
+                bottom = "#${colorscheme.base0A}";
               };
             };
           };
-          match.fg = colorscheme.hex.muted.yellow;
+          match.fg = "#${colorscheme.base0A}";
 
           scrollbar = {
-            fg = colorscheme.hex.fg.four;
-            bg = colorscheme.hex.bg.two;
+            fg = "#${colorscheme.base04}";
+            bg = "#${colorscheme.base02}";
           };
         };
 
         contextmenu = {
           disabled = {
-            fg = colorscheme.hex.bg.three;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base03}";
+            bg = "#${colorscheme.base00}";
           };
           menu = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
           };
           selected = {
-            fg = colorscheme.hex.muted.yellow;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base0A}";
+            bg = "#${colorscheme.base00}";
           };
         };
 
         downloads = {
-          bar.bg = colorscheme.rgb.muted.blue;
+          bar.bg = "#${colorscheme.base0D}";
           error = {
-            fg = colorscheme.rgb.muted.red;
-            bg = colorscheme.rgb.bg.one;
+            fg = "#${colorscheme.base08}";
+            bg = "#${colorscheme.base00}";
           };
           start = {
-            fg = colorscheme.rgb.strong.blue;
-            bg = colorscheme.rgb.bg.one;
+            fg = "#${colorscheme.base0D}";
+            bg = "#${colorscheme.base00}";
           };
           stop = {
-            fg = colorscheme.rgb.muted.orange;
-            bg = colorscheme.rgb.bg.one;
+            fg = "#${colorscheme.base09}";
+            bg = "#${colorscheme.base00}";
           };
           system = {
             fg = "rgb";
@@ -107,159 +106,158 @@
         };
 
         hints = {
-          bg = colorscheme.hex.bg.one;
-          fg = colorscheme.hex.fg.one;
-          match.fg = colorscheme.hex.muted.yellow;
+          bg = "#${colorscheme.base00}";
+          fg = "#${colorscheme.base05}";
+          match.fg = "#${colorscheme.base0A}";
         };
 
         keyhint = {
-          fg = colorscheme.hex.fg.one;
-          bg = colorscheme.hex.bg.one;
-          suffix.fg = colorscheme.hex.strong.yellow;
+          fg = "#${colorscheme.base05}";
+          bg = "#${colorscheme.base00}";
+          suffix.fg = "#${colorscheme.base0A}";
         };
 
         messages = {
           error = {
-            border = colorscheme.hex.muted.red;
-            fg = colorscheme.hex.strong.red;
-            bg = colorscheme.hex.bg.one;
+            border = "#${colorscheme.base08}";
+            fg = "#${colorscheme.base08}";
+            bg = "#${colorscheme.base00}";
           };
           info = {
-            border = colorscheme.hex.muted.aqua;
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            border = "#${colorscheme.base0C}";
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
           };
           warning = {
-            border = colorscheme.hex.muted.orange;
-            fg = colorscheme.hex.bg.one;
-            bg = colorscheme.hex.bg.one;
+            border = "#${colorscheme.base09}";
+            fg = "#${colorscheme.base00}";
+            bg = "#${colorscheme.base00}";
           };
         };
 
         prompts = {
-          border = colorscheme.hex.bg.two;
-          fg = colorscheme.hex.fg.two;
-          bg = colorscheme.hex.bg.two;
+          border = "#${colorscheme.base02}";
+          fg = "#${colorscheme.base04}";
+          bg = "#${colorscheme.base02}";
           selected = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
           };
         };
 
         statusbar = {
           caret = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
             selection = {
-              fg = colorscheme.hex.muted.blue;
-              bg = colorscheme.hex.bg.one;
+              fg = "#${colorscheme.base0D}";
+              bg = "#${colorscheme.base00}";
             };
           };
 
           command = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
             private = {
-              fg = colorscheme.hex.fg.one;
-              bg = colorscheme.hex.bg.one;
+              fg = "#${colorscheme.base05}";
+              bg = "#${colorscheme.base00}";
             };
           };
 
           insert = {
-            fg = colorscheme.hex.muted.yellow;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base0A}";
+            bg = "#${colorscheme.base00}";
           };
 
           normal = {
-            fg = colorscheme.hex.fg.one;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
           };
 
           passthrough = {
-            fg = colorscheme.hex.fg.three;
-            bg = colorscheme.hex.bg.one;
+            fg = "#${colorscheme.base06}";
+            bg = "#${colorscheme.base00}";
           };
 
           private = {
-            fg = colorscheme.hex.bg.one;
-            bg = colorscheme.hex.strong.purple;
+            fg = "#${colorscheme.base00}";
+            bg = "#${colorscheme.base0E}";
           };
 
-          progress.bg = colorscheme.hex.muted.aqua;
+          progress.bg = "#${colorscheme.base0C}";
 
           url = {
-            error.fg = colorscheme.hex.muted.red;
-            fg = colorscheme.hex.fg.one;
-            hover.fg = colorscheme.hex.strong.orange;
-            warn.fg = colorscheme.hex.muted.purple;
+            error.fg = "#${colorscheme.base08}";
+            fg = "#${colorscheme.base05}";
+            hover.fg = "#${colorscheme.base09}";
+            warn.fg = "#${colorscheme.base0E}";
             success = {
-              http.fg = colorscheme.hex.muted.yellow;
-              https.fg = colorscheme.hex.strong.yellow;
+              http.fg = "#${colorscheme.base0A}";
+              https.fg = "#${colorscheme.base0A}";
             };
           };
-
         };
 
         tabs = {
-          bar.bg = colorscheme.hex.bg.one;
+          bar.bg = "#${colorscheme.base00}";
 
           even = {
-            bg = colorscheme.hex.bg.one;
-            fg = colorscheme.hex.fg.one;
+            bg = "#${colorscheme.base00}";
+            fg = "#${colorscheme.base05}";
           };
           odd = {
-            bg = colorscheme.hex.bg.two;
-            fg = colorscheme.hex.fg.one;
+            bg = "#${colorscheme.base02}";
+            fg = "#${colorscheme.base05}";
           };
 
           indicator = {
-            error = colorscheme.hex.muted.red;
-            start = colorscheme.hex.muted.aqua;
-            stop = colorscheme.hex.bg.one;
+            error = "#${colorscheme.base08}";
+            start = "#${colorscheme.base0C}";
+            stop = "#${colorscheme.base00}";
             system = "rgb";
           };
 
           pinned = {
             even = {
-              bg = colorscheme.hex.muted.purple;
-              fg = colorscheme.hex.fg.one;
+              bg = "#${colorscheme.base0E}";
+              fg = "#${colorscheme.base05}";
             };
             odd = {
-              bg = colorscheme.hex.strong.purple;
-              fg = colorscheme.hex.bg.one;
+              bg = "#${colorscheme.base0A}";
+              fg = "#${colorscheme.base00}";
             };
 
             selected = {
               even = {
-                bg = colorscheme.hex.muted.yellow;
-                fg = colorscheme.hex.bg.one;
+                bg = "#${colorscheme.base0A}";
+                fg = "#${colorscheme.base00}";
               };
               odd = {
-                bg = colorscheme.hex.muted.yellow;
-                fg = colorscheme.hex.bg.one;
+                bg = "#${colorscheme.base0A}";
+                fg = "#${colorscheme.base00}";
               };
             };
           };
 
           selected = {
             even = {
-              bg = colorscheme.hex.muted.yellow;
-              fg = colorscheme.hex.bg.one;
+              bg = "#${colorscheme.base0A}";
+              fg = "#${colorscheme.base00}";
             };
             odd = {
-              bg = colorscheme.hex.muted.yellow;
-              fg = colorscheme.hex.bg.one;
+              bg = "#${colorscheme.base0A}";
+              fg = "#${colorscheme.base00}";
             };
           };
         };
 
         tooltip = {
-          bg = colorscheme.hex.bg.one;
-          fg = colorscheme.hex.fg.one;
+          bg = "#${colorscheme.base00}";
+          fg = "#${colorscheme.base05}";
         };
 
         webpage = {
-          bg = colorscheme.hex.bg.one;
+          bg = "#${colorscheme.base00}";
           preferred_color_scheme = "dark";
           darkmode = {
             enabled = true;
