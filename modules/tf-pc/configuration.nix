@@ -27,7 +27,16 @@
     inherit pkgs;
   };
 
-  programs.dwm = import ./dwm.nix { inherit config; };
+  programs = {
+    dmenu = import ./dmenu.nix { inherit config; };
+    dwm = import ./dwm.nix { inherit config; };
+
+    dconf.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true; # optional, but recommended
+    };
+  };
 
   # networking and bluetooth
   networking.hostName = "tf-pc"; # Define your hostname.
@@ -39,12 +48,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  programs.dconf.enable = true;
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true; # optional, but recommended
-  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }
