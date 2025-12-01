@@ -17,12 +17,11 @@ let
       system = system-type;
       modules = [
         ./custom-modules/dwm/module.nix
+        ./custom-modules/dmenu/module.nix
         ./custom-modules/colorscheme-module.nix
 
         ./modules/${hostname}/hardware-configuration.nix
         ./modules/${hostname}/configuration.nix
-
-        ./suckless/package.nix
 
         ./home/default.nix
         home-manager.nixosModules.home-manager
