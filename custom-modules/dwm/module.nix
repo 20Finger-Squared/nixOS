@@ -159,9 +159,9 @@ let
     static const int topbar            = ${if cfg.showBar then "1" else "0"};
     static const char *fonts[]         = { "${cfg.font.name}:size=${toString cfg.font.size}" };
     static const char *colors[][3] = { ${
-      concatMapStringsSep ",\n" (color: ''
-        [ ${color.scheme} ] = { "${color.fg}", "${color.bg}", "${color.border}" }
-      '') cfg.colors
+      concatMapStringsSep ",\n" (pair: ''
+        [ ${pair.name} ] = { "${pair.value.fg}", "${pair.value.bg}", "${pair.value.border}" }
+      '') (lib.mapAttrsToList (name: value: { inherit name value; }) cfg.colors)
     } };
 
     static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
