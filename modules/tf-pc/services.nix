@@ -2,6 +2,7 @@
 {
   pulseaudio.enable = false;
   printing.enable = true;
+  picom.enable = true;
   fstrim.enable = true;
   openssh.settings.PermitRootLogin = "no";
   # Enable Bluetooth
