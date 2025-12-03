@@ -103,6 +103,7 @@ content = {
 	    -- Center: filename
 	    { hl = 'MiniStatuslineFilename',     strings = { filename } },
 	    '%=',                                -- end left alignment
+	    { hl = 'MiniStatuslineFilename',     strings = { vim.fn.getcwd() } },
         { hl = 'MiniStatusLineMacro',        strings = { macro } },
 	    { hl = 'MiniStatuslineFileinfo',     strings = { fileinfo } },
 	    { hl = mode_hl,                      strings = { search, location } },
