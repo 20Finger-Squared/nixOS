@@ -157,14 +157,21 @@ let
     static const unsigned int snap     = ${toString cfg.snap};
     static const int showbar           = ${if cfg.showBar then "1" else "0"};
     static const int topbar            = ${if cfg.showBar then "1" else "0"};
+    static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
     static const char *fonts[]         = { "${cfg.font.name}:size=${toString cfg.font.size}" };
+
+    /* layout(s) */
+    static const float mfact        = ${toString cfg.layout.mfact}; /* factor of master area size [0.05..0.95] */
+    static const int nmaster        = ${toString cfg.layout.nmaster};    /* number of clients in master area */
+    static const int resizehints    = ${toString cfg.layout.resizehints};    /* 1 means respect size hints in tiled resizals */
+    static const int lockfullscreen = ${toString cfg.layout.lockfullscreen}; /* 1 will force focus on the fullscreen window */
+
     static const char *colors[][3] = { ${
       concatMapStringsSep ",\n" (pair: ''
         [ ${pair.name} ] = { "${pair.value.fg}", "${pair.value.bg}", "${pair.value.border}" }
       '') (lib.mapAttrsToList (name: value: { inherit name value; }) cfg.colors)
     } };
 
-    static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
     static const char *dmenucmd[] = { "${cfg.appLauncher.appCmd}", ${
       concatMapStringsSep ", " (
         arg: ''"${toString arg.flag}", ${toString arg.argument}''
@@ -177,14 +184,7 @@ let
       ) cfg.terminal.appArgs
     } NULL };
 
-    /* layout(s) */
-    static const float mfact        = ${toString cfg.layout.mfact}; /* factor of master area size [0.05..0.95] */
-    static const int nmaster        = ${toString cfg.layout.nmaster};    /* number of clients in master area */
-    static const int resizehints    = ${toString cfg.layout.resizehints};    /* 1 means respect size hints in tiled resizals */
-    static const int lockfullscreen = ${toString cfg.layout.lockfullscreen}; /* 1 will force focus on the fullscreen window */
-
     static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
-
 
     static const Layout layouts[] = {
     ${concatMapStringsSep ",\n " (
