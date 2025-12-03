@@ -1,10 +1,12 @@
 { config, ... }:
 let
   colorscheme = config.colorscheme;
+  modifer = config.programs.dwm.modifier;
 in
 {
   enable = true;
   modifier = "Mod4Mask";
+  terminal.modifier = "${modifer}";
   terminal.appCmd = "kitty";
   layout.mfact = 0.60;
   snap = 16;
