@@ -28,13 +28,4 @@ in
     customWmenu
   ];
 
-  services = {
-    picom.enable = true;
-    libinput.enable = true;
-    xserver = {
-      enable = true;
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 32;
-    };
-  };
 }

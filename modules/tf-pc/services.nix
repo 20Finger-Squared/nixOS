@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  libinput.enable = true;
   pulseaudio.enable = false;
   printing.enable = true;
   picom.enable = true;
@@ -8,6 +9,8 @@
   # Enable Bluetooth
   blueman.enable = true;
   xserver = {
+    autoRepeatDelay = 200;
+    autoRepeatInterval = 32;
     enable = true;
     xkb.layout = "gb";
   };
