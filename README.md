@@ -20,11 +20,12 @@ This alias does not specify the hostname so your current one will be used.
 This alias is only made in bash so if you use another shell you can't use it.
 
 # TODO
-- Create Dmenu configuration.
-- Create tmux configuration.
-- Create Dwm configuration.
+- Create tmux bar configuration
 
 ## Done
+- ~~Create tmux configuration.~~
+- ~~Create Dwm configuration.~~
+- ~~Create Dmenu configuration.~~
 - ~~Create module for dwm config.h~~
 - ~~Fix Dwm not using config.h.~~
 - ~~Create qutebrowser configuration.~~
