@@ -37,35 +37,6 @@
         clock = "%x";
       };
     };
-
-    sessionPackages = [
-      (pkgs.writeTextFile {
-        name = "dwl";
-        destination = "/share/wayland-sessions/dwl.desktop";
-        text = ''
-          [Desktop Entry]
-          Name=dwl
-          Comment=dwm for Wayland
-          Exec=dwl
-          Type=Application
-        '';
-        passthru.providedSessions = [ "dwl" ];
-      })
-      (pkgs.writeTextFile {
-        name = "dwm";
-        destination = "/share/xsessions/dwm.desktop";
-        text = ''
-          [Desktop Entry]
-          Encoding=UTF-8
-          Name=dwm
-          Comment=Dynamic window manager
-          Exec=${pkgs.dwm}/bin/dwm
-          Icon=dwm
-          Type=Application
-        '';
-        passthru.providedSessions = [ "dwm" ];
-      })
-    ];
   };
 
   # Enable sound with pipewire.

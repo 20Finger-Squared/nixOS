@@ -38,21 +38,6 @@
         clock = "%x";
       };
     };
-
-    sessionPackages = [
-      (pkgs.writeTextFile {
-        name = "dwl";
-        destination = "/share/wayland-sessions/dwl.desktop";
-        text = ''
-          [Desktop Entry]
-          Name=dwl
-          Comment=dwm for Wayland
-          Exec=dwl
-          Type=Application
-        '';
-        passthru.providedSessions = [ "dwl" ];
-      })
-    ];
   };
 
   # Btrfs
