@@ -14,11 +14,11 @@ in
   };
   colors = {
     SchemeNorm = {
-      fg = "#${colors.base00}";
+      fg = "#${colors.base04}";
       bg = "#${colors.base00}";
     };
     SchemeSel = {
-      fg = "#${colors.base00}";
+      fg = "#${colors.base0A}";
       bg = "#${colors.base00}";
     };
   };
