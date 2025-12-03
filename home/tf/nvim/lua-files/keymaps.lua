@@ -50,7 +50,3 @@ vim.keymap.set("n", "<leader>7", function() harpoon:list():select(7) end, { desc
 vim.keymap.set("n", "<leader>8", function() harpoon:list():select(8) end, { desc = " Jump to file 8" })
 vim.keymap.set("n", "<leader>9", function() harpoon:list():select(9) end, { desc = " Jump to file 9" })
 vim.keymap.set("n", "<leader>0", function() harpoon:list():select(10) end, { desc = " Jump to file 10" })
-
--- Terminal
-map({ "n", "t" }, "<leader>t", ":Floaterminal<CR>", { desc = " Toggle floating terminal" })
-map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = " Exit terminal mode" })
