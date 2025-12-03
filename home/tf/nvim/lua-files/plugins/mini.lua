@@ -86,18 +86,15 @@ content = {
 	local location      = MiniStatusline.section_location({ trunc_width = 75 })
 	local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
-    local function section_recording()
-      local rec = vim.fn.reg_recording()
-      if rec == '' then return '' end
-      return 'Recording @' .. rec
-    end
-
 	-- Custom highlight
 	vim.api.nvim_set_hl(0, "MiniStatusLineMacro", {
 	    link = "GruvboxOrange",
 	    bg = "#a89984",
 	    bold = true,
 	})
+
+    macro = vim.fn.reg_recording()
+    macro = (macro ~= '') and ('Recording @' .. macro) or ''
 
 	return MiniStatusline.combine_groups({
 	    -- Left side: Git / Diff / Diagnostics / LSP
@@ -106,7 +103,7 @@ content = {
 	    -- Center: filename
 	    { hl = 'MiniStatuslineFilename',     strings = { filename } },
 	    '%=',                                -- end left alignment
-        { hl = 'MiniStatusLineMacro',        strings = { section_recording() } },
+        { hl = 'MiniStatusLineMacro',        strings = { macro } },
 	    { hl = 'MiniStatuslineFileinfo',     strings = { fileinfo } },
 	    { hl = mode_hl,                      strings = { search, location } },
 	})
