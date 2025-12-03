@@ -9,6 +9,16 @@ in
   terminal.launchKey = "XK_space";
   terminal.modifier = "${modifer}";
   terminal.appCmd = "kitty";
+  appLauncher.appArgs = [
+    {
+      flag = "-m";
+      argument = "dmenumon";
+    }
+    {
+      flag = "-p";
+      argument = ''"run:"'';
+    }
+  ];
   layout.mfact = 0.60;
   snap = 16;
   borderpx = 3;
