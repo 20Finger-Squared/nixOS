@@ -6,6 +6,7 @@ in
 {
   enable = true;
   modifier = "Mod4Mask";
+  terminal.launchKey = "XK_space";
   terminal.modifier = "${modifer}";
   terminal.appCmd = "kitty";
   layout.mfact = 0.60;
