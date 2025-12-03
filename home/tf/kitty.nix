@@ -1,37 +1,36 @@
-{ config, pkgs, ... }:
+{ colorscheme, ... }:
 {
   programs.kitty = {
     enable = true;
     font.name = "JetBrainsMono NF";
-    font.size = 11;
+    font.size = 13;
     shellIntegration.enableBashIntegration = true;
 
     settings = {
-      background = "#282828";
-      foreground = "#ebdbb2";
-      cursor = "#ebdbb2";
-      selection_background = "#3c3836";
-      selection_foreground = "#ebdbb2";
+      background = "#${colorscheme.base00}";
+      foreground = "#${colorscheme.base06}";
+      cursor = "#${colorscheme.base06}";
+      selection_background = "#${colorscheme.base01}";
+      selection_foreground = "#${colorscheme.base06}";
 
-      color0 = "#282828";
-      color1 = "#cc241d";
-      color2 = "#98971a";
-      color3 = "#d79921";
-      color4 = "#458588";
-      color5 = "#b16286";
-      color6 = "#689d6a";
-      color7 = "#a89984";
+      color0 = "#${colorscheme.base00}";
+      color1 = "#${colorscheme.base08}";
+      color2 = "#${colorscheme.base0B}";
+      color3 = "#${colorscheme.base0A}";
+      color4 = "#${colorscheme.base0D}";
+      color5 = "#${colorscheme.base0E}";
+      color6 = "#${colorscheme.base0C}";
+      color7 = "#${colorscheme.base04}";
 
-      color8 = "#928374";
-      color9 = "#fb4934";
-      color10 = "#b8bb26";
-      color11 = "#fabd2f";
-      color12 = "#83a598";
-      color13 = "#d3869b";
-      color14 = "#8ec07c";
-      color15 = "#ebdbb2";
+      color8 = "#${colorscheme.base07}";
+      color9 = "#${colorscheme.base08}";
+      color10 = "#${colorscheme.base0B}";
+      color11 = "#${colorscheme.base0A}";
+      color12 = "#${colorscheme.base0D}";
+      color13 = "#${colorscheme.base0E}";
+      color14 = "#${colorscheme.base0C}";
+      color15 = "#${colorscheme.base04}"; # No close match in baseXX for #ebdbb2 (base06 is different
     };
-
     extraConfig = ''
       input_delay 0
       sync_to_monitor yes
