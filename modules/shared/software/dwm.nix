@@ -1,7 +1,8 @@
 { config, ... }:
 let
   colorscheme = config.colorscheme;
-  modifer = config.programs.dwm.modifier;
+  cfg = config.programs.dwm;
+  modifer = cfg.modifier;
 in
 {
   programs.dwm = {
@@ -22,6 +23,10 @@ in
       {
         flag = "-p";
         argument = ''"run:"'';
+      }
+      {
+        flag = "-fn";
+        argument = ''"${cfg.font.name}:size=14"'';
       }
     ];
     layout.mfact = 0.60;
