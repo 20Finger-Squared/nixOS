@@ -1,7 +1,4 @@
 { ... }:
 {
-  imports = [
-    ./dmenu.nix
-    ./dwm.nix
-  ];
+  imports = [ ];
 }

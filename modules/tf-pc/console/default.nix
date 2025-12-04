@@ -1,4 +1,4 @@
 { ... }:
 {
-  imports = [ ./console.nix ];
+  imports = [ ];
 }

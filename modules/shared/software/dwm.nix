@@ -10,6 +10,10 @@ in
     terminal.launchKey = "XK_space";
     terminal.modifier = "${modifer}";
     terminal.appCmd = "kitty";
+    font = {
+      size = 12;
+      name = "JetbrainsMono NF";
+    };
     appLauncher.appArgs = [
       {
         flag = "-m";
