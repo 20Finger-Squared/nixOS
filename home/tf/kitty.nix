@@ -36,7 +36,7 @@
       sync_to_monitor yes
       window_border_width 0
       window_padding_width 0
-      background_opacity 0.3
+      background_opacity 0.9
       dynamic_background_opacity yes
       confirm_os_window_close 0
     '';
