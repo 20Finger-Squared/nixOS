@@ -448,7 +448,6 @@ in
     };
 
     font = {
-      type = types.listOf types.str;
       name = mkOption {
         type = types.str;
         default = "monospace";
