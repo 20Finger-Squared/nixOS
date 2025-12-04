@@ -19,6 +19,9 @@ let
     /* -fn option overrides fonts[0]; default X11 font or font set */
     static const char *fonts[]         = { "${cfg.font.name}:size=${toString cfg.font.size}" };
     static const char *prompt      = ${cfg.prompt};      /* -p  option; prompt to the left of input field */
+    static int centered = ${if cfg.patches.centered.centered then "1" else "0"};
+    static int min_width = ${toString cfg.patches.centered.min_width};
+    static const float menu_height_ratio = ${toString cfg.patches.centered.menu_height_ratio}f;
     static const char *colors[SchemeLast][2] = {
         ${
           let
@@ -52,7 +55,8 @@ let
     '';
     patches =
       (if oldAttrs.patches == null then [ ] else oldAttrs.patches)
-      ++ (if (cfg.patches.inlinePrompt.enable) then [ ./inline-prompt.diff ] else [ ]);
+      ++ (if (cfg.patches.inlinePrompt.enable) then [ ./inline-prompt.diff ] else [ ])
+      ++ (if (cfg.patches.centered.enable) then [ ./center.diff ] else [ ]);
   });
 in
 {
@@ -130,6 +134,24 @@ in
         type = types.listOf types.path;
         default = [ ];
         description = "Custom patches to apply to dmenu";
+      };
+      centered = {
+        enable = mkEnableOption "centered dmenu patch";
+        centered = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Whether the dmenu prompt is centered by default";
+        };
+        min_width = mkOption {
+          type = types.int;
+          default = 500;
+          description = "minimum width when centered";
+        };
+        menu_height_ratio = mkOption {
+          type = types.float;
+          default = 4.0;
+          description = "This is the ratio used in the original calculation";
+        };
       };
       inlinePrompt = {
         enable = mkEnableOption "inline prompt patch";
