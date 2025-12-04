@@ -18,11 +18,10 @@ let
       modules = [
         ./custom-modules/dwm/module.nix
         ./custom-modules/dmenu/module.nix
-        ./custom-modules/colorscheme-module.nix
+        ./custom-modules/general/colorscheme-module.nix
 
-        ./modules/${hostname}/hardware-configuration.nix
-        ./modules/${hostname}/configuration.nix
-
+        ./modules/${hostname}/hardware/hardware-configuration.nix
+        ./modules/${hostname}/default.nix
         ./home/default.nix
         home-manager.nixosModules.home-manager
       ];
