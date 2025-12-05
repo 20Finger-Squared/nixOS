@@ -28,6 +28,9 @@
       pkgs.jq
       pkgs.ripgrep
       pkgs.fzf
+      pkgs.btop
+      pkgs.fastfetch
+      pkgs.godot
 
       pkgs.ly
 
