@@ -52,6 +52,12 @@ in
       useDefault = false;
       keys = [
         {
+          modifier = "MODKEY|ShiftMask";
+          key = "XK_t";
+          function = "spawn";
+          argument = ''SHCMD("qutebrowser")'';
+        }
+        {
           modifier = "MODKEY";
           key = "XK_b";
           function = "togglebar";
