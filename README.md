@@ -21,6 +21,8 @@ This alias is only made in bash so if you use another shell you can't use it.
 
 # TODO
 - Create tmux bar configuration
+- Create starship config
+- Create st module
 
 ## Done
 - ~~Create tmux configuration.~~
@@ -32,17 +34,17 @@ This alias is only made in bash so if you use another shell you can't use it.
 
 # Features
 The whole system is aiming to be Gruvbox themed using the Jetbrains Mono font.
+This system is also aimed towards a mouseless workflow via vim motions.
+This is because the mouse is yucky, and slow.
 
-This config is also moving towards X11 due to me having a hoard of problems with the current wayland.
-With the movement towards X11 i will be prioritising suckless software due to speed and ease of config.
+This config as of now revolves around X11 software.
 
 ## GUI tools
 Windows managers are:
-- Dwl
 - Dwm
+- Sway
 
 App launchers are:
-- Wmenu
 - Dmenu
 
 Current web browsers are:
@@ -71,24 +73,24 @@ CLI tools:
 - Dwm does not use it's config.h
 
 # Structure
-## home/
+## ./home/
 This contains all the home-manager related settings.
 - `home/default.nix` contains all settings that apply to all users.
 - `home/<user-name>/` is where you should put your user settings.
 
-## nix-config/
-The core file of this dir is `configuration.nix` of which imports all other files into it.
+## ./modules/
+This contains all my modules as per the name.
+To create a new host create a subdir that is the host name,
+with a default.nix inside that imports the other files.
 
-This was just a matter of taste on how I did the imports you can change the structure back,
-but you would have to edit the other files to not get a build error.
+Your hardware-configuration.nix should also be in the root of the subdir.
+Without it the system won't build.
 
-If you don't want UK settings for your pc you should edit
-- `nix-config/configuration.nix` line 36.
-- `nix-config/console.nix` line 3
-> TIP: Neovim supports `:e <file> +<line>` out of the box.
-> Example: `:e nix-config/configuration.nix +36`
+Make sure to add your hostname to ./outputs.nix via
+`nixosConfigurations.<hostname> = mkSystem "<hostname>";`
 
-## suckless/
-The core file of this dir is `package.nix` of which installs and compiles the suckless software.
+The `modules/shared` is applied to all hosts so that you don't
+have to write same file multiple times.
 
-If you wish to remove this folder you need to edit `.gitmodules` `outputs.nix`.
+## ./custom-modules/
+This contains all custom created modules for nixOS.
