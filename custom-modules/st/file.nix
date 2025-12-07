@@ -43,8 +43,13 @@ in
   wchar_t *worddelimiters = L" ";
 
   /* selection timeouts (in milliseconds) */
-  static unsigned int doubleclicktimeout = 300;
-  static unsigned int tripleclicktimeout = 600;
+  ${
+    concatStringsSep "\n" (
+      mapAttrsToList (
+        attr: value: "static unsigned int ${attr}clicktimeout = ${toString value};"
+      ) cfg.clickTimeouts
+    )
+  };
 
   /* alt screens */
   int allowaltscreen = 1;

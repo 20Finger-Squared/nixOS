@@ -34,6 +34,21 @@ in
       description = "The cmd initially executed on start-up";
     };
 
+    clickTimeouts = {
+      double = mkOption {
+        type = types.int;
+        default = 300;
+        example = 150;
+        description = "The selection timeouts for double clicking";
+      };
+      triple = mkOption {
+        type = types.int;
+        default = 600;
+        example = 300;
+        description = "The selection timeouts for triple clicking";
+      };
+    };
+
     font = {
       name = mkOption {
         type = types.str;
