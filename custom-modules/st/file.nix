@@ -85,7 +85,7 @@ in
   static int bellvolume = ${toString cfg.bellvolume};
 
   /* default TERM value */
-  char *termname = "st-256color";
+  char *termname = "${toString cfg.terminalName}";
 
   /*
    * spaces per tab

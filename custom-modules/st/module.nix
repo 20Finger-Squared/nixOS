@@ -57,6 +57,13 @@ in
       description = "bell volume. It must be a value between -100 and 100. Use 0 for disabling it";
     };
 
+    terminalName = mkOption {
+      type = types.str;
+      default = "st-256color";
+      example = "terminal-256color";
+      description = "The default window name for st";
+    };
+
     blinking = mkOption {
       type = types.int;
       default = 800;
