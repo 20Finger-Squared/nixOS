@@ -50,6 +50,13 @@ in
       description = "thickness of underline and bar cursors";
     };
 
+    bellvolume = mkOption {
+      type = types.ints.between (-100) 100;
+      default = 0;
+      example = 100;
+      description = "bell volume. It must be a value between -100 and 100. Use 0 for disabling it";
+    };
+
     blinking = mkOption {
       type = types.int;
       default = 800;
