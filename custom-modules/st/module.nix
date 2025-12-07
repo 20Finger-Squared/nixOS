@@ -43,6 +43,21 @@ in
         best to be turned on unless you prefer how the tty by default does it.'';
     };
 
+    latency = {
+      min = mkOption {
+        type = types.int;
+        default = 2;
+        example = 3;
+        description = "minimum latency for screen to be drawn";
+      };
+      max = mkOption {
+        type = types.int;
+        default = 33;
+        example = 14;
+        description = "maximum latency for screen to be drawn";
+      };
+    };
+
     allowwindowops = mkEnableOption ''escape sequences. This is off by default for security.'';
 
     characterBox = {

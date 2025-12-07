@@ -64,8 +64,8 @@ in
    * near minlatency, but it waits longer for slow updates to avoid partial draw.
    * low minlatency will tear/flicker more, as it can "detect" idle too early.
    */
-  static double minlatency = 2;
-  static double maxlatency = 33;
+  static double minlatency = ${toString cfg.latency.min};
+  static double maxlatency = ${toString cfg.latency.max};
 
   /*
    * blinking timeout (set to 0 to disable blinking) for the terminal blinking
