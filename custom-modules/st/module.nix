@@ -25,6 +25,14 @@ in
       default = 2;
       example = 0;
     };
+
+    shell = mkOption {
+      type = types.str;
+      default = "${pkgs.bash}/bin/sh";
+      example = "${pkgs.tmux}/bin/sh";
+      description = "The cmd initially executed on start-up";
+    };
+
     font = {
       name = mkOption {
         type = types.str;
