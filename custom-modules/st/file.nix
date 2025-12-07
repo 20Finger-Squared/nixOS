@@ -56,7 +56,7 @@ in
 
   /* allow certain non-interactive (insecure) window operations such as:
      setting the clipboard text */
-  int allowwindowops = 0;
+  int allowwindowops = ${if cfg.allowwindowops then "1 " else "0"};
 
   /*
    * draw latency range in ms - from new content/keypress/etc until drawing.

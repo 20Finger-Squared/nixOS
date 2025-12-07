@@ -43,6 +43,8 @@ in
         best to be turned on unless you prefer how the tty by default does it.'';
     };
 
+    allowwindowops = mkEnableOption ''escape sequences. This is off by default for security.'';
+
     characterBox = {
       height = mkOption {
         type = types.float;
