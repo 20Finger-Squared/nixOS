@@ -24,6 +24,7 @@ in
       type = types.int;
       default = 2;
       example = 0;
+      description = "The width of borders in pixels";
     };
 
     shell = mkOption {
@@ -38,21 +39,25 @@ in
         type = types.str;
         default = "Liberation Mono";
         example = "monospace";
+        description = "The name of the font";
       };
       size = mkOption {
         type = types.int;
         default = 12;
         example = 10;
+        description = "The size of the font";
       };
       antialias = mkOption {
         type = types.bool;
         default = true;
         example = false;
+        description = "Whether to enable antialias";
       };
       autohint = mkOption {
         type = types.bool;
         default = true;
         example = false;
+        description = "Whether to enable autohint";
       };
     };
   };
