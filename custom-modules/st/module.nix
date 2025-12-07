@@ -34,6 +34,15 @@ in
       description = "The cmd initially executed on start-up";
     };
 
+    allowaltscreen = mkOption {
+      type = types.bool;
+      default = true;
+      example = false;
+      description = ''
+        Enables things like vim to create a screen over your terminal
+        best to be turned on unless you prefer how the tty by default does it.'';
+    };
+
     characterBox = {
       height = mkOption {
         type = types.float;

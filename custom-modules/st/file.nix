@@ -52,7 +52,7 @@ in
   };
 
   /* alt screens */
-  int allowaltscreen = 1;
+  int allowaltscreen = ${if cfg.allowaltscreen then "1 " else "0"};
 
   /* allow certain non-interactive (insecure) window operations such as:
      setting the clipboard text */
