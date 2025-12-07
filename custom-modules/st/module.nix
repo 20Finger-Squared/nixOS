@@ -43,6 +43,13 @@ in
         best to be turned on unless you prefer how the tty by default does it.'';
     };
 
+    blinking = mkOption {
+      type = types.int;
+      default = 800;
+      example = 0;
+      description = "blinking timeout (set to 0 to disable blinking) for the terminal blinking attribute.";
+    };
+
     latency = {
       min = mkOption {
         type = types.int;
