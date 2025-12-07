@@ -11,7 +11,7 @@ in
    *
    * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
    */
-  static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+  static char *font = "${cfg.font.name}:pixelsize=${toString cfg.font.size}:antialias=${toString cfg.font.antialias}:autohint=${toString cfg.font.autohint}";
   static int borderpx = 2;
 
   /*

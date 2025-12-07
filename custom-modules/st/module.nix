@@ -20,6 +20,30 @@ in
 {
   options.programs.st = {
     enable = mkEnableOption "st";
+    font = {
+      name = mkOption {
+        type = types.str;
+        default = "Liberation Mono";
+        example = "monospace";
+      };
+      size = mkOption {
+        type = types.int;
+        default = 12;
+        example = 10;
+      };
+      antialias = mkOption {
+        type = types.bool;
+        default = true;
+        example = false;
+      };
+      autohint = mkOption {
+        type = types.bool;
+        default = true;
+        example = false;
+      };
+    };
   };
-  config = mkIf cfg.enable { };
+  config = mkIf config.programs.st.enable {
+    environment.systemPackages = [ package ];
+  };
 }
