@@ -106,33 +106,26 @@ in
 
   /* Terminal colors (16 first used in escape sequence) */
   static const char *colorname[] = {
-  	/* 8 normal colors */
-  	"black",
-  	"red3",
-  	"green3",
-  	"yellow3",
-  	"blue2",
-  	"magenta3",
-  	"cyan3",
-  	"gray90",
-
-  	/* 8 bright colors */
-  	"gray50",
-  	"red",
-  	"green",
-  	"yellow",
-  	"#5c5cff",
-  	"magenta",
-  	"cyan",
-  	"white",
+    ${concatStringsSep "\n" (
+      mapAttrsToList (attr: value: ''
+        "${value.black}",
+        "${value.red}",
+        "${value.green}",
+        "${value.yellow}",
+        "${value.blue}",
+        "${value.magenta}",
+        "${value.cyan}",
+        "${value.white}",
+      '') cfg.color.colors
+    )}
 
   	[255] = 0,
 
   	/* more colors can be added after 255 to use with DefaultXX */
-  	"#cccccc",
-  	"#555555",
-  	"gray90", /* default foreground colour */
-  	"black", /* default background colour */
+  	"${cfg.color.cursor}",
+  	"${cfg.color.reverseCursor}",
+  	"${cfg.color.fg}", /* default foreground colour */
+  	"${cfg.color.bg}", /* default background colour */
   };
 
 

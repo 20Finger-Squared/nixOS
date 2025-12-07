@@ -6,6 +6,11 @@
 }:
 with lib;
 let
+  types = lib.types // {
+    hexColor = types.strMatching "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$";
+    modifier = types.strMatching "^(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask)(\\|(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask))*$";
+  };
+
   file = pkgs.writeText "config.h" (
     import ./file.nix {
       inherit lib;
@@ -94,6 +99,99 @@ in
     };
 
     allowwindowops = mkEnableOption ''escape sequences. This is off by default for security.'';
+
+    color = {
+      colors = {
+        normal = {
+          red = mkOption {
+            type = types.str;
+            default = "red3";
+          };
+          green = mkOption {
+            type = types.str;
+            default = "green3";
+          };
+          yellow = mkOption {
+            type = types.str;
+            default = "yellow3";
+          };
+          blue = mkOption {
+            type = types.str;
+            default = "blue2";
+          };
+          magenta = mkOption {
+            type = types.str;
+            default = "magenta3";
+          };
+          cyan = mkOption {
+            type = types.str;
+            default = "cyan3";
+          };
+          white = mkOption {
+            type = types.str;
+            default = "gray90";
+          };
+          black = mkOption {
+            type = types.str;
+            default = "black";
+          };
+        };
+        bright = {
+          red = mkOption {
+            type = types.str;
+            default = "red";
+          };
+          green = mkOption {
+            type = types.str;
+            default = "green";
+          };
+          yellow = mkOption {
+            type = types.str;
+            default = "yellow";
+          };
+          blue = mkOption {
+            type = types.str;
+            default = "#5c5cff";
+          };
+          magenta = mkOption {
+            type = types.str;
+            default = "magenta";
+          };
+          cyan = mkOption {
+            type = types.str;
+            default = "cyan";
+          };
+          white = mkOption {
+            type = types.str;
+            default = "white";
+          };
+          black = mkOption {
+            type = types.str;
+            default = "gray50";
+          };
+        };
+      };
+      fg = mkOption {
+        type = types.str;
+        default = "gray90";
+        example = "black";
+      };
+      bg = mkOption {
+        type = types.str;
+        default = "black";
+        example = "white";
+      };
+      cursor = mkOption {
+        type = types.str;
+        default = "#cccccc";
+        example = "#555555";
+      };
+      reverseCursor = mkOption {
+        type = types.str;
+        default = "#555555";
+        example = "#cccccc";
+      };
+    };
 
     characterBox = {
       height = mkOption {
