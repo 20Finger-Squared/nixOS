@@ -43,6 +43,13 @@ in
         best to be turned on unless you prefer how the tty by default does it.'';
     };
 
+    cursorThickness = mkOption {
+      type = types.int;
+      default = 2;
+      example = 3;
+      description = "thickness of underline and bar cursors";
+    };
+
     blinking = mkOption {
       type = types.int;
       default = 800;
