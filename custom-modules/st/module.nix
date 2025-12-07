@@ -34,6 +34,21 @@ in
       description = "The cmd initially executed on start-up";
     };
 
+    characterBox = {
+      height = mkOption {
+        type = types.float;
+        default = 1.0;
+        example = 5.0;
+        description = "The character bounding box multiplier for the charcter's height";
+      };
+      width = mkOption {
+        type = types.float;
+        default = 1.0;
+        example = 5.0;
+        description = "The character bounding box multiplier for the charcter's width";
+      };
+    };
+
     clickTimeouts = {
       double = mkOption {
         type = types.int;

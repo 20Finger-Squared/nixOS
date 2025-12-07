@@ -32,8 +32,8 @@ in
   char *vtiden = "\033[?6c";
 
   /* Kerning / character bounding-box multipliers */
-  static float cwscale = 1.0;
-  static float chscale = 1.0;
+  static float cwscale = ${toString cfg.characterBox.height};
+  static float chscale = ${toString cfg.characterBox.width};
 
   /*
    * word delimiter string
