@@ -20,6 +20,11 @@ in
 {
   options.programs.st = {
     enable = mkEnableOption "st";
+    borderpx = mkOption {
+      type = types.int;
+      default = 2;
+      example = 0;
+    };
     font = {
       name = mkOption {
         type = types.str;
