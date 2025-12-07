@@ -1,7 +1,21 @@
-{ lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
 let
-  cfg = options.programs.st;
+  file = pkgs.writeText "config.h" (
+    import ./file.nix {
+      inherit lib;
+      inherit config;
+    }
+  );
+
+  package = pkgs.st.overrideAttrs (oldAttrs: {
+    postPatch = "cp ${file} config.def.h";
+  });
 in
 {
   options.programs.st = {
