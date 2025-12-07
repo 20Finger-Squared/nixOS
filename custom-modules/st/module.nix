@@ -57,6 +57,13 @@ in
       description = "bell volume. It must be a value between -100 and 100. Use 0 for disabling it";
     };
 
+    tabSpaces = mkOption {
+      type = types.int;
+      default = 8;
+      example = 2;
+      description = "To how many spaces tabs are expanded to";
+    };
+
     terminalName = mkOption {
       type = types.str;
       default = "st-256color";
