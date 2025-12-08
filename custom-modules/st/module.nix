@@ -8,7 +8,7 @@ with lib;
 let
   types = lib.types // {
     hexColor = types.strMatching "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$";
-    modifier = types.strMatching "^(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask)(\\|(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask))*$";
+    modifier = types.strMatching "^(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask|XK_SWITCH_MOD)(\\|(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask|XK_SWITCH_MOD))*$";
   };
 
   file = pkgs.writeText "config.h" (
@@ -207,6 +207,10 @@ in
     };
 
     modifier = {
+      ignoreMod = mkOption {
+        type = types.modifier;
+        default = "Mod2Mask|XK_SWITCH_MOD";
+      };
       termMod = mkOption {
         type = types.modifier;
         default = "ControlMask|ShiftMask";
@@ -302,6 +306,63 @@ in
           }
         );
       };
+    };
+
+    key = {
+      useDefault = mkOption {
+        default = true;
+        type = types.bool;
+        example = true;
+        description = ''Enable the default st keys: WARNING turning this off may render st inoperable'';
+      };
+
+      keys = mkOption {
+        type = types.listOf (
+          types.submodule {
+            options = {
+              keysym = mkOption {
+                type = types.str;
+                description = "X11 keysym (e.g., XK_KP_Home)";
+              };
+              mask = mkOption {
+                type = types.modifier;
+                description = "Modifier mask";
+              };
+              string = mkOption {
+                type = types.str;
+                description = "Output string";
+              };
+              appkey = mkOption {
+                type = types.int;
+                default = 0;
+                description = "Application key mode";
+              };
+              appcursor = mkOption {
+                type = types.int;
+                default = -1;
+                description = "Application cursor mode";
+              };
+            };
+          }
+        );
+        default = [ ];
+        description = "Dangerous key mappings";
+      };
+
+      description = ''
+        This is the huge key array which defines all compatibility to the Linux
+        world. Please decide about changes wisely.
+      '';
+
+    };
+
+    mappedKeys = mkOption {
+      type = types.listOf types.str;
+      default = [ "-1" ];
+      description = ''
+        If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
+        to be mapped below, add them to this array.
+      '';
     };
 
     termSize = {
