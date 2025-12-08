@@ -172,7 +172,7 @@ in
    * Note that if you want to use ShiftMask with selmasks, set this to an other
    * modifier, set to 0 to not use it.
    */
-  static uint forcemousemod = ShiftMask;
+  static uint forcemousemod = (${cfg.modifier.forceMouse});
 
   /*
    * Internal mouse shortcuts.
@@ -188,12 +188,11 @@ in
   };
 
   /* Internal keyboard shortcuts. */
-  #define MODKEY Mod1Mask
-  #define TERMMOD (ControlMask|ShiftMask)
+  #define MODKEY (${cfg.modifier.modkey})
+  #define TERMMOD (${cfg.modifier.termMod})
 
   static Shortcut shortcuts[] = {
   	/* mask                 keysym          function        argument */
-  	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
   	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
   	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
   	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },

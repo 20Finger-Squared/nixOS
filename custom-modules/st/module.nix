@@ -206,6 +206,24 @@ in
       '';
     };
 
+    modifier = {
+      termMod = mkOption {
+        type = types.modifier;
+        default = "ControlMask|ShiftMask";
+        example = "Mod4Mask";
+      };
+      modkey = mkOption {
+        type = types.modifier;
+        default = "Mod1Mask";
+        example = "ShiftMask";
+      };
+      forceMouse = mkOption {
+        type = types.modifier;
+        default = "ShiftMask";
+        example = "Mod1Mask";
+      };
+    };
+
     termSize = {
       rows = mkOption {
         type = types.int;
