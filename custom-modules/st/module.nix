@@ -231,6 +231,48 @@ in
         example = false;
         description = "Whether to add the default shortcuts to the list of shortcuts";
       };
+      mouse = {
+        useDefault = mkOption {
+          type = types.bool;
+          default = true;
+          example = false;
+          description = "Whether to add the default mouse shortcuts to the list of shortcuts";
+        };
+        binds = mkOption {
+          default = [ ];
+          type = types.listOf (
+            types.submodule {
+              options = {
+                modifier = mkOption {
+                  type = types.modifier;
+                  default = "XK_ANY_MOD";
+                  example = "TERMMOD";
+                };
+                button = mkOption {
+                  type = types.str;
+                  default = "XK_Break";
+                  example = "XK_C";
+                };
+                function = mkOption {
+                  type = types.str;
+                  default = "sendbreak";
+                  example = "printscreen";
+                };
+                argument = mkOption {
+                  type = types.str;
+                  default = ".i = 0";
+                  example = "0";
+                };
+                release = mkOption {
+                  type = types.nullOr types.bool;
+                  default = null;
+                  example = true;
+                };
+              };
+            }
+          );
+        };
+      };
       binds = mkOption {
         default = [ ];
         type = types.listOf (

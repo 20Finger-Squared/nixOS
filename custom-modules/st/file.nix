@@ -180,11 +180,23 @@ in
    */
   static MouseShortcut mshortcuts[] = {
   	/* mask                 button   function        argument       release */
-  	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-  	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
-  	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-  	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
-  	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+    ${concatMapStringsSep ",\n" (
+      value:
+      ''{${toString value.modifier}, ${toString value.button}, ${toString value.function}, { ${toString value.argument} ''
+      + (if value.release != null then '', ${if value.release then "1" else "0"} }} '' else "}}")
+    ) cfg.shortcuts.mouse.binds}
+    ${
+      if cfg.shortcuts.mouse.useDefault then
+        ''
+          	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+          	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+          	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+          	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+          	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+        ''
+      else
+        ""
+    }
   };
 
   /* Internal keyboard shortcuts. */
