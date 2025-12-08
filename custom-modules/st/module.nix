@@ -215,6 +215,30 @@ in
       '';
     };
 
+    selMasks = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            name = mkOption {
+              type = types.str;
+              description = "Selection mask name (e.g., SEL_RECTANGULAR)";
+            };
+            value = mkOption {
+              type = types.modifier;
+              description = "Modifier mask value";
+            };
+          };
+        }
+      );
+      default = [
+        {
+          name = "SEL_RECTANGULAR";
+          value = "Mod1Mask";
+        }
+      ];
+      description = "Selection masks";
+    };
+
     modifier = {
       ignoreMod = mkOption {
         type = types.modifier;

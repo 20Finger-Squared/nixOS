@@ -500,7 +500,7 @@ in
    * If no match is found, regular selection is used.
    */
   static uint selmasks[] = {
-  	[SEL_RECTANGULAR] = Mod1Mask,
+  ${concatMapStringsSep ",\n  " (value: ''[${value.name}] = ${toString value.value}'') cfg.selMasks}
   };
 
   /*
