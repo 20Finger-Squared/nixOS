@@ -217,6 +217,11 @@ in
       };
     };
 
+    mouseShape = mkOption {
+      type = types.str;
+      default = "XC_xterm";
+    };
+
     characterBox = {
       height = mkOption {
         type = types.float;

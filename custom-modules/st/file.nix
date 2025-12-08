@@ -157,7 +157,7 @@ in
   /*
    * Default colour and shape of the mouse cursor
    */
-  static unsigned int mouseshape = XC_xterm;
+  static unsigned int mouseshape = ${cfg.mouseShape};
   static unsigned int mousefg = 7;
   static unsigned int mousebg = 0;
 
