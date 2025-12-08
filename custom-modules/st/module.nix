@@ -193,6 +193,19 @@ in
       };
     };
 
+    cursorShape = mkOption {
+      type = types.int;
+      default = 2;
+      example = 7;
+      description = ''
+        Default shape of cursor
+        2: Block ("█")
+        4: Underline ("_")
+        6: Bar ("|")
+        7: Snowman ("☃")
+      '';
+    };
+
     characterBox = {
       height = mkOption {
         type = types.float;
