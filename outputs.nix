@@ -19,6 +19,7 @@ let
         ./custom-modules/dwm/module.nix
         ./custom-modules/dmenu/module.nix
         ./custom-modules/general/colorscheme-module.nix
+        ./custom-modules/st/module.nix
 
         ./modules/shared/default.nix
         ./modules/${hostname}/hardware-configuration.nix
