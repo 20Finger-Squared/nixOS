@@ -151,8 +151,8 @@ in
    * Default columns and rows numbers
    */
 
-  static unsigned int cols = 80;
-  static unsigned int rows = 24;
+  static unsigned int cols = ${toString cfg.termSize.columns};
+  static unsigned int rows = ${toString cfg.termSize.rows};
 
   /*
    * Default colour and shape of the mouse cursor

@@ -206,6 +206,17 @@ in
       '';
     };
 
+    termSize = {
+      rows = mkOption {
+        type = types.int;
+        default = 24;
+      };
+      columns = mkOption {
+        type = types.int;
+        default = 80;
+      };
+    };
+
     characterBox = {
       height = mkOption {
         type = types.float;
