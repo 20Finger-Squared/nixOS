@@ -100,6 +100,15 @@ in
 
     allowwindowops = mkEnableOption ''escape sequences. This is off by default for security.'';
 
+    asciiPrintable = mkOption {
+      type = types.str;
+      default = ''!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'';
+      description = ''
+        Printable characters in ASCII, used to estimate the advance width
+        of single wide characters.
+      '';
+    };
+
     color = {
       colors = {
         normal = {

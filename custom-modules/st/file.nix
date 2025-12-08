@@ -507,8 +507,5 @@ in
    * Printable characters in ASCII, used to estimate the advance width
    * of single wide characters.
    */
-  static char ascii_printable[] =
-  	" !\"#$%&'()*+,-./0123456789:;<=>?"
-  	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
-  	"`abcdefghijklmnopqrstuvwxyz{|}~";
+  static char ascii_printable[] = "${cfg.asciiPrintable}";
 ''
