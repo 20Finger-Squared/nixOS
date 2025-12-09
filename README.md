@@ -22,9 +22,12 @@ This alias is only made in bash so if you use another shell you can't use it.
 # TODO
 - Create tmux bar configuration
 - Create starship config
-- Create st module
+- Create dwm startup script
+- Create eww config
+- Create feh background configuration for dwm
 
 ## Done
+- ~~Create st module~~
 - ~~Create tmux configuration.~~
 - ~~Create Dwm configuration.~~
 - ~~Create Dmenu configuration.~~
