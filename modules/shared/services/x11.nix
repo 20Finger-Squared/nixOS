@@ -7,7 +7,7 @@
       autoRepeatDelay = 200;
       autoRepeatInterval = 32;
       enable = true;
-      xkb.layout = "gb";
+      xkb.layout = "us";
     };
   };
 }

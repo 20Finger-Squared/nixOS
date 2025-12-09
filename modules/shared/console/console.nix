@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   console = {
-    keyMap = "uk";
+    keyMap = "us";
     earlySetup = true;
     font = "ter-16x";
     packages = [ pkgs.terminus_font ];
