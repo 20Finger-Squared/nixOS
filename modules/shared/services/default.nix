@@ -5,5 +5,6 @@
     ./misc.nix
     ./security.nix
     ./xdg-portal.nix
+    ./x11.nix
   ];
 }
