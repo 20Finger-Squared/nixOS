@@ -12,6 +12,9 @@
       pkgs.libreoffice
       pkgs.firefox
 
+      pkgs.vial
+      pkgs.via
+
       # wayland needs
       pkgs.wl-clipboard
       pkgs.xdg-desktop-portal
@@ -22,6 +25,10 @@
 
       # Default terminal emulator
       pkgs.kitty
+
+      # for the dwm background
+      pkgs.feh
+      pkgs.equibop
 
       # cli tools
       pkgs.tmux
