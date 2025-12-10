@@ -3,6 +3,9 @@ let
   colorscheme = config.colorscheme;
   cfg = config.programs.dwm;
   modifer = cfg.modifier;
+  XF86AudioLowerVolume = "0x1008ff11";
+  XF86AudioRaiseVolume = "0x1008ff13";
+  volumeIncrement = 0.05;
 in
 {
   programs.dwm = {
@@ -51,6 +54,18 @@ in
     key = {
       useDefault = false;
       keys = [
+        {
+          modifier = 0;
+          key = XF86AudioRaiseVolume;
+          function = "spawn";
+          argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}+")'';
+        }
+        {
+          modifier = 0;
+          key = XF86AudioLowerVolume;
+          function = "spawn";
+          argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}-")'';
+        }
         {
           modifier = "MODKEY|ShiftMask";
           key = "XK_t";
