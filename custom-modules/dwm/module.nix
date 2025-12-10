@@ -208,7 +208,7 @@ let
 
         ${
           concatMapStringsSep ",\n        " (
-            key: ''{${key.modifier}, ${key.key}, ${key.function}, ${key.argument} }''
+            key: ''{${toString key.modifier}, ${key.key}, ${key.function}, ${key.argument} }''
           ) (if cfg.key.useDefault then cfg.key.keys ++ defaultKeys else cfg.key.keys)
         },
 
@@ -774,9 +774,9 @@ in
           types.submodule {
             options = {
               modifier = mkOption {
-                type = types.modifier;
+                type = types.either types.str (types.enum [ 0 ]);
                 default = "MODKEY";
-                description = "If left unbound will use default modifier";
+                description = "If left unbound will use default modifier. Use 0 for no modifier, or modifier strings like MODKEY|ShiftMask";
               };
               key = mkOption {
                 type = types.str;
