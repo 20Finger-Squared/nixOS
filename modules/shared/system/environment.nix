@@ -28,7 +28,6 @@
 
       # for the dwm background
       pkgs.feh
-      pkgs.equibop
 
       # cli tools
       pkgs.tmux
