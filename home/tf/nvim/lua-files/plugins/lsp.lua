@@ -5,6 +5,21 @@ lspconfig.clangd.setup({})
 -- Standard LSP capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+lspconfig.clangd.setup({
+  cmd = { "clangd", "--header-insertion=iwyu", "--clang-tidy" },
+  init_options = {
+    clangdOnSave = true,
+    semanticHighlighting = true,
+    fallbackFlags = {
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror=implicit-function-declaration"
+    }
+  }
+})
+
 lspconfig.marksman.setup({
     cmd = { "marksman", "server" },
     filetypes = { "markdown" },
