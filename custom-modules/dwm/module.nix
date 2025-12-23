@@ -8,239 +8,42 @@ with lib;
 let
   cfg = config.programs.dwm;
 
-  defaultKeys = [
-    {
-      modifier = "MODKEY";
-      key = "XK_b";
-      function = "togglebar";
-      argument = "{0}";
+  file = pkgs.writeText "config.c" (
+    (import ./file.nix) {
+      inherit lib;
+      inherit config;
     }
-    {
-      modifier = "MODKEY";
-      key = "XK_j";
-      function = "focusstack";
-      argument = "{.i = +1 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_k";
-      function = "focusstack";
-      argument = "{.i = -1 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_i";
-      function = "incnmaster";
-      argument = "{.i = +1 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_d";
-      function = "incnmaster";
-      argument = "{.i = -1 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_h";
-      function = "setmfact";
-      argument = "{.f = -0.05}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_l";
-      function = "setmfact";
-      argument = "{.f = +0.05}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_Return";
-      function = "zoom";
-      argument = "{0}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_Tab";
-      function = "view";
-      argument = "{0}";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_c";
-      function = "killclient";
-      argument = "{0}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_t";
-      function = "setlayout";
-      argument = "{.v = &layouts[0]}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_f";
-      function = "setlayout";
-      argument = "{.v = &layouts[1]}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_m";
-      function = "setlayout";
-      argument = "{.v = &layouts[2]}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_space";
-      function = "setlayout";
-      argument = "{0}";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_space";
-      function = "togglefloating";
-      argument = "{0}";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_0";
-      function = "view";
-      argument = "{.ui = ~0 }";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_0";
-      function = "tag";
-      argument = "{.ui = ~0 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_comma";
-      function = "focusmon";
-      argument = "{.i = -1 }";
-    }
-    {
-      modifier = "MODKEY";
-      key = "XK_period";
-      function = "focusmon";
-      argument = "{.i = +1 }";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_comma";
-      function = "tagmon";
-      argument = "{.i = -1 }";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_period";
-      function = "tagmon";
-      argument = "{.i = +1 }";
-    }
-    {
-      modifier = "MODKEY|ShiftMask";
-      key = "XK_q";
-      function = "quit";
-      argument = "{0}";
-    }
-  ];
+  );
 
-  file = pkgs.writeText "config.h" /* c */ ''
-    ${cfg.file.prepend}
-    #define MODKEY ${cfg.modifier}
-    #define TAGKEYS(KEY, TAG) \
-        {${cfg.tagKeys.modifiers.viewOnlyThisTag},       KEY, view,       {.ui = 1 << TAG} }, \
-        {${cfg.tagKeys.modifiers.toggleThisTagInView},   KEY, toggleview, {.ui = 1 << TAG} }, \
-        {${cfg.tagKeys.modifiers.moveWindowToThisTag},   KEY, tag,        {.ui = 1 << TAG} }, \
-        {${cfg.tagKeys.modifiers.toggleWindowOnThisTag}, KEY, toggletag,  {.ui = 1 << TAG} },
-    #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-    static const unsigned int borderpx = ${toString cfg.borderpx};
-    static const unsigned int gappx    = ${toString cfg.patches.gaps.width};
-    static const unsigned int snap     = ${toString cfg.snap};
-    static const int showbar           = ${if cfg.showBar then "1" else "0"};
-    static const int topbar            = ${if cfg.showBar then "1" else "0"};
-    static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-    static const char *fonts[]         = { "${cfg.font.name}:size=${toString cfg.font.size}" };
-
-    /* layout(s) */
-    static const float mfact        = ${toString cfg.layout.mfact}; /* factor of master area size [0.05..0.95] */
-    static const int nmaster        = ${toString cfg.layout.nmaster};    /* number of clients in master area */
-    static const int resizehints    = ${toString cfg.layout.resizehints};    /* 1 means respect size hints in tiled resizals */
-    static const int lockfullscreen = ${toString cfg.layout.lockfullscreen}; /* 1 will force focus on the fullscreen window */
-
-    static const char *colors[][3] = { ${
-      concatMapStringsSep ",\n" (pair: ''
-        [ ${pair.name} ] = { "${pair.value.fg}", "${pair.value.bg}", "${pair.value.border}" }
-      '') (lib.mapAttrsToList (name: value: { inherit name value; }) cfg.colors)
-    } };
-
-    static const char *dmenucmd[] = { "${cfg.appLauncher.appCmd}", ${
-      concatMapStringsSep ", " (
-        arg: ''"${toString arg.flag}", ${toString arg.argument}''
-      ) cfg.appLauncher.appArgs
-    }, NULL };
-
-    static const char *termcmd[]  = { "${cfg.terminal.appCmd}", ${
-      concatMapStringsSep ", " (
-        arg: ''"${toString arg.flag}, ${toString arg.argument}"''
-      ) cfg.terminal.appArgs
-    } NULL };
-
-    static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
-
-    static const Layout layouts[] = {
-    ${concatMapStringsSep ",\n " (
-      layout: ''{"${layout.symbol}", ${layout.arrangeFunction}}''
-    ) cfg.layout.layouts}
-    };
-
-    static const Rule rules[] = {
-    ${concatMapStringsSep ",\n " (rule: ''
-      {
-      "${rule.class}", ${rule.instance}, ${rule.title}, ${toString rule.tagsMask}, ${
-        if rule.isFloating then "1" else "0"
-      }, ${toString rule.monitor}
-      }
-    '') cfg.rules}
-    };
-
-    static const Key keys[] = {
-        {${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, {.v=termcmd}},
-        {${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, {.v=dmenucmd}},
-
-        ${
-          concatMapStringsSep ",\n        " (
-            key: ''{${toString key.modifier}, ${key.key}, ${key.function}, ${key.argument} }''
-          ) (if cfg.key.useDefault then cfg.key.keys ++ defaultKeys else cfg.key.keys)
-        },
-
-        ${concatMapStringsSep "\n        " (
-          tag: ''TAGKEYS(${tag.key}, ${toString tag.tag})''
-        ) cfg.tagKeys.definitions}
-    };
-
-    static const Button buttons[] = {
-        ${
-          concatMapStringsSep ",\n        " (
-            button: ''{${button.click},${button.mask},${button.button},${button.function},${button.argument}}''
-          ) cfg.buttons
-        },
-    };
-
-    ${cfg.file.append}
-  '';
+  appsSubmoduleType = types.listOf (
+    types.submodule {
+      options = {
+        flag = mkOption {
+          type = types.str;
+          description = "The flag or argument name";
+        };
+        argument = mkOption {
+          type = types.str;
+          description = "The value for the flag";
+        };
+      };
+    }
+  );
 
   dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
+    # if package source defined use it else use normal source
     src = if cfg.package.src != null then cfg.package.src else oldAttrs.src;
+    /*
+      if you wish to add your own patch to the module then use the following format to do so.
+      make sure to remove anything editing the `config.def.h` to ensure that no errors occur
+      ++ (if <enable-patch> then [ <patch-dir> ] else [])
+    */
     patches =
       (oldAttrs.patches or [ ])
       ++ cfg.package.patches
       ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ]);
     postPatch = "cp ${file} config.h; cp ${file} config.def.h";
   });
-
-  types = lib.types // {
-    hexColor = types.strMatching "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$";
-    modifier = types.strMatching "^(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask)(\\|(MODKEY|Mod[1-5]Mask|ShiftMask|ControlMask|LockMask))*$";
-  };
 in
 {
   options.programs.dwm = {
@@ -254,28 +57,32 @@ in
           description = "The width of the gaps between windows";
           example = 3;
         };
+        description = ''
+          The config for gaps patch in dwm.
+          Author: Carlos Pita (memeplex) carlosjosepita@gmail.com
+        '';
       };
     };
 
     tagKeys = {
       modifiers = {
         viewOnlyThisTag = mkOption {
-          type = types.modifier;
+          type = types.str;
           default = "MODKEY";
           example = "MODKEY";
         };
         toggleThisTagInView = mkOption {
-          type = types.modifier;
+          type = types.str;
           default = "MODKEY|ControlMask";
           example = "MODKEY";
         };
         moveWindowToThisTag = mkOption {
-          type = types.modifier;
+          type = types.str;
           default = "MODKEY|ShiftMask";
           example = "MODKEY";
         };
         toggleWindowOnThisTag = mkOption {
-          type = types.modifier;
+          type = types.str;
           default = "MODKEY|ControlMask|ShiftMask";
           example = "MODKEY";
         };
@@ -357,13 +164,9 @@ in
     buttons = mkOption {
       type = types.listOf (
         types.submodule {
-          options = {
-            click = mkOption { type = types.str; };
-            mask = mkOption { type = types.str; };
-            button = mkOption { type = types.str; };
-            function = mkOption { type = types.str; };
-            argument = mkOption { type = types.str; };
-          };
+          options = genAttrs [ "click" "mask" "button" "function" "argument" ] (
+            _: mkOption { type = types.str; }
+          );
         }
       );
       default = [
@@ -457,12 +260,14 @@ in
         type = types.int;
         default = 10;
         example = 12;
+        description = ''The font size'';
       };
 
-      description = "Font for dwm";
+      description = "Font options for dwm";
     };
 
     file = {
+      description = ''Extra file options'';
       prepend = mkOption {
         type = types.str;
         default = "";
@@ -476,6 +281,7 @@ in
     };
 
     package = {
+      description = ''Avaliable options relating to the package'';
       patches = mkOption {
         type = types.listOf types.path;
         default = [ ];
@@ -496,7 +302,7 @@ in
     };
 
     modifier = mkOption {
-      type = types.modifier;
+      type = types.str;
       default = "Mod1Mask";
       example = "Mod4Mask";
       description = "The default modifier for keybinds";
@@ -511,7 +317,7 @@ in
 
     appLauncher = {
       modifier = mkOption {
-        type = types.modifier;
+        type = types.str;
         default = "MODKEY";
       };
       launchKey = mkOption {
@@ -525,20 +331,7 @@ in
         description = "The application launcher command";
       };
       appArgs = mkOption {
-        type = types.listOf (
-          types.submodule {
-            options = {
-              flag = mkOption {
-                type = types.str;
-                description = "The flag or argument name";
-              };
-              argument = mkOption {
-                type = types.str;
-                description = "The value for the flag";
-              };
-            };
-          }
-        );
+        type = appsSubmoduleType;
         default = [
           {
             flag = "-m";
@@ -576,7 +369,7 @@ in
 
     terminal = {
       modifier = mkOption {
-        type = types.modifier;
+        type = types.str;
         default = "MODKEY|ShiftMask";
       };
       launchKey = mkOption {
@@ -591,20 +384,7 @@ in
         description = "The terminal command to launch";
       };
       appArgs = mkOption {
-        type = types.listOf (
-          types.submodule {
-            options = {
-              flag = mkOption {
-                type = types.str;
-                description = "The flag or argument name";
-              };
-              argument = mkOption {
-                type = types.str;
-                description = "The value for the flag";
-              };
-            };
-          }
-        );
+        type = appsSubmoduleType;
         default = [ ];
         example = ''
           [
@@ -626,18 +406,19 @@ in
         type = types.int;
         default = 1;
         example = 2;
-        description = "number of clients in master area";
+        description = "number of clients in master area by default";
       };
+
       resizehints = mkOption {
-        type = types.int;
-        default = 1;
-        example = 0;
+        type = types.bool;
+        default = true;
+        example = false;
         description = "1 means respect size hints in tiled resizals";
       };
       lockfullscreen = mkOption {
-        type = types.int;
-        default = 1;
-        example = 0;
+        type = types.bool;
+        default = true;
+        example = false;
         description = "1 will force focus on the fullscreen window";
       };
 
@@ -680,11 +461,7 @@ in
           name: default:
           mkOption {
             type = types.submodule {
-              options = {
-                fg = mkOption { type = types.hexColor; };
-                bg = mkOption { type = types.hexColor; };
-                border = mkOption { type = types.hexColor; };
-              };
+              options = genAttrs [ "fg" "bg" "border" ] (_: mkOption { type = types.str; });
             };
             inherit default;
           }
