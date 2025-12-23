@@ -1,8 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     libinput.enable = true;
-    picom.enable = true;
     xserver = {
       autoRepeatDelay = 200;
       autoRepeatInterval = 32;

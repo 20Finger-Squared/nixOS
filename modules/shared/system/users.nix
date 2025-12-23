@@ -16,10 +16,8 @@
       packages = [
         pkgs.lazygit
         pkgs.discord
-        pkgs.kitty
         pkgs.eza
         pkgs.steam
-        pkgs.krita
       ];
     };
   };
