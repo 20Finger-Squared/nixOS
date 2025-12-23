@@ -13,15 +13,16 @@ in
     modifier = "Mod4Mask";
     terminal.launchKey = "XK_space";
     terminal.modifier = "${modifer}";
-    terminal.appCmd = "kitty";
+    terminal.appCmd = "st";
     font = {
       size = 12;
       name = "JetbrainsMono NF";
     };
+    appLauncher.launchKey = "XK_Tab";
     appLauncher.appArgs = [
       {
         flag = "-m";
-        argument = "dmenumon";
+        argument = ''dmenumon'';
       }
       {
         flag = "-p";
@@ -121,7 +122,7 @@ in
           argument = "{0}";
         }
         {
-          modifier = "MODKEY";
+          modifier = "MODKEY|ShiftMask";
           key = "XK_Tab";
           function = "view";
           argument = "{0}";
