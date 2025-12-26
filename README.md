@@ -54,10 +54,8 @@ Current web browsers are:
 - qutebrowser
 - firefox
 
-The desktop suite is Libreoffice.
-
 ## Terminal Related
-Terminal: kitty (X11 and Wayland compatible).
+Terminal: st
 Terminal multiplexer: Tmux.
 
 Login: Ly due to it's simplicity.
