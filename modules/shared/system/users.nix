@@ -18,6 +18,7 @@
         pkgs.discord
         pkgs.eza
         pkgs.steam
+        pkgs.thunderbird
       ];
     };
   };
