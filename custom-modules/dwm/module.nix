@@ -38,6 +38,7 @@ let
       make sure to remove anything editing the `config.def.h` to ensure that no errors occur
       ++ (if <enable-patch> then [ <patch-dir> ] else [])
     */
+    buildInputs = oldAttrs.buildInputs ++ cfg.package.buildInputs;
     patches =
       (oldAttrs.patches or [ ])
       ++ cfg.package.patches
@@ -291,6 +292,11 @@ in
         type = types.nullOr types.path;
         default = null;
         description = "Custom source for the dwm package";
+      };
+      buildInputs = mkOption {
+        type = types.listOf types.package;
+        default = [ ];
+        example = [ xfixes ];
       };
     };
 
