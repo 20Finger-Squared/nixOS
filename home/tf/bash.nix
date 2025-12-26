@@ -13,14 +13,14 @@
 
   programs.bash = {
     enable = true;
-    initExtra = ''
+    initExtra = /* sh */ ''
       if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-          if tmux ls &> /dev/null; then
-              tmux attach
-          else
-              tmux
-                  fi
-                  fi
+        if tmux ls &> /dev/null; then
+            tmux attach
+        else
+            tmux
+        fi
+      fi
     '';
     shellAliases = {
       "cd" = "z";
