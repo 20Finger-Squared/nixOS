@@ -13,6 +13,7 @@
 
       # x11 needs
       pkgs.xclip
+      pkgs.clipnotify
 
       # dev setup for nixOS
       pkgs.nixfmt-rfc-style # formatter for dot-nix
