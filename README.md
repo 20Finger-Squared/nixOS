@@ -21,9 +21,7 @@ This alias is only made in bash so if you use another shell you can't use it.
 
 # TODO
 - Create tmux bar configuration
-- Create starship config
 - Create dwm startup script
-- Create eww config
 - Create feh background configuration for dwm
 
 ## Done
