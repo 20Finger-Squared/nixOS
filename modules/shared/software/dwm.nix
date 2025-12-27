@@ -21,6 +21,9 @@ in
     appLauncher.launchKey = "XK_Tab";
     appLauncher.appArgs = [
       {
+        flag = "-c";
+      }
+      {
         flag = "-m";
         argument = ''dmenumon'';
       }
