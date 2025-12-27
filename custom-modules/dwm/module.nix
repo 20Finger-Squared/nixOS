@@ -30,22 +30,6 @@ let
       };
     }
   );
-
-  dwm = pkgs.dwm.overrideAttrs (oldAttrs: {
-    # if package source defined use it else use normal source
-    src = if cfg.package.src != null then cfg.package.src else oldAttrs.src;
-    /*
-      if you wish to add your own patch to the module then use the following format to do so.
-      make sure to remove anything editing the `config.def.h` to ensure that no errors occur
-      ++ (if <enable-patch> then [ <patch-dir> ] else [])
-    */
-    buildInputs = oldAttrs.buildInputs ++ cfg.package.buildInputs;
-    patches =
-      (oldAttrs.patches or [ ])
-      ++ cfg.package.patches
-      ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ]);
-    postPatch = "cp ${file} config.h; cp ${file} config.def.h";
-  });
 in
 {
   options.programs.dwm = {
@@ -611,6 +595,25 @@ in
     };
   };
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      (final: prev: {
+        dwm = prev.dwm.overrideAttrs (oldAttrs: {
+          # if package source defined use it else use normal source
+          src = if cfg.package.src != null then cfg.package.src else oldAttrs.src;
+          /*
+            if you wish to add your own patch to the module then use the following format to do so.
+            make sure to remove anything editing the `config.def.h` to ensure that no errors occur
+            ++ (if <enable-patch> then [ <patch-dir> ] else [])
+          */
+          buildInputs = oldAttrs.buildInputs ++ cfg.package.buildInputs;
+          patches =
+            (oldAttrs.patches or [ ])
+            ++ cfg.package.patches
+            ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ]);
+          postPatch = "cp ${file} config.h; cp ${file} config.def.h";
+        });
+      })
+    ];
     system.build.dwm-config = file;
     services = {
       libinput.enable = true;
@@ -618,7 +621,7 @@ in
         enable = true;
         windowManager.dwm = {
           enable = true;
-          package = dwm;
+          package = pkgs.dwm;
         };
       };
     };
