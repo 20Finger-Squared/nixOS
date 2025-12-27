@@ -19,7 +19,7 @@ in
     patches = {
       centered = {
         enable = true;
-        centered = true;
+        centered = false;
         menu_height_ratio = 2.0;
         min_width = 800;
       };
