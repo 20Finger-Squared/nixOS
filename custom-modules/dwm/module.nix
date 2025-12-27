@@ -23,8 +23,9 @@ let
           description = "The flag or argument name";
         };
         argument = mkOption {
-          type = types.str;
+          type = types.nullOr types.str;
           description = "The value for the flag";
+          default = null;
         };
       };
     }

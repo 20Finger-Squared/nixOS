@@ -172,7 +172,7 @@ in
         ""
       else
         concatMapStringsSep " " (
-          arg: ''"${toString arg.flag}", ${toString arg.argument},''
+          arg: ''"${toString arg.flag}" ${if arg.argument != null then ",${toString arg.argument}" else ""},''
         ) cfg.appLauncher.appArgs
     }
     NULL };
@@ -183,7 +183,7 @@ in
         ""
       else
         concatMapStringsSep " " (
-          arg: ''"${toString arg.flag}", ${toString arg.argument},''
+          arg: ''"${toString arg.flag}" ${if arg.argument != null then ",${toString arg.argument}" else ""},''
         ) cfg.terminal.appArgs
     }
     NULL };
