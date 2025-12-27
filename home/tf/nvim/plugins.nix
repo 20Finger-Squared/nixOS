@@ -4,7 +4,6 @@
   pkgs.vimPlugins.blink-cmp
   pkgs.vimPlugins.gitsigns-nvim
   pkgs.vimPlugins.gruvbox-nvim
-  pkgs.vimPlugins.harpoon2
   pkgs.vimPlugins.nvim-lspconfig
   pkgs.vimPlugins.markdown-preview-nvim
   pkgs.vimPlugins.mini-nvim
