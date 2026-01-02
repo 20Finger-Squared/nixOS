@@ -35,6 +35,100 @@ in
   options.programs.dwm = {
     enable = mkEnableOption "dwm";
     patches = {
+      keymodes = {
+        enable = mkEnableOption "keymodes patch";
+        keybinds = {
+          commands = {
+            useDefault = mkOption {
+              type = types.bool;
+              default = true;
+              example = false;
+              description = "Whether to add commands default bindings";
+            };
+            binds = mkOption {
+              default = [ ];
+              example = [ ];
+              description = "custom binds for command mode";
+              type = types.listOf (
+                types.submodule {
+                  options =
+                    let
+                      keybindsListType = (
+                        types.addCheck types.listOf types.either (types.str types.enum [ 0 ]) (x: builtins.length x <= 4)
+                      );
+                    in
+                    {
+                      modifier = mkOption {
+                        # list of a string or 0 of 0<n<=4 in length
+                        type = keybindsListType;
+                        default = [
+                          0
+                          0
+                          0
+                          0
+                        ];
+                        example = [ 0 ];
+                        description = "A list of modifiers to use as leader keys of up to 4 definitions";
+                      };
+                      keysyms = mkOption {
+                        type = keybindsListType;
+                        default = [
+                          0
+                          0
+                          0
+                          0
+                        ];
+                        example = [ 0 ];
+                        description = "A list of x11 keybinds of up to 4 definitions";
+                      };
+                      function = mkOption { type = types.str; };
+                      argument = mkOption { type = types.str; };
+                    };
+                }
+              );
+            };
+          };
+          cmdkeys = {
+            useDefault = mkOption {
+              type = types.bool;
+              default = true;
+              example = false;
+              description = "Whethere to add the patches default keybinds";
+            };
+            binds = mkOption {
+              type = types.listOf (
+                types.submodule {
+                  options = {
+                    modifier = mkOption {
+                      type = types.either types.str (types.enum [ 0 ]);
+                      default = "MODKEY";
+                      description = "If left unbound will use default modifier. Use 0 for no modifier, or modifier strings like MODKEY|ShiftMask";
+                    };
+                    key = mkOption {
+                      type = types.str;
+                      default = "XK_p";
+                      description = "Uses X11 keys remember that SHIFT will modify the keycode";
+                    };
+                    function = mkOption {
+                      type = types.str;
+                      default = "spawn";
+                      description = "The function to call once the keybind is pressed";
+                    };
+                    argument = mkOption {
+                      type = types.str;
+                      default = ".v = dmenucmd";
+                      description = "The argument for the function";
+                    };
+                  };
+                }
+              );
+              default = [ ];
+              example = [ ];
+              description = "custom binds for keymodes";
+            };
+          };
+        };
+      };
       gaps = {
         enable = mkEnableOption "gaps patch";
         width = mkOption {
@@ -609,7 +703,8 @@ in
           patches =
             (oldAttrs.patches or [ ])
             ++ cfg.package.patches
-            ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ]);
+            ++ (if cfg.patches.gaps.enable then [ ./gaps.diff ] else [ ])
+            ++ (if cfg.patches.keymodes.enable then [ ./keymodes.patch ] else [ ]);
           postPatch = "cp ${file} config.h; cp ${file} config.def.h";
         });
       })
