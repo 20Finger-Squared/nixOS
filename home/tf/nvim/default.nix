@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -21,6 +20,16 @@
 
     viAlias = true;
     vimAlias = true;
-    plugins = import ./plugins.nix { inherit pkgs; };
+    plugins = [
+      pkgs.vimPlugins.blink-cmp
+      pkgs.vimPlugins.gitsigns-nvim
+      pkgs.vimPlugins.gruvbox-nvim
+      pkgs.vimPlugins.nvim-lspconfig
+      pkgs.vimPlugins.markdown-preview-nvim
+      pkgs.vimPlugins.mini-nvim
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+      pkgs.vimPlugins.luasnip
+      pkgs.vimPlugins.fzf-lua
+    ];
   };
 }
