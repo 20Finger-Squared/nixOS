@@ -1,6 +1,6 @@
-From cb3ca5707acc460a7f54a50105d40fea2d18138c Mon Sep 17 00:00:00 2001
+From 826324ba7fc03911ca8987532994a9663ba219ac Mon Sep 17 00:00:00 2001
 From: 20Finger-Squared <orhylie@gmail.com>
-Date: Fri, 2 Jan 2026 13:54:04 +0000
+Date: Fri, 2 Jan 2026 23:17:33 +0000
 Subject: [PATCH] keymodes
 
 ---
@@ -22,7 +22,7 @@ index 4f345ee..4bfe0c4 100644
 @@ -98,6 +99,13 @@ struct Client {
  	Window win;
  };
-
+ 
 +typedef struct {
 +	unsigned int mod[4];
 +	KeySym keysym[4];
@@ -74,11 +74,11 @@ index 4f345ee..4bfe0c4 100644
 +static KeySym cmdkeysym[4];
  static Monitor *mons, *selmon;
  static Window root, wmcheckwin;
-
+ 
 @@ -511,6 +526,17 @@ cleanupmon(Monitor *mon)
  	free(mon);
  }
-
+ 
 +void
 +clearcmd(const Arg *arg)
 +{
@@ -110,7 +110,7 @@ index 4f345ee..4bfe0c4 100644
 @@ -1002,6 +1035,11 @@ keypress(XEvent *e)
  	KeySym keysym;
  	XKeyEvent *ev;
-
+ 
 +	if (keymode == ModeCommand) {
 +		keypresscmd(e);
 +		return;
@@ -122,7 +122,7 @@ index 4f345ee..4bfe0c4 100644
 @@ -1011,6 +1049,53 @@ keypress(XEvent *e)
  			keys[i].func(&(keys[i].arg));
  }
-
+ 
 +void
 +keypresscmd(XEvent *e) {
 +	unsigned int i, j;
@@ -176,7 +176,7 @@ index 4f345ee..4bfe0c4 100644
 @@ -1441,6 +1526,24 @@ setclientstate(Client *c, long state)
  		PropModeReplace, (unsigned char *)data, 2);
  }
-
+ 
 +void
 +setinsertmode()
 +{
@@ -201,11 +201,11 @@ index 4f345ee..4bfe0c4 100644
 @@ -1648,6 +1751,7 @@ spawn(const Arg *arg)
  {
  	struct sigaction sa;
-
+ 
 +	setinsertmode();
  	if (arg->v == dmenucmd)
  		dmenumon[0] = '0' + selmon->num;
  	if (fork() == 0) {
---
+-- 
 2.50.1
 
