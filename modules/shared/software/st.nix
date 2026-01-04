@@ -8,7 +8,7 @@ in
     borderpx = 3;
     shell = "/bin/sh";
     tabSpaces = 2;
-    cursorThickness = 4;
+    cursorThickness = 2;
     cursorShape = 2;
     color = {
       colors = {
