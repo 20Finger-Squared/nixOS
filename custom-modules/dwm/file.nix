@@ -14,22 +14,10 @@ let
         inherit config;
         inherit lib;
       };
-  keybinds-string =
-    import
-      (
-        if cfg.patches.keymodes.enable then
-          ./file-parts/keys/keymodes.nix
-        else
-          ./file-parts/keys/default.nix
-      )
-      {
-        inherit config;
-        inherit lib;
-      };
 in
 /* c */ ''
   ${cfg.file.prepend}
-  #define MODKEY ${cfg.modifier}
+  #define MODKEY ${if builtins.isString cfg.modifier then cfg.modifier else toString cfg.modifier}
   #define TAGKEYS(KEY, TAG) \
     ${tagkey-definition}
   #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -50,30 +38,32 @@ in
   static const char *colors[][3] = { ${
     concatMapStringsSep ",\n" (pair: ''
       [ ${pair.name} ] = { "${pair.value.fg}", "${pair.value.bg}", "${pair.value.border}" }
-    '') (lib.mapAttrsToList (name: value: { inherit name value; }) cfg.colors)
-  } };
+    '') (mapAttrsToList (name: value: { inherit name value; }) cfg.colors)
+  },
+  ${optionalString cfg.patches.keymodes.scheme.enable ''[SchemeCommandMode] = { "${cfg.patches.keymodes.scheme.fg}", "${cfg.patches.keymodes.scheme.bg}", "${cfg.patches.keymodes.scheme.border}" }''}
+   };
 
-  static const char *dmenucmd[] = { "${cfg.appLauncher.appCmd}",
-    ${
-      if cfg.appLauncher.appArgs == [ ] then
-        ""
-      else
-        concatMapStringsSep " " (
-          arg: ''"${toString arg.flag}" ${if arg.argument != null then ",${toString arg.argument}" else ""},''
-        ) cfg.appLauncher.appArgs
-    }
-    NULL };
+  ${
+    let
+      appArgs =
+        x:
+        if x == [ ] then
+          ""
+        else
+          concatMapStringsSep " " (
+            arg: ''"${toString arg.flag}" ${toString (optional (arg.argument != null) ",${arg.argument}")},''
+          ) x;
+    in
+    ''
+      static const char *dmenucmd[] = { "${cfg.appLauncher.appCmd}",
+        ${appArgs cfg.appLauncher.appArgs}
+        NULL };
 
-  static const char *termcmd[]  = { "${cfg.terminal.appCmd}",
-    ${
-      if cfg.terminal.appArgs == [ ] then
-        ""
-      else
-        concatMapStringsSep " " (
-          arg: ''"${toString arg.flag}" ${if arg.argument != null then ",${toString arg.argument}" else ""},''
-        ) cfg.terminal.appArgs
-    }
-    NULL };
+      static const char *termcmd[]  = { "${cfg.terminal.appCmd}",
+        ${appArgs cfg.terminal.appArgs}
+        NULL };
+    ''
+  }
 
   static const char *tags[] = { ${concatMapStringsSep ", " (tag: ''"${toString tag}"'') cfg.tags} };
 
@@ -93,7 +83,20 @@ in
   '') cfg.rules}
   };
 
-  static const Key keys[] = ${keybinds-string};
+  static const Key keys[] = {
+      ${
+        (import ./file-parts/keys/default.nix {
+          inherit lib;
+          inherit config;
+        })
+      }
+      ${optionalString cfg.patches.keymodes.enable (
+        import ./file-parts/keys/keymodes.nix {
+          inherit lib;
+          inherit config;
+        }
+      )}
+  };
   static const Button buttons[] = {
       ${
         concatMapStringsSep ",\n        " (
@@ -102,14 +105,15 @@ in
       },
   };
 
-  ${
-    if cfg.patches.keymodes.enable then
-      import ./file-parts/custom-parts/keymodes.nix {
-        inherit lib;
-        inherit config;
-      }
-    else
-      ""
-  }
+  ${optionalString (cfg.patches.keymodes.enable) import ./file-parts/custom-parts/keymodes.nix {
+    inherit lib;
+    inherit config;
+  }}
+  ${optionalString (cfg.patches.cool-autostart.enable) (
+    import ./file-parts/custom-parts/cool-autostart.nix {
+      inherit lib;
+      inherit config;
+    }
+  )}
   ${cfg.file.append}
 ''

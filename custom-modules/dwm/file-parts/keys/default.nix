@@ -136,23 +136,23 @@ let
       argument = "{0}";
     }
   ];
+  toStringXkey = x: if builtins.isString x then x else toString x;
 in
 #c
 ''
-  {
-    {${cfg.terminal.modifier}, ${cfg.terminal.launchKey}, spawn, {.v=termcmd}},
-    {${cfg.appLauncher.modifier}, ${cfg.appLauncher.launchKey}, spawn, {.v=dmenucmd}},
-    ${
-      # create default key bindings before user defined bindings
-      concatMapStringsSep ",\n        " (
-        key: ''{${toString key.modifier}, ${key.key}, ${key.function}, ${key.argument} }''
-      ) (if cfg.key.useDefault then defaultKeys ++ cfg.key.keys else cfg.key.keys)
-    },
-    ${
-      # create tage keys bindings
-      concatMapStringsSep "\n        " (
-        tag: ''TAGKEYS(${tag.key}, ${toString tag.tag})''
-      ) cfg.tagKeys.definitions
-    }
+  {${toStringXkey cfg.terminal.modifier}, ${toStringXkey cfg.terminal.launchKey}, spawn, {.v=termcmd}},
+  {${toStringXkey cfg.appLauncher.modifier}, ${toStringXkey cfg.appLauncher.launchKey}, spawn, {.v=dmenucmd}},
+  ${
+    # create default key bindings before user defined bindings
+    concatMapStringsSep ",\n        " (
+      key: ''{${toStringXkey key.modifier}, ${toStringXkey key.key}, ${key.function}, ${key.argument} }''
+    ) (if cfg.key.useDefault then defaultKeys ++ cfg.key.keys else cfg.key.keys)
+  },
+  ${optionalString (cfg.patches.keymodes.enable)
+    # create tag keys bindings
+    concatMapStringsSep
+    "\n        "
+    (tag: ''TAGKEYS(${tag.key}, ${toString tag.tag})'')
+    cfg.tagKeys.definitions
   }
 ''
