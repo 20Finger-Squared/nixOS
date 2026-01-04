@@ -14,9 +14,12 @@
 
     systemPackages = [
       my-pkgs.dwm-script
+      my-pkgs.bash
       # tiny unopinonated packages or those of which are not relevant to one particular user
       pkgs.vial
       pkgs.via
+      pkgs.starship
+      pkgs.zoxide
 
       # x11 needs
       pkgs.xclip

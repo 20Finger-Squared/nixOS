@@ -11,8 +11,8 @@
     ./sway-lock.nix # lock
 
     ./kitty.nix # terminal
-    ./bash.nix # shell
     ./tmux.nix # terminal multiplexer
+    # ./bash.nix # shell
 
     ./qutebrowser.nix # vim like web browser
     ./git.nix # git conf

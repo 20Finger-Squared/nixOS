@@ -26,6 +26,7 @@
         {
           # Your packages here
           dwm-script = import ./dwm-script/default.nix { inherit pkgs; };
+          bash = import ./bash/default.nix { inherit pkgs; };
         }
       );
     };
