@@ -1,9 +1,5 @@
 # My new nixOS config
-
 My nixOS configuration including any tools I am experimenting with.
-When i consider this configuration to be "stable" i will change it to the main branch, not saying the main branch is usable either.
-
-This configuration is most likely going to be stable once I have done the current TODO tasks.
 
 # Installation instructions
 You first need to copy your generated hardware-configuration.nix
@@ -13,7 +9,7 @@ Then to run the build command.
 If your system does not use btrfs then for now you should chose the `tf-laptop` hostname.
 This is because this does not as of now have the btrfs service enabled.
 
-`nixos-rebuild switch --flake ~/nixOS/?submodules=1#<hostname>`
+`nixos-rebuild switch --flake ~/nixOS/<hostname>`
 
 Then for future rebuilds you can use the `rebuild` alias.
 This alias does not specify the hostname so your current one will be used.
