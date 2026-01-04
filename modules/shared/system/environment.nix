@@ -1,4 +1,3 @@
-{ nixpkgs-24-11, pkgs, ... }:
 {
   my-pkgs,
   nixpkgs-24-11,
@@ -15,6 +14,8 @@
     systemPackages = [
       my-pkgs.dwm-script
       my-pkgs.bash
+      my-pkgs.tmux
+
       # tiny unopinonated packages or those of which are not relevant to one particular user
       pkgs.vial
       pkgs.via
@@ -40,7 +41,6 @@
       pkgs.feh
 
       # cli tools
-      pkgs.tmux
       pkgs.ripgrep
       pkgs.fzf
       pkgs.btop
