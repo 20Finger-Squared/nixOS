@@ -3,7 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int main() {
+int main(void) {
   char cmd[256], buf[128];
   time_t t;
   struct tm *tm;
@@ -13,7 +13,7 @@ int main() {
     tm = localtime(&t);
     strftime(buf, sizeof(buf), "%T | %A %d %B", tm);
     sprintf(cmd, "xsetroot -name \"  %s \"", buf);
-    system(cmd);
+    (void)system(cmd);
     sleep(1);
   }
   return 0;
