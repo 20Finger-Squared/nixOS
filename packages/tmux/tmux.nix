@@ -1,6 +1,5 @@
 { pkgs }:
 ''
-  set  -g default-terminal "screen"
   set  -g base-index      1
   setw -g pane-base-index 1
 
@@ -14,10 +13,8 @@
     C-Space send-prefix
 
   set  -g mouse             off
-  set  -g focus-events      off
   setw -g aggressive-resize off
   setw -g clock-mode-style  24
-  set  -s escape-time       500
   set  -g history-limit     2000
 
   set -g focus-events on
@@ -28,7 +25,6 @@
   # status bar settings
   set -g status-position top
   set -g status-left  "#{session_name} #{?client_prefix,#[bg=#fb4934]PREFIX#[default],} "
-  set-option -sg escape-time 10
   set-option -g focus-events on
-  set-option -g default-terminal "screen-256color"
+  set-option -g default-terminal "st-256color"
 ''
