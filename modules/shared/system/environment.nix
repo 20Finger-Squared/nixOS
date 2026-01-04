@@ -1,5 +1,11 @@
 { nixpkgs-24-11, pkgs, ... }:
 {
+  my-pkgs,
+  nixpkgs-24-11,
+  pkgs,
+  ...
+}:
+{
   environment = {
     sessionVariables = {
       XDG_BIN_HOME = "$HOME/.bin";
@@ -7,6 +13,7 @@
     };
 
     systemPackages = [
+      my-pkgs.dwm-script
       # tiny unopinonated packages or those of which are not relevant to one particular user
       pkgs.vial
       pkgs.via
