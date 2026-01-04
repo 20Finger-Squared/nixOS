@@ -5,8 +5,6 @@
   home.homeDirectory = lib.mkForce "/home/tf";
 
   imports = [
-    ./nvim/default.nix
-
     ./sway.nix # wm
     ./sway-lock.nix # lock
 
