@@ -53,7 +53,7 @@ in
             args = null;
           }
           {
-            cmd = "blueman-applet";
+            cmd = "xrandr --output 'HDMI-1' -o right --rotate left";
             args = null;
           }
           {
