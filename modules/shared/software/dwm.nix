@@ -7,6 +7,7 @@ let
   cfg = config.programs.dwm;
   modifer = cfg.modifier;
   XF86AudioLowerVolume = "0x1008ff11";
+  XF86AudioMuteVolume = "0x1008ff12";
   XF86AudioRaiseVolume = "0x1008ff13";
   volumeIncrement = 0.05;
 in
@@ -103,6 +104,12 @@ in
           key = XF86AudioLowerVolume;
           function = "spawn";
           argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}-")'';
+        }
+        {
+          modifier = 0;
+          key = XF86AudioMuteVolume;
+          function = "spawn";
+          argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}+")'';
         }
       ];
     };
