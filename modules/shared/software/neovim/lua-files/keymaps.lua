@@ -10,16 +10,16 @@ map({ 'n', 'i' }, '<M-C-K>', '<cmd>resize +1<CR>', { silent = true, desc = "󰍡
 local fzf = require("fzf-lua")
 
 -- buffer cmds
-map("n", "<leader>fb",   fzf.buffers,    { desc = "󰋚 Recent files" })
-map("n", "<leader>ff",   fzf.files,      { desc = "󰋚 Recent files" })
-map("n", "<leader>fq",   fzf.quickfix,   { desc = "󰋚 Recent files" })
-map("n", "<leader>fl",  fzf.lines,      { desc = "󰋚 Recent files" })
-map("n", "<leader>fL", fzf.blines,     { desc = "󰋚 Recent files" })
-map("n", "<leader>ft",  fzf.tabs,       { desc = "󰋚 Recent files" })
-
+map("n", "<leader>fb",   fzf.buffers,           { desc = "󰓩 Buffers" })
+map("n", "<leader>ff",   fzf.files,             { desc = "󰈙 Find files" })
+map("n", "<leader>fq",   fzf.quickfix,          { desc = "󰁨 Quickfix" })
+map("n", "<leader>fl",   fzf.lines,             { desc = "󰸱 Lines (all)" })
+map("n", "<leader>fL",   fzf.blines,            { desc = "󰸱 Lines (buffer)" })
+map("n", "<leader>ft",   fzf.tabs,              { desc = "󰓩 Tabs" })
 -- search
-map("n", "<leader>fs",  fzf.live_grep_resume, { desc = "󰋚 Recent files" })
-map("n", "<leader>fg",  fzf.live_grep_native, { desc = "󰋚 Recent files" })
+map("n", "<leader>fs",   fzf.live_grep_resume,  { desc = "󰍉 Resume search" })
+map("n", "<leader>fg",   fzf.live_grep_native,  { desc = "󰍉 Live grep" })
+map("n", "<leader>fr",   fzf.resume,            { desc = "󰑐 Resume" })
 
 -- Disable arrow keys
 map({ 'n', 'i', 'v' }, '<Up>', '<Nop>', { desc = " Arrow keys disabled" })
