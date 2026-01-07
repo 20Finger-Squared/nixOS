@@ -6,7 +6,7 @@
       description = "Rhylie M. Orton";
       extraGroups = [
         "networkmanager"
-	"tty"
+        "tty"
         "wheel"
         "render"
         "seat"
