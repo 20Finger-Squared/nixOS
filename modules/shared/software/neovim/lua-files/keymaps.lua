@@ -32,3 +32,8 @@ map("v", "<M-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "󰜷 Move selecti
 map("v", "<M-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "󰜮 Move selection down" })
 map("n", "<M-k>", ":m .-2<CR>==", { silent = true, desc = "󰜷 Move line up" })
 map("n", "<M-j>", ":m .+1<CR>==", { silent = true, desc = "󰜮 Move line down" })
+
+-- Format
+vim.keymap.set('n', '<leader>fm', function()
+  require('conform').format { async = true }
+end)
