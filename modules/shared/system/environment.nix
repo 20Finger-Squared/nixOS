@@ -13,7 +13,6 @@
 
     systemPackages = [
       my-pkgs.dwm-script
-      my-pkgs.bash
       my-pkgs.tmux
 
       # tiny unopinonated packages or those of which are not relevant to one particular user
