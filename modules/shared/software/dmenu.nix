@@ -1,19 +1,16 @@
-{ config, ... }:
-let
-  colors = config.colorscheme;
-in
+{ colorscheme, ... }:
 {
   programs.dmenu = {
     enable = true;
     lines = 10;
     colors = {
       SchemeNorm = {
-        fg = "#${colors.base04}";
-        bg = "#${colors.base00}";
+        fg = "#${colorscheme.base04}";
+        bg = "#${colorscheme.base00}";
       };
       SchemeSel = {
-        fg = "#${colors.base0A}";
-        bg = "#${colors.base00}";
+        fg = "#${colorscheme.base0A}";
+        bg = "#${colorscheme.base00}";
       };
     };
     patches = {
@@ -26,8 +23,8 @@ in
       inlinePrompt = {
         enable = true;
         schemePrompt = {
-          fg = "#${colors.base04}";
-          bg = "#${colors.base00}";
+          fg = "#${colorscheme.base04}";
+          bg = "#${colorscheme.base00}";
         };
       };
     };

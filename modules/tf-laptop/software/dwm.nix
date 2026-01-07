@@ -1,6 +1,5 @@
-{ config, ... }:
+{ colorscheme, config, ... }:
 let
-  colorscheme = config.colorscheme;
   modifer = config.programs.dwm.modifier;
 in
 {

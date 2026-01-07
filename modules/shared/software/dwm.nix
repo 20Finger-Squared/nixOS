@@ -1,9 +1,9 @@
 {
   config,
+  colorscheme,
   ...
 }:
 let
-  colorscheme = config.colorscheme;
   cfg = config.programs.dwm;
   modifer = cfg.modifier;
   XF86AudioLowerVolume = "0x1008ff11";

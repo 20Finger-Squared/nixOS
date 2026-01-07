@@ -23,11 +23,13 @@
     }@inputs:
     let
       system-type = "x86_64-linux";
+      colorscheme = import ./custom-modules/general/colorscheme-module.nix;
       mkSystem =
-        hostname: system-type:
+        hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
+            inherit colorscheme;
             nixpkgs-24-11 = nixpkgs-24-11.legacyPackages."${system-type}";
             my-pkgs = custom-packages.packages."${system-type}";
           };
@@ -35,7 +37,6 @@
           modules = [
             ./custom-modules/dwm/module.nix
             ./custom-modules/dmenu/module.nix
-            ./custom-modules/general/colorscheme-module.nix
             ./custom-modules/st/module.nix
 
             ./modules/shared/default.nix
@@ -50,7 +51,7 @@
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
 
-      nixosConfigurations.tf-laptop = mkSystem "tf-laptop" system-type;
-      nixosConfigurations.tf-pc = mkSystem "tf-pc" system-type;
+      nixosConfigurations.tf-laptop = mkSystem "tf-laptop";
+      nixosConfigurations.tf-pc = mkSystem "tf-pc";
     };
 }

@@ -1,7 +1,4 @@
-{ config, ... }:
-let
-  colorscheme = config.colorscheme;
-in
+{ colorscheme, ... }:
 {
   programs.st = {
     enable = true;

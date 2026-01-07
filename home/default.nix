@@ -1,5 +1,5 @@
 {
-  config,
+  colorscheme,
   inputs,
   nixpkgs-24-11,
   ...
@@ -9,7 +9,7 @@
     extraSpecialArgs = {
       inherit nixpkgs-24-11;
       inherit inputs;
-      colorscheme = config.colorscheme;
+      inherit colorscheme;
     };
 
     useGlobalPkgs = true;
