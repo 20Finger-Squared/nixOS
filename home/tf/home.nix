@@ -5,8 +5,8 @@
   home.homeDirectory = lib.mkForce "/home/tf";
 
   imports = [
-    ./sway.nix # wm
-    ./sway-lock.nix # lock
+    # ./sway.nix # wm
+    # ./sway-lock.nix # lock
 
     ./kitty.nix # terminal
     # ./bash.nix # shell

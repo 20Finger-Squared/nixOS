@@ -25,9 +25,10 @@
         in
         {
           # Your packages here
-          dwm-script = import ./dwm-script/default.nix { inherit pkgs; };
-          bash = import ./bash/default.nix { inherit pkgs; };
-          tmux = import ./tmux/default.nix { inherit pkgs; };
+          dwm-script = import ./dwm-script { inherit pkgs; };
+          bash = import ./bash { inherit pkgs; };
+          tmux = import ./tmux { inherit pkgs; };
+          sway = import ./sway { inherit pkgs; };
         }
       );
     };

@@ -14,6 +14,7 @@
     systemPackages = [
       my-pkgs.dwm-script
       my-pkgs.tmux
+      my-pkgs.sway
 
       # tiny unopinonated packages or those of which are not relevant to one particular user
       pkgs.vial
