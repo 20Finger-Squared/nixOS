@@ -16,6 +16,7 @@
       ];
       packages = [
         pkgs.lazygit
+        pkgs.prismlauncher
         pkgs.discord
         pkgs.eza
         pkgs.steam
