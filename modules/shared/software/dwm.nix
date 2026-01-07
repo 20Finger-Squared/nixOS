@@ -28,21 +28,26 @@ in
       size = 12;
       name = "JetbrainsMono NF";
     };
-    appLauncher.launchKey = "XK_Tab";
-    appLauncher.appArgs = [
-      {
-        flag = "-m";
-        argument = ''dmenumon'';
-      }
-      {
-        flag = "-p";
-        argument = ''"run:"'';
-      }
-      {
-        flag = "-fn";
-        argument = ''"${cfg.font.name}:size=14"'';
-      }
-    ];
+    appLauncher = {
+      launchKey = "XK_Tab";
+      appArgs = [
+        {
+          flag = "-c";
+        }
+        {
+          flag = "-m";
+          argument = ''dmenumon'';
+        }
+        {
+          flag = "-p";
+          argument = ''"run:"'';
+        }
+        {
+          flag = "-fn";
+          argument = ''"${cfg.font.name}:size=14"'';
+        }
+      ];
+    };
 
     patches = {
       cool-autostart = {
