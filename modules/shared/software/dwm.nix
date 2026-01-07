@@ -62,15 +62,6 @@ in
           }
         ];
       };
-      keymodes = {
-        enable = true;
-        scheme = {
-          enable = true;
-          fg = "#${colorscheme.base07}";
-          bg = "#${colorscheme.base01}";
-          border = "#${colorscheme.base0D}";
-        };
-      };
       gaps = {
         enable = true;
         width = 8;
@@ -91,7 +82,7 @@ in
     };
 
     key = {
-      useDefault = false;
+      useDefault = true;
       keys = [
         {
           modifier = 0;
