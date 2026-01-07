@@ -19,6 +19,7 @@ This alias is only made in bash so if you use another shell you can't use it.
 - Create tmux bar configuration
 - Create dwm startup script
 - Create feh background configuration for dwm
+- Replace home-manager with either native modules or wrapper
 
 ## Done
 - ~~Create st module~~
