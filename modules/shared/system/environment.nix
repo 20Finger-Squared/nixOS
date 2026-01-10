@@ -15,6 +15,7 @@
       my-pkgs.tmux
       my-pkgs.sway
 
+      pkgs.fuzzel
       # tiny unopinonated packages or those of which are not relevant to one particular user
       pkgs.vial
       pkgs.via
@@ -42,6 +43,7 @@
       pkgs.fzf
       pkgs.btop
       pkgs.fastfetch
+      pkgs.git
 
       pkgs.ly
 
