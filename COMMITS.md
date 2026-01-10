@@ -20,6 +20,9 @@ Update/down-grade, implement, creation, or removal of a package.
 ### input:
 For when you downgrade upgrade or remove a package simply use the relevant tag to do so.
 Include the ./flake.lock in the staging area.
+```
+pkg: downgrade <flake.nix> to <input>
+```
 
 ### implement
 To implement a package do this format
