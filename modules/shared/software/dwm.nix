@@ -68,7 +68,7 @@ in
         ];
       };
       gaps = {
-        enable = true;
+        enable = false;
         width = 8;
       };
     };
@@ -105,7 +105,7 @@ in
           modifier = 0;
           key = XF86AudioMuteVolume;
           function = "spawn";
-          argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}+")'';
+          argument = ''SHCMD("wpctl mute @DEFAULT_AUDIO_SINK@ toggle")'';
         }
       ];
     };
