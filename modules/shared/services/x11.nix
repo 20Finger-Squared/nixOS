@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
+    displayManager = {
+      defaultSession = "none+dwm";
+    };
     libinput.enable = true;
     xserver = {
       autoRepeatDelay = 200;
