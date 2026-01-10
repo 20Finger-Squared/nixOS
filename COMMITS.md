@@ -45,6 +45,11 @@ Changing the configuration for a multiple settings for a specific item.
 ## docs:
 Update/down-grade, implement, creation, or removal of documentation.
 
+### missing
+To add missing parts of a doc.
+`docs: add missing sub-tag called missing ./flake.nix`
+`docs: <item> <file>`
+
 ### implement
 To implement new docs and what they are for.
 
