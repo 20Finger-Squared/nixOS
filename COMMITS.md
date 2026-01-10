@@ -17,6 +17,10 @@ This is for module updates to a specific module.
 ## package:
 Update/down-grade, implement, creation, or removal of a package.
 
+### input:
+For when you downgrade upgrade or remove a package simply use the relevant tag to do so.
+Include the ./flake.lock in the staging area.
+
 ### implement
 To implement a package do this format
 `package: implement <package>`
