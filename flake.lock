@@ -14,65 +14,28 @@
       },
       "parent": []
     },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763992789,
-        "narHash": "sha256-WHkdBlw6oyxXIra/vQPYLtqY+3G8dUVZM8bEXk0t8x4=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "44831a7eaba4360fb81f2acc5ea6de5fde90aaa3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "release-25.05",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1767547068,
-        "narHash": "sha256-1GxdT9a5lY6y3Gj0CQfTXiBaDVyH2r309eMjXS4cdII=",
+        "lastModified": 1768020509,
+        "narHash": "sha256-V7El1ktdJ0/WWEr6wGBKFYu433vitrWvxmvPk79FsSc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b776ec9537011be419df1759481a9993c22fc4e8",
+        "rev": "299d331f770cdf7c466a4faa08b3070a767d681d",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-24-11": {
-      "locked": {
-        "lastModified": 1751274312,
-        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1766399428,
-        "narHash": "sha256-vS6LSOMDOB3s+L6tqw9IGujxnmUAZQnEG+Vi640LayI=",
+        "lastModified": 1767313136,
+        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a6c3a6141ec1b367c58ead3f7f846c772a25f4e5",
+        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
         "type": "github"
       },
       "original": {
@@ -85,9 +48,7 @@
     "root": {
       "inputs": {
         "custom-packages": "custom-packages",
-        "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
-        "nixpkgs-24-11": "nixpkgs-24-11"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

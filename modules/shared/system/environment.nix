@@ -1,6 +1,5 @@
 {
   my-pkgs,
-  nixpkgs-24-11,
   pkgs,
   ...
 }:
@@ -46,7 +45,7 @@
 
       pkgs.ly
 
-      nixpkgs-24-11.qutebrowser
+      pkgs.qutebrowser
     ];
   };
 }
