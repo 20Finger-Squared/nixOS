@@ -32,33 +32,6 @@ if not is_vscode then
         end,
     })
 
-    -- Fallback: highlight word under cursor
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-        group = qol,
-        callback = function()
-            if not vim.b.lsp_highlight then
-                pcall(vim.fn.matchdelete, vim.w.cursorword_match or -1)
-                local word = vim.fn.expand("<cword>")
-                if word ~= "" then
-                    local safe = vim.fn.escape(word, [[\]])
-                    vim.w.cursorword_match = vim.fn.matchadd("CursorWord", [[\V\<]] .. safe .. [[\>]])
-                end
-            end
-        end,
-    })
-
-    -- Auto set working directory to git root
-    vim.api.nvim_create_autocmd("BufEnter", {
-        group = qol,
-        callback = function()
-            local file_dir = vim.fn.expand("%:p:h")
-            local git_root = vim.fn.systemlist("git -C " .. file_dir .. " rev-parse --show-toplevel 2>/dev/null")[1]
-            if git_root and git_root ~= "" then
-                vim.cmd("tcd " .. git_root)
-            end
-        end,
-    })
-
     -- Highlight on yank
     vim.api.nvim_create_autocmd("TextYankPost", {
         desc = "Highlight when yanking (copying) text",
@@ -66,8 +39,6 @@ if not is_vscode then
         callback = function() vim.hl.on_yank() end,
     })
 
-    -- Highlight style for cursorword
-    vim.api.nvim_set_hl(0, "CursorWord", { underline = true })
 end
 
 -- Shared (works in both VSCode and standalone Neovim)
