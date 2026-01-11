@@ -101,20 +101,19 @@ content = {
 
 	return MiniStatusline.combine_groups({
 	    -- Left side: Git / Diff / Diagnostics / LSP
-	    { hl = 'MiniStatuslineDevinfo',      strings = { git,    diff, diagnostics, lsp } },
+	    { hl = 'MiniStatuslineDevinfo',      strings = { filename, diagnostics, lsp } },
 	    '%<',                                -- truncate point
 	    -- Center: filename
-	    { hl = 'MiniStatuslineFilename',     strings = { filename } },
 	    '%=',                                -- end left alignment
 	    { hl = 'MiniStatuslineFilename',     strings = { vim.fn.getcwd() } },
-        { hl = 'MiniStatusLineMacro',        strings = { macro } },
+      { hl = 'MiniStatusLineMacro',        strings = { macro } },
 	    { hl = 'MiniStatuslineFileinfo',     strings = { fileinfo } },
 	    { hl = mode_hl,                      strings = { search, location } },
 	})
     end,
 
 
-    inactive = function()
+  inactive = function()
 	local filename = MiniStatusline.section_filename({ trunc_width = 140 })
 	local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
 
@@ -125,6 +124,6 @@ content = {
 	    -- Right side: file info
 	    { hl = 'MiniStatuslineInactive', strings = { fileinfo } },
 	})
-    end,
+  end,
 },
 })
