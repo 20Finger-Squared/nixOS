@@ -24,7 +24,6 @@
         start = [
           conform-nvim
           blink-cmp
-          gitsigns-nvim
           gruvbox-nvim
           nvim-lspconfig
           markdown-preview-nvim
