@@ -2,6 +2,8 @@ local MiniStatusline = require('mini.statusline')
 local MiniClue = require('mini.clue')
 local MiniIndentscope = require('mini.indentscope')
 require("mini.surround").setup()
+require("mini.bracketed").setup()
+require("mini.extra").setup()
 require("mini.align").setup()
 require("mini.ai").setup()
 require("mini.comment").setup()
@@ -72,6 +74,7 @@ window = {
     delay = 0,
 },
 })
+
 -- MiniStatusline setup
 MiniStatusline.setup({
 content = {
