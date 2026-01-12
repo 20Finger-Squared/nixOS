@@ -15,7 +15,6 @@ in
     environment = {
       sessionVariables = {
         XDG_BIN_HOME = "$HOME/.bin";
-        EDITOR = "nvim";
       };
 
       systemPackages = [
@@ -32,13 +31,6 @@ in
         pkgs.xclip
         pkgs.clipnotify
 
-        # dev setup for nixOS
-        pkgs.nixfmt-rfc-style # formatter for dot-nix
-        pkgs.nil
-
-        # lsp and C compiler
-        pkgs.clang-tools
-        pkgs.clang
 
         # Default terminal emulator
         pkgs.kitty

@@ -10,6 +10,19 @@ in
 {
   options.software-config.neovim.enable = mkEnableOption "my neovim config";
   config = mkIf config.software-config.neovim.enable {
+    environment = {
+      sessionVariables.EDITOR = "nvim";
+      systemPackages = [
+        # dev setup for nixOS
+        pkgs.nixfmt-rfc-style # formatter for dot-nix
+        pkgs.nil
+
+        # lsp and C compiler
+        pkgs.clang-tools
+        pkgs.clang
+      ];
+    };
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
