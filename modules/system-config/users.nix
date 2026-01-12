@@ -1,4 +1,5 @@
 {
+  my-pkgs,
   lib,
   config,
   pkgs,
@@ -27,10 +28,13 @@ in
         packages = [
           pkgs.lazygit
           pkgs.prismlauncher
+          pkgs.vial
+          pkgs.via
           pkgs.discord
           pkgs.eza
           pkgs.steam
           pkgs.thunderbird
+          my-pkgs.tmux
         ];
       };
     };
