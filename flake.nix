@@ -37,16 +37,15 @@
             ./custom-modules/dmenu/module.nix
             ./custom-modules/st/module.nix
 
-            ./modules/shared/default.nix
-            ./modules/${hostname}/hardware-configuration.nix
-            ./modules/${hostname}/default.nix
+            ./modules
+            ./hosts/${hostname}
+            ./hosts/${hostname}/hardware-configuration.nix
           ];
         };
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
 
-      nixosConfigurations.tf-laptop = mkSystem "tf-laptop";
       nixosConfigurations.tf-pc = mkSystem "tf-pc";
     };
 }
