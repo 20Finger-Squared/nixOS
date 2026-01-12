@@ -1,4 +1,6 @@
 {
+  pkgs,
+  my-pkgs,
   config,
   colorscheme,
   lib,
@@ -16,6 +18,10 @@ in
 {
   options.software-config.dwm.enable = mkEnableOption "my dwm config";
   config = mkIf config.software-config.dwm.enable {
+    environment.systemPackages = [
+      my-pkgs.dwm-script
+      pkgs.feh
+    ];
     programs.dwm = {
       tagKeys.definitions = [ ];
       enable = true;

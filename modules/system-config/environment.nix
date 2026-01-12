@@ -18,7 +18,6 @@ in
       };
 
       systemPackages = [
-        my-pkgs.dwm-script
         my-pkgs.tmux
         my-pkgs.sway
 
@@ -34,9 +33,6 @@ in
 
         # Default terminal emulator
         pkgs.kitty
-
-        # for the dwm background
-        pkgs.feh
 
         # cli tools
         pkgs.ripgrep
