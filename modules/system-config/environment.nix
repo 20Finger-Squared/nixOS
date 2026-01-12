@@ -22,11 +22,6 @@ in
 
         pkgs.fuzzel
 
-        # x11 needs
-        pkgs.xclip
-        pkgs.clipnotify
-
-
         # Default terminal emulator
         pkgs.kitty
 
@@ -36,8 +31,6 @@ in
         pkgs.btop
         pkgs.fastfetch
         pkgs.git
-
-        pkgs.ly
 
         nixpkgs-24-11.qutebrowser
       ];

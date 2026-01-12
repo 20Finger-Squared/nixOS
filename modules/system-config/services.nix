@@ -6,7 +6,11 @@
 }:
 let
   cfg = config.system-config;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    optionals
+    ;
 in
 {
   options.system-config = {
@@ -20,6 +24,15 @@ in
     };
   };
   config = {
+    environment.systemPackages = (
+      (optionals cfg.services.x11.enable [
+        pkgs.xclip
+        pkgs.clipnotify
+      ])
+      ++ (optionals cfg.services.desktopManager.enable [
+        pkgs.ly
+      ])
+    );
     security = mkIf cfg.security.enable {
       pam.services.swaylock = { }; # enables sway lock to use pam
       rtkit.enable = true;
