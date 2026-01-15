@@ -16,17 +16,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1768020509,
-        "narHash": "sha256-V7El1ktdJ0/WWEr6wGBKFYu433vitrWvxmvPk79FsSc=",
+        "lastModified": 1768395095,
+        "narHash": "sha256-ZhuYJbwbZT32QA95tSkXd9zXHcdZj90EzHpEXBMabaw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "299d331f770cdf7c466a4faa08b3070a767d681d",
+        "rev": "13868c071cc73a5e9f610c47d7bb08e5da64fdd5",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs-24-11": {
@@ -65,7 +64,24 @@
       "inputs": {
         "custom-packages": "custom-packages",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-24-11": "nixpkgs-24-11"
+        "nixpkgs-24-11": "nixpkgs-24-11",
+        "st-module": "st-module"
+      }
+    },
+    "st-module": {
+      "locked": {
+        "lastModified": 1768517511,
+        "narHash": "sha256-IC/K44eJ9jbAUorJp9CQimX8O475oKEqwIvCAEGuHXM=",
+        "owner": "20Finger-Squared",
+        "repo": "st-nixos-module",
+        "rev": "835e62a5dd67814b90d610e70dde70582e01da95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "20Finger-Squared",
+        "ref": "testing",
+        "repo": "st-nixos-module",
+        "type": "github"
       }
     }
   },
