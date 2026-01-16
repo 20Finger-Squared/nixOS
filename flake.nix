@@ -8,14 +8,14 @@
       flake = true;
       url = "path:packages/";
     };
-    st-module.url = "github:20Finger-Squared/st-nixos-module/testing";
+    suckless-modules.url = "github:20Finger-Squared/suckless-nixos-modules";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      st-module,
+      suckless-modules,
       custom-packages,
       nixpkgs-24-11,
       ...
@@ -35,9 +35,7 @@
           };
           system = system-type;
           modules = [
-            st-module.nixosModules.default
-            ./custom-modules/dwm/module.nix
-            ./custom-modules/dmenu/module.nix
+            suckless-modules.nixosModules.default
 
             ./modules
             ./hosts/${hostname}

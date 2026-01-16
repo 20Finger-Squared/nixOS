@@ -65,22 +65,21 @@
         "custom-packages": "custom-packages",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-24-11": "nixpkgs-24-11",
-        "st-module": "st-module"
+        "suckless-modules": "suckless-modules"
       }
     },
-    "st-module": {
+    "suckless-modules": {
       "locked": {
-        "lastModified": 1768517511,
-        "narHash": "sha256-IC/K44eJ9jbAUorJp9CQimX8O475oKEqwIvCAEGuHXM=",
+        "lastModified": 1768521046,
+        "narHash": "sha256-mI99Zpx6MA+7kfJuVNAuykv52NtRTPhQs5gZX8gSL2w=",
         "owner": "20Finger-Squared",
-        "repo": "st-nixos-module",
-        "rev": "835e62a5dd67814b90d610e70dde70582e01da95",
+        "repo": "suckless-nixos-modules",
+        "rev": "65ce67d8ab0163f4360e8b460c9435efd7a615b8",
         "type": "github"
       },
       "original": {
         "owner": "20Finger-Squared",
-        "ref": "testing",
-        "repo": "st-nixos-module",
+        "repo": "suckless-nixos-modules",
         "type": "github"
       }
     }
