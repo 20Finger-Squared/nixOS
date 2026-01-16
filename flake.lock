@@ -70,11 +70,11 @@
     },
     "suckless-modules": {
       "locked": {
-        "lastModified": 1768521046,
-        "narHash": "sha256-mI99Zpx6MA+7kfJuVNAuykv52NtRTPhQs5gZX8gSL2w=",
+        "lastModified": 1768532199,
+        "narHash": "sha256-oD3mErY/MzPpqLWLh95dfLaijtq7NMPE6HcheolfcGc=",
         "owner": "20Finger-Squared",
         "repo": "suckless-nixos-modules",
-        "rev": "65ce67d8ab0163f4360e8b460c9435efd7a615b8",
+        "rev": "ce8f716929fbd6f2ebd678555e349e7716aa872e",
         "type": "github"
       },
       "original": {
