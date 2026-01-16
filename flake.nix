@@ -22,7 +22,7 @@
     }@inputs:
     let
       system-type = "x86_64-linux";
-      colorscheme-module = import ./custom-modules/general/colorscheme-module.nix;
+      colorscheme-module = import ./modules/general/colorscheme-module.nix;
       colorscheme = colorscheme-module.gruvbox;
       mkSystem =
         hostname:
