@@ -21,11 +21,10 @@
       ...
     }@inputs:
     let
-      system-type = "x86_64-linux";
       colorscheme-module = import ./modules/general/colorscheme-module.nix;
       colorscheme = colorscheme-module.gruvbox;
       mkSystem =
-        hostname:
+        hostname: system-type:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
@@ -46,6 +45,6 @@
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
 
-      nixosConfigurations.tf-pc = mkSystem "tf-pc";
+      nixosConfigurations.tf-pc = mkSystem "tf-pc" "x86_64-linux";
     };
 }
