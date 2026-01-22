@@ -8,57 +8,42 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/cc9c98ad-4a75-486d-8b77-20edd82d92b2";
+    { device = "/dev/disk/by-uuid/d4687736-d427-4c82-aead-cc8d876c8cf9";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."luks-74ad5e15-5a69-4e49-a5e4-d5c76898f379".device = "/dev/disk/by-uuid/74ad5e15-5a69-4e49-a5e4-d5c76898f379";
-
-  fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/cc9c98ad-4a75-486d-8b77-20edd82d92b2";
+  fileSystems."/etc" =
+    { device = "/dev/disk/by-uuid/d4687736-d427-4c82-aead-cc8d876c8cf9";
       fsType = "btrfs";
-      options = [ "subvol=@log" ];
+      options = [ "subvol=@etc" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/cc9c98ad-4a75-486d-8b77-20edd82d92b2";
+    { device = "/dev/disk/by-uuid/d4687736-d427-4c82-aead-cc8d876c8cf9";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/cc9c98ad-4a75-486d-8b77-20edd82d92b2";
+  fileSystems."/var/log" =
+    { device = "/dev/disk/by-uuid/d4687736-d427-4c82-aead-cc8d876c8cf9";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@logs" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8E60-EF29";
+    { device = "/dev/disk/by-uuid/FF21-2B5C";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  fileSystems."/game" =
-    { device = "/dev/disk/by-uuid/50c967af-c068-4c28-8783-0ff3871b5f6a";
-      fsType = "ext4";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices = [ ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp38s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
