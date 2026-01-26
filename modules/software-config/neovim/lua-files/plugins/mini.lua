@@ -79,15 +79,14 @@ window = {
 MiniStatusline.setup({
 content = {
     active = function()
-	local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-	local git           = MiniStatusline.section_git({ trunc_width = 40 })
-	local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
+	local _, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
 	local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 	local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-	local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+	local filename      = MiniStatusline.section_filename({ trunc_width = 75 })
 	local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
 	local location      = MiniStatusline.section_location({ trunc_width = 75 })
 	local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
+
 
 	-- Custom highlight
 	vim.api.nvim_set_hl(0, "MiniStatusLineMacro", {
@@ -96,8 +95,8 @@ content = {
 	    bold = true,
 	})
 
-    macro = vim.fn.reg_recording()
-    macro = (macro ~= '') and ('Recording @' .. macro) or ''
+  macro = vim.fn.reg_recording()
+  macro = (macro ~= '') and ('Recording @' .. macro) or ''
 
 	return MiniStatusline.combine_groups({
 	    -- Left side: Git / Diff / Diagnostics / LSP
