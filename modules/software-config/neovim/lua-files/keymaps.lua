@@ -36,4 +36,4 @@ map("n", "<M-j>", ":m .+1<CR>==", { silent = true, desc = "󰜮 Move line down" 
 -- Format
 vim.keymap.set('n', '<leader>fm', function()
   require('conform').format { async = true }
-end)
+end, {silent = true, desc = "Format file."})
