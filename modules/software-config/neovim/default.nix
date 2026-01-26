@@ -47,6 +47,7 @@ in
             markdown-preview-nvim
             mini-nvim
             nvim-treesitter.withAllGrammars
+            rainbow-delimiters-nvim
             luasnip
             fzf-lua
           ];
