@@ -20,6 +20,7 @@ in
         ".." = "cd ..";
         cd = "z";
         ls = "eza -G --icons -F --group-directories-first";
+        sl = "ls"; # a common typo i make
         nix-switch = "nh os switch";
         nix-build = "nh os build";
       };
