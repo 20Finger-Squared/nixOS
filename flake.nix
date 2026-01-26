@@ -41,10 +41,11 @@
             ./hosts/${hostname}/hardware-configuration.nix
           ];
         };
+      system = "x86_64-linux";
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
 
-      nixosConfigurations.tf-pc = mkSystem "tf-pc" "x86_64-linux";
+      nixosConfigurations.tf-pc = mkSystem "tf-pc" system;
     };
 }
