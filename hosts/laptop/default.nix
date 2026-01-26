@@ -16,6 +16,10 @@
     steam.enable = false;
   };
   system-config = {
+    laptop = {
+      enable = true;
+      powerSaving.enabled = true;
+    };
     boot.enable = true;
     console.enable = true;
     environment.enable = true;
