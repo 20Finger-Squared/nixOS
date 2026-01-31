@@ -44,9 +44,9 @@ in
             blink-cmp
             gruvbox-nvim
             nvim-lspconfig
-            markdown-preview-nvim
             mini-nvim
             nvim-treesitter.withAllGrammars
+
             rainbow-delimiters-nvim
             luasnip
             fzf-lua
