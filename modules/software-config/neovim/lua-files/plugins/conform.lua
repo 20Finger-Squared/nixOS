@@ -21,4 +21,8 @@ require("conform").setup({
   format_on_save = {
       lsp_format = "fallback",
   };
+
+  formatters_by_ft = {
+    php = { "php_cs_fixer" }, -- or "pint", "phpcbf"
+  },
 })
