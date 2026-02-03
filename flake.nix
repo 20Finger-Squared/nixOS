@@ -4,10 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05"; # Correct channel for NixOS 25
     nixpkgs-24-11.url = "github:NixOS/nixpkgs/nixos-24.11";
-    custom-packages = {
-      flake = true;
-      url = "path:packages/";
-    };
+
     suckless-modules.url = "github:20Finger-Squared/suckless-nixos-modules";
   };
 
@@ -16,13 +13,13 @@
       self,
       nixpkgs,
       suckless-modules,
-      custom-packages,
       nixpkgs-24-11,
       ...
     }@inputs:
     let
       colorscheme-module = import ./modules/general/colorscheme-module.nix;
       colorscheme = colorscheme-module.gruvbox;
+      pkgs = nixpkgs.legacyPackages.${system};
       mkSystem =
         hostname: system-type:
         nixpkgs.lib.nixosSystem {
@@ -30,7 +27,12 @@
             inherit inputs;
             inherit colorscheme;
             nixpkgs-24-11 = nixpkgs-24-11.legacyPackages."${system-type}";
-            my-pkgs = custom-packages.packages."${system-type}";
+            my-pkgs = (
+              import ./packages {
+                inherit pkgs;
+                inherit colorscheme;
+              }
+            );
           };
           system = system-type;
           modules = [
