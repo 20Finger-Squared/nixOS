@@ -28,8 +28,6 @@ in
         packages = [
           pkgs.lazygit
           pkgs.prismlauncher
-          pkgs.vial
-          pkgs.via
           pkgs.discord
           pkgs.eza
           pkgs.steam
