@@ -8,6 +8,7 @@
   software-config = {
     bash.enable = true;
     dmenu.enable = true;
+    dunst.enable = true;
     dwm.enable = true;
     st.enable = true;
     git.enable = true;
