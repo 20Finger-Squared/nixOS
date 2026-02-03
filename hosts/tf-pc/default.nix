@@ -10,6 +10,7 @@
     dmenu.enable = true;
     dunst.enable = true;
     dwm.enable = true;
+    via.enable = true;
     st.enable = true;
     git.enable = true;
     neovim.enable = true;

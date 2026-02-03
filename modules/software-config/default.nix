@@ -3,6 +3,7 @@
   imports = [
     ./neovim
     ./bash.nix
+    ./via.nix
     ./dunst.nix
     ./git.nix
     ./dmenu.nix
