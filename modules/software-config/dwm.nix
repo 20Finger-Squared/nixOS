@@ -13,7 +13,7 @@ let
   XF86AudioLowerVolume = "0x1008ff11";
   XF86AudioMuteVolume = "0x1008ff12";
   XF86AudioRaiseVolume = "0x1008ff13";
-  volumeIncrement = 0.05;
+  volumeIncrement = 1;
 in
 {
   options.software-config.dwm.enable = mkEnableOption "my dwm config";
@@ -79,19 +79,19 @@ in
             modifier = 0;
             key = XF86AudioRaiseVolume;
             function = "spawn";
-            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}+")'';
+            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%+; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
           }
           {
             modifier = 0;
             key = XF86AudioLowerVolume;
             function = "spawn";
-            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}-")'';
+            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%-; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
           }
           {
             modifier = 0;
             key = XF86AudioMuteVolume;
             function = "spawn";
-            argument = ''SHCMD("wpctl mute @DEFAULT_AUDIO_SINK@ toggle")'';
+            argument = ''SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; dunstify -h string:x-dunst-stack-tag:Volume 'Volume' '$(wpctl get-volume @DEFAULT_AUDIO_SINK@)'")'';
           }
           {
             modifier = "MODKEY|ShiftMask";
