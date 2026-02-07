@@ -91,7 +91,7 @@ in
             modifier = 0;
             key = XF86AudioMuteVolume;
             function = "spawn";
-            argument = ''SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; dunstify -h string:x-dunst-stack-tag:Volume 'Volume' '$(wpctl get-volume @DEFAULT_AUDIO_SINK@)'")'';
+            argument = ''SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED'; then dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Muted'; else dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Unmuted'; fi")'';
           }
           {
             modifier = "MODKEY|ShiftMask";
