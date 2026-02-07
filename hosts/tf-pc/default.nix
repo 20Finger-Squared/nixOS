@@ -18,6 +18,7 @@
     steam.enable = true;
   };
   system-config = {
+    x11-screenshoting.enable = true;
     boot.enable = true;
     console.enable = true;
     environment.enable = true;
