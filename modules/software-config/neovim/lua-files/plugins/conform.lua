@@ -14,15 +14,11 @@ require("conform").setup({
       clang_format = {
           command = "clang-format",
           args = {
-  '--style={BasedOnStyle: gnu, IndentWidth: 8, UseTab: ForIndentation, BreakBeforeBraces: Linux, AllowShortIfStatementsOnASingleLine: false, AllowShortFunctionsOnASingleLine: None, ColumnLimit: 80}'
-}
+            '--style={BasedOnStyle: LLVM, IndentWidth: 8, UseTab: ForIndentation, TabWidth: 8, BreakBeforeBraces: Custom, BraceWrapping: {AfterFunction: true, AfterControlStatement: Never}, IndentCaseLabels: false, PointerAlignment: Right, ColumnLimit: 79, AllowShortIfStatementsOnASingleLine: false, AllowShortLoopsOnASingleLine: false, AllowShortFunctionsOnASingleLine: None, AllowShortBlocksOnASingleLine: Never, AlwaysBreakAfterReturnType: TopLevel, SpaceBeforeParens: ControlStatements}',
+          }
       },
   },
   format_on_save = {
       lsp_format = "fallback",
   };
-
-  formatters_by_ft = {
-    php = { "php_cs_fixer" }, -- or "pint", "phpcbf"
-  },
 })
