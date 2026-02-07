@@ -2,6 +2,7 @@
 {
   imports = [
     ./environment.nix
+    ./x11-screenshotting.nix
     ./fonts.nix
     ./locale.nix
     ./nix-settings.nix
