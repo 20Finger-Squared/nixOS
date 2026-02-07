@@ -13,6 +13,7 @@ let
   XF86AudioLowerVolume = "0x1008ff11";
   XF86AudioMuteVolume = "0x1008ff12";
   XF86AudioRaiseVolume = "0x1008ff13";
+  screenShotBorderColour = colorscheme.base0A;
   volumeIncrement = 1;
 in
 {
@@ -111,6 +112,12 @@ in
             function = "togglefloating";
             argument = "{0}";
           }
+          (lib.mkIf config.system-config.x11-screenshoting.enable {
+            modifier = 0;
+            key = "XK_Print";
+            function = "spawn";
+            argument = ''{.v = (const char*[]){ "/bin/sh", "-c", "mkdir -p ~/Pictures/screenshots && FILE=~/Pictures/screenshots/$(date '+%B-%H-%M-%S').png && sxot -g $(selx -c '#${screenShotBorderColour}') \"$FILE\" && ffmpeg -i \"$FILE\" -q:v 1 -f image2pipe -vcodec mjpeg - | xclip -selection clipboard -t image/jpeg", NULL } }'';
+          })
 
           # custom keys bellow
           {
