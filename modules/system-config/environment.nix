@@ -3,7 +3,6 @@
   config,
   my-pkgs,
   pkgs,
-  nixpkgs-24-11,
   ...
 }:
 let
@@ -32,7 +31,7 @@ in
         pkgs.fastfetch
         pkgs.git
 
-        nixpkgs-24-11.qutebrowser
+        my-pkgs.qutebrowser
       ];
     };
   };
