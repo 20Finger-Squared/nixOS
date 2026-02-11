@@ -8,6 +8,17 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  modifiedDwmPackage = pkgs.dwm.overrideAttrs (old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
+
+    postInstall = ''
+      ${old.postInstall or ""}
+
+      mv $out/bin/dwm $out/bin/.dwm-wrapped
+      makeWrapper $out/bin/.dwm-wrapped $out/bin/dwm \
+        --run 'dwm-script &'
+    '';
+  });
   cfg = config.services.xserver.windowManager.dwm.config;
   modifer = cfg.modifier;
   XF86AudioLowerVolume = "0x1008ff11";
