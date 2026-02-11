@@ -32,6 +32,7 @@ in
           pkgs.eza
           pkgs.steam
           pkgs.thunderbird
+          pkgs.libreoffice
           my-pkgs.tmux
         ];
       };
