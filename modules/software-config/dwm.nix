@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.programs.dwm;
+  cfg = config.services.xserver.windowManager.dwm.config;
   modifer = cfg.modifier;
   XF86AudioLowerVolume = "0x1008ff11";
   XF86AudioMuteVolume = "0x1008ff12";
@@ -23,7 +23,8 @@ in
       my-pkgs.dwm-script
       pkgs.feh
     ];
-    programs.dwm = {
+    services.xserver.windowManager.dwm.config = {
+      package = modifiedDwmPackage;
       enable = true;
       modifier = "Mod4Mask";
       snap = 16;
