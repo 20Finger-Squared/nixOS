@@ -23,17 +23,22 @@
       mkSystem =
         hostname: system-type:
         nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit colorscheme;
-            nixpkgs-24-11 = nixpkgs-24-11.legacyPackages."${system-type}";
-            my-pkgs = (
-              import ./packages {
-                inherit pkgs;
-                inherit colorscheme;
-              }
-            );
-          };
+          specialArgs =
+            let
+              nixpkgs-24-11 = inputs.nixpkgs-24-11.legacyPackages."${system-type}";
+            in
+            {
+              inherit inputs;
+              inherit colorscheme;
+              nixpkgs-24-11 = nixpkgs-24-11;
+              my-pkgs = (
+                import ./packages {
+                  inherit pkgs;
+                  inherit nixpkgs-24-11;
+                  inherit colorscheme;
+                }
+              );
+            };
           system = system-type;
           modules = [
             suckless-modules.nixosModules.default
