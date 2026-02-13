@@ -1,5 +1,6 @@
 {
   pkgs,
+  suckless-modules,
   my-pkgs,
   config,
   colorscheme,
@@ -8,17 +9,7 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  modifiedDwmPackage = pkgs.dwm.overrideAttrs (old: {
-    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
 
-    postInstall = ''
-      ${old.postInstall or ""}
-
-      mv $out/bin/dwm $out/bin/.dwm-wrapped
-      makeWrapper $out/bin/.dwm-wrapped $out/bin/dwm \
-        --run 'dwm-script &'
-    '';
-  });
   cfg = config.services.xserver.windowManager.dwm.config;
   modifer = cfg.modifier;
   XF86AudioLowerVolume = "0x1008ff11";
@@ -31,222 +22,227 @@ in
   options.software-config.dwm.enable = mkEnableOption "my dwm config";
   config = mkIf config.software-config.dwm.enable {
     environment.systemPackages = [
-      my-pkgs.dwm-script
+      pkgs.dwm-script
       pkgs.feh
+      cfg.finalPackage
     ];
-    services.xserver.windowManager.dwm.config = {
-      package = modifiedDwmPackage;
+    services.xserver.windowManager.dwm = {
       enable = true;
-      modifier = "Mod4Mask";
-      snap = 16;
-      borderpx = 3;
-      terminal = {
-        launchKey = "XK_space";
-        modifier = "${modifer}";
-        appCmd = "st";
-      };
-      font = {
-        size = 12;
-        name = "JetbrainsMono NF";
-      };
-      appLauncher = {
-        appCmd = "dmenu_run";
-        launchKey = "XK_Tab";
-        appArgs = [
+      extraSessionCommands = ''
+        dwm-script &
+      '';
+      config = {
+        enable = false;
+        modifier = "Mod4Mask";
+        snap = 16;
+        borderpx = 3;
+        terminal = {
+          launchKey = "XK_space";
+          modifier = "${modifer}";
+          appCmd = "st";
+        };
+        font = {
+          size = 12;
+          name = "JetbrainsMono NF";
+        };
+        appLauncher = {
+          appCmd = "dmenu_run";
+          launchKey = "XK_Tab";
+          appArgs = [
+            {
+              flag = "-c";
+            }
+            {
+              flag = "-m";
+              argument = ''dmenumon'';
+            }
+            {
+              flag = "-p";
+              argument = ''"run:"'';
+            }
+            {
+              flag = "-fn";
+              argument = ''"${cfg.font.name}:size=14"'';
+            }
+          ];
+        };
+        colors = [
           {
-            flag = "-c";
+            name = "SchemeNorm";
+            fg = "#${colorscheme.base05}";
+            bg = "#${colorscheme.base00}";
+            border = "#${colorscheme.base03}";
           }
           {
-            flag = "-m";
-            argument = ''dmenumon'';
-          }
-          {
-            flag = "-p";
-            argument = ''"run:"'';
-          }
-          {
-            flag = "-fn";
-            argument = ''"${cfg.font.name}:size=14"'';
-          }
-        ];
-      };
-      colors = [
-        {
-          name = "SchemeNorm";
-          fg = "#${colorscheme.base05}";
-          bg = "#${colorscheme.base00}";
-          border = "#${colorscheme.base03}";
-        }
-        {
-          name = "SchemeSel";
-          fg = "#${colorscheme.base0A}";
-          bg = "#${colorscheme.base02}";
-          border = "#${colorscheme.base0A}";
-        }
-      ];
-
-      key = {
-        useDefault = false;
-        keys = [
-          {
-            modifier = 0;
-            key = XF86AudioRaiseVolume;
-            function = "spawn";
-            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%+; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
-          }
-          {
-            modifier = 0;
-            key = XF86AudioLowerVolume;
-            function = "spawn";
-            argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%-; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
-          }
-          {
-            modifier = 0;
-            key = XF86AudioMuteVolume;
-            function = "spawn";
-            argument = ''SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED'; then dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Muted'; else dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Unmuted'; fi")'';
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_Tab";
-            function = "view";
-            argument = "{0}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_BackSpace";
-            function = "setlayout";
-            argument = "{0}";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_BackSpace";
-            function = "togglefloating";
-            argument = "{0}";
-          }
-          (lib.mkIf config.system-config.x11-screenshoting.enable {
-            modifier = 0;
-            key = "XK_Print";
-            function = "spawn";
-            argument = ''{.v = (const char*[]){ "/bin/sh", "-c", "mkdir -p ~/Pictures/screenshots && FILE=~/Pictures/screenshots/$(date '+%B-%H-%M-%S').png && sxot -g $(selx -c '#${screenShotBorderColour}') \"$FILE\" && ffmpeg -i \"$FILE\" -q:v 1 -f image2pipe -vcodec mjpeg - | xclip -selection clipboard -t image/jpeg", NULL } }'';
-          })
-
-          # custom keys bellow
-          {
-            modifier = "MODKEY";
-            key = "XK_b";
-            function = "togglebar";
-            argument = "{0}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_j";
-            function = "focusstack";
-            argument = "{.i = +1 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_k";
-            function = "focusstack";
-            argument = "{.i = -1 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_i";
-            function = "incnmaster";
-            argument = "{.i = +1 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_d";
-            function = "incnmaster";
-            argument = "{.i = -1 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_h";
-            function = "setmfact";
-            argument = "{.f = -0.05}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_l";
-            function = "setmfact";
-            argument = "{.f = +0.05}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_Return";
-            function = "zoom";
-            argument = "{0}";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_c";
-            function = "killclient";
-            argument = "{0}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_t";
-            function = "setlayout";
-            argument = "{.v = &layouts[0]}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_f";
-            function = "setlayout";
-            argument = "{.v = &layouts[1]}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_m";
-            function = "setlayout";
-            argument = "{.v = &layouts[2]}";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_0";
-            function = "view";
-            argument = "{.ui = ~0 }";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_0";
-            function = "tag";
-            argument = "{.ui = ~0 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_comma";
-            function = "focusmon";
-            argument = "{.i = -1 }";
-          }
-          {
-            modifier = "MODKEY";
-            key = "XK_period";
-            function = "focusmon";
-            argument = "{.i = +1 }";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_comma";
-            function = "tagmon";
-            argument = "{.i = -1 }";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_period";
-            function = "tagmon";
-            argument = "{.i = +1 }";
-          }
-          {
-            modifier = "MODKEY|ShiftMask";
-            key = "XK_q";
-            function = "quit";
-            argument = "{0}";
+            name = "SchemeSel";
+            fg = "#${colorscheme.base0A}";
+            bg = "#${colorscheme.base02}";
+            border = "#${colorscheme.base0A}";
           }
         ];
+        keys = {
+          useDefault = false;
+          bindings = [
+            {
+              modifier = 0;
+              key = XF86AudioRaiseVolume;
+              function = "spawn";
+              argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%+; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
+            }
+            {
+              modifier = 0;
+              key = XF86AudioLowerVolume;
+              function = "spawn";
+              argument = ''SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ ${toString volumeIncrement}%-; dunstify -h string:x-dunst-stack-tag:Volume -h int:value:$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}') 'Volume'")'';
+            }
+            {
+              modifier = 0;
+              key = XF86AudioMuteVolume;
+              function = "spawn";
+              argument = ''SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED'; then dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Muted'; else dunstify -h string:x-dunst-stack-tag:Volume 'Volume' 'Unmuted'; fi")'';
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_Tab";
+              function = "view";
+              argument = "{0}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_BackSpace";
+              function = "setlayout";
+              argument = "{0}";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_BackSpace";
+              function = "togglefloating";
+              argument = "{0}";
+            }
+            (lib.mkIf config.system-config.x11-screenshoting.enable {
+              modifier = 0;
+              key = "XK_Print";
+              function = "spawn";
+              argument = ''{.v = (const char*[]){ "/bin/sh", "-c", "mkdir -p ~/Pictures/screenshots && FILE=~/Pictures/screenshots/$(date '+%B-%H-%M-%S').png && sxot -g $(selx -c '#${screenShotBorderColour}') \"$FILE\"", NULL } }'';
+            })
+
+            # custom keys bellow
+            {
+              modifier = "MODKEY";
+              key = "XK_b";
+              function = "togglebar";
+              argument = "{0}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_j";
+              function = "focusstack";
+              argument = "{.i = +1 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_k";
+              function = "focusstack";
+              argument = "{.i = -1 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_i";
+              function = "incnmaster";
+              argument = "{.i = +1 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_d";
+              function = "incnmaster";
+              argument = "{.i = -1 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_h";
+              function = "setmfact";
+              argument = "{.f = -0.05}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_l";
+              function = "setmfact";
+              argument = "{.f = +0.05}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_Return";
+              function = "zoom";
+              argument = "{0}";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_c";
+              function = "killclient";
+              argument = "{0}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_t";
+              function = "setlayout";
+              argument = "{.v = &layouts[0]}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_f";
+              function = "setlayout";
+              argument = "{.v = &layouts[1]}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_m";
+              function = "setlayout";
+              argument = "{.v = &layouts[2]}";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_0";
+              function = "view";
+              argument = "{.ui = ~0 }";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_0";
+              function = "tag";
+              argument = "{.ui = ~0 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_comma";
+              function = "focusmon";
+              argument = "{.i = -1 }";
+            }
+            {
+              modifier = "MODKEY";
+              key = "XK_period";
+              function = "focusmon";
+              argument = "{.i = +1 }";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_comma";
+              function = "tagmon";
+              argument = "{.i = -1 }";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_period";
+              function = "tagmon";
+              argument = "{.i = +1 }";
+            }
+            {
+              modifier = "MODKEY|ShiftMask";
+              key = "XK_q";
+              function = "quit";
+              argument = "{0}";
+            }
+          ];
+        };
       };
     };
   };

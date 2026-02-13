@@ -15,52 +15,41 @@ in
       enable = true;
       borderpx = 3;
       shell = "/bin/sh";
-      tabSpaces = 2;
-      cursorThickness = 2;
-      cursorShape = 2;
-      color = {
-        colors = {
-          normal = {
-            red = "#${colorscheme.base08}";
-            green = "#${colorscheme.base0B}";
-            blue = "#${colorscheme.base0D}";
-            yellow = "#${colorscheme.base0A}";
-            magenta = "#${colorscheme.base0E}";
-            cyan = "#${colorscheme.base0C}";
-            white = "#${colorscheme.base07}";
-            black = "#${colorscheme.base00}";
-          };
-          bright = {
-            red = "#${colorscheme.base08}";
-            green = "#${colorscheme.base0B}";
-            blue = "#${colorscheme.base0D}";
-            yellow = "#${colorscheme.base0A}";
-            magenta = "#${colorscheme.base0E}";
-            cyan = "#${colorscheme.base0C}";
-            white = "#${colorscheme.base07}";
-            black = "#${colorscheme.base00}";
-          };
-        };
-        fg = "#${colorscheme.base07}";
-        bg = "#${colorscheme.base00}";
+      tab-spaces = 2;
+      cursor-thickness = 2;
+      cursor-shape = 2;
+      color-name = {
+        normal = [
+          "#${colorscheme.base08}"
+          "#${colorscheme.base0B}"
+          "#${colorscheme.base0D}"
+          "#${colorscheme.base0A}"
+          "#${colorscheme.base0E}"
+          "#${colorscheme.base0C}"
+          "#${colorscheme.base07}"
+          "#${colorscheme.base01}"
+        ];
+        bright = [
+          "#${colorscheme.base08}"
+          "#${colorscheme.base0B}"
+          "#${colorscheme.base0D}"
+          "#${colorscheme.base0A}"
+          "#${colorscheme.base0E}"
+          "#${colorscheme.base0C}"
+          "#${colorscheme.base07}"
+          "#${colorscheme.base01}"
+        ];
+        foreground = "#${colorscheme.base07}";
+        background = "#${colorscheme.base00}";
       };
       latency = {
         min = 1;
         max = 10;
       };
-      allowaltscreen = true;
-      characterBox = {
-        width = 1.0;
-        height = 1.0;
-      };
-      clickTimeouts = {
-        triple = 300;
-        double = 150;
-      };
       font = {
         name = "JetbrainsMono NF";
-        size = 16;
-        autohint = false;
+        size = 20;
+        autohint = true;
         antialias = true;
       };
     };
