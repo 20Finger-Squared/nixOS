@@ -33,6 +33,7 @@ in
           pkgs.steam
           pkgs.thunderbird
           pkgs.libreoffice
+          pkgs.blender
           my-pkgs.tmux
         ];
       };
