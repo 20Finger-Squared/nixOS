@@ -3,6 +3,7 @@
   imports = [
     ./environment.nix
     ./x11-screenshotting.nix
+    ./3d-printing.nix
     ./fonts.nix
     ./locale.nix
     ./nix-settings.nix
