@@ -18,6 +18,7 @@ in
 
       systemPackages = [
         my-pkgs.sway
+        my-pkgs.btop
 
         pkgs.fuzzel
 
@@ -27,7 +28,6 @@ in
         # cli tools
         pkgs.ripgrep
         pkgs.fzf
-        pkgs.btop
         pkgs.fastfetch
         pkgs.git
 

@@ -4,7 +4,7 @@
   colorscheme,
 }:
 {
-  dwm-script = import ./dwm-script { inherit pkgs; };
+  btop = import ./btop { inherit pkgs; };
   sxot = import ./sxot { inherit pkgs; };
   selx = import ./selx { inherit pkgs; };
   dunst = import ./dunst {
@@ -15,8 +15,6 @@
   tmux = import ./tmux { inherit pkgs; };
   sway = import ./sway { inherit pkgs; };
   qutebrowser = import ./qutebrowser {
-    inherit pkgs;
-    inherit nixpkgs-24-11;
-    inherit colorscheme;
+    inherit pkgs nixpkgs-24-11 colorscheme;
   };
 }
