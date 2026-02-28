@@ -29,6 +29,7 @@ in
           pkgs.lazygit
           pkgs.prismlauncher
           pkgs.discord
+          pkgs.equicord
           pkgs.eza
           pkgs.steam
           pkgs.thunderbird
