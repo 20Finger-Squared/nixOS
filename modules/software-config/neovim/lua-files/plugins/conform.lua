@@ -14,7 +14,7 @@ require("conform").setup({
       clang_format = {
           command = "clang-format",
           args = {
-            '--style={BasedOnStyle: LLVM, IndentWidth: 8, UseTab: ForIndentation, TabWidth: 8, BreakBeforeBraces: Custom, BraceWrapping: {AfterFunction: true, AfterControlStatement: Never}, IndentCaseLabels: false, PointerAlignment: Right, ColumnLimit: 79, AllowShortIfStatementsOnASingleLine: false, AllowShortLoopsOnASingleLine: false, AllowShortFunctionsOnASingleLine: None, AllowShortBlocksOnASingleLine: Never, AlwaysBreakAfterReturnType: TopLevel, SpaceBeforeParens: ControlStatements}',
+            '--style={BasedOnStyle: GNU, Language: C, UseTab: ForIndentation, TabWidth: 8, IndentWidth: 8, ColumnLimit: 80, PointerAlignment: Right, AlignAfterOpenBracket: Align, BreakBeforeBraces: Linux, AlwaysBreakAfterReturnType: AllDefinitions, AllowShortFunctionsOnASingleLine: None, AllowShortIfStatementsOnASingleLine: Never, AllowShortLoopsOnASingleLine: false, IndentCaseLabels: false, SpaceBeforeParens: ControlStatements, AlignTrailingComments: true,}',
           }
       },
   },
