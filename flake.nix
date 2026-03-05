@@ -4,8 +4,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05"; # Correct channel for NixOS 25
     nixpkgs-24-11.url = "github:NixOS/nixpkgs/nixos-24.11";
+    mk-configure = {
+      url = "path:./mk-configure/";
+      flake = true;
+    };
 
     suckless-modules.url = "github:20Finger-Squared/suckless-nixos-modules";
+
   };
 
   outputs =
@@ -14,6 +19,7 @@
       nixpkgs,
       suckless-modules,
       nixpkgs-24-11,
+      mk-configure,
       ...
     }@inputs:
     let
@@ -28,6 +34,7 @@
               nixpkgs-24-11 = inputs.nixpkgs-24-11.legacyPackages."${system-type}";
             in
             {
+              inherit mk-configure;
               inherit inputs;
               inherit colorscheme;
               nixpkgs-24-11 = nixpkgs-24-11;
@@ -42,6 +49,7 @@
           system = system-type;
           modules = [
             suckless-modules.nixosModules.default
+            mk-configure.nixosModules.default
 
             ./modules
             ./hosts/${hostname}

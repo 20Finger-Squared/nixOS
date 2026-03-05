@@ -12,6 +12,14 @@ pkgs.stdenv.mkDerivation {
 
   nativeBuildInputs = [ pkgs.clang ];
 
-  buildPhase = "$CC -O3 dwm.c -o dwm-script";
-  installPhase = "mkdir -p $out/bin; install -t $out/bin dwm-script";
+  buildPhase = "
+   export USE_AWK=/usr/bin/gawk
+   export USE_INSTALL=/usr/bin/install
+   export USE_CC_COMPILERS='gcc-4.8 gcc-4.9 gcc-6 clang'
+   export USE_CXX_COMPILERS='g++-4.8 g++-4.9 g++-6 clang++'
+   export PREFIX=/opt/cheusov/mk-configure
+   bmake configure
+   bmake all
+  ";
+  installPhase = "mkdir -p $out/bin; install -t $out/bin mk-configure";
 }

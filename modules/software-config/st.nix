@@ -39,6 +39,10 @@ in
           "#${colorscheme.base07}"
           "#${colorscheme.base01}"
         ];
+        extra = [
+          "#cccccc"
+          "#555555"
+        ];
         foreground = "#${colorscheme.base07}";
         background = "#${colorscheme.base00}";
       };

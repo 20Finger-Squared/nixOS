@@ -1,5 +1,16 @@
 {
   "nodes": {
+    "mk-configure": {
+      "locked": {
+        "path": "./mk-configure/",
+        "type": "path"
+      },
+      "original": {
+        "path": "./mk-configure/",
+        "type": "path"
+      },
+      "parent": []
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1767313136,
@@ -34,6 +45,7 @@
     },
     "root": {
       "inputs": {
+        "mk-configure": "mk-configure",
         "nixpkgs": "nixpkgs",
         "nixpkgs-24-11": "nixpkgs-24-11",
         "suckless-modules": "suckless-modules"
@@ -41,11 +53,11 @@
     },
     "suckless-modules": {
       "locked": {
-        "lastModified": 1772222941,
-        "narHash": "sha256-FDe0MVHupA3npD+PBIzBTC2uYg8Wtwc1VqLKkPpsIx8=",
+        "lastModified": 1772515139,
+        "narHash": "sha256-x9CfBYfBAhg75ym+GNoY3CSU1UR59KdAV+DXxFBE5Mw=",
         "owner": "20Finger-Squared",
         "repo": "suckless-nixos-modules",
-        "rev": "74d99b8d65e2cb2253c55d3f68f9d25d069a10d4",
+        "rev": "808295c21c6e7e25701d536e630b869d7f7e0136",
         "type": "github"
       },
       "original": {

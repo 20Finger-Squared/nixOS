@@ -29,15 +29,21 @@ in
           pkgs.lazygit
           pkgs.prismlauncher
           pkgs.discord
-          pkgs.equicord
+          pkgs.vesktop
           pkgs.eza
           pkgs.steam
           pkgs.thunderbird
           pkgs.libreoffice
           pkgs.blender
+          pkgs.obsidian
           my-pkgs.tmux
         ];
       };
+    };
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = "*";
     };
   };
 }
