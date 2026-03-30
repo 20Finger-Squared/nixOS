@@ -36,6 +36,14 @@ in
           pkgs.thunderbird
           pkgs.libreoffice
           pkgs.blender
+          pkgs.obsidian
+          pkgs.pavucontrol
+          pkgs.android-studio
+          pkgs.obs-studio
+          pkgs.kdePackages.kdenlive
+          pkgs.appimage-run
+          pkgs.openshot-qt
+          pkgs.krita
           my-pkgs.tmux
         ];
       };
