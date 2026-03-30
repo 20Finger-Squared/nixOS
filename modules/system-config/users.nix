@@ -15,6 +15,7 @@ in
       users.tf = {
         isNormalUser = true;
         description = "Rhylie M. Orton";
+        shell = pkgs.zsh;
         extraGroups = [
           "networkmanager"
           "tty"

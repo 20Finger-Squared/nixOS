@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   colorscheme,
@@ -14,7 +15,7 @@ in
     programs.st = {
       enable = true;
       borderpx = 3;
-      shell = "/bin/sh";
+      shell = "${lib.getExe pkgs.zsh}";
       tab-spaces = 2;
       cursor-thickness = 2;
       cursor-shape = 2;

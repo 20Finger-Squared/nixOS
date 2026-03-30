@@ -6,7 +6,7 @@
 }:
 {
   software-config = {
-    bash.enable = true;
+    zsh.enable = true;
     dmenu.enable = true;
     dunst.enable = true;
     dwm.enable = true;
