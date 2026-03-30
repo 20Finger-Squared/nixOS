@@ -44,4 +44,18 @@
     users.enable = true;
   };
   system.stateVersion = "25.05";
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  hardware.opengl.enable = true;
+  # Enable OpenTabletDriver
+  hardware.opentabletdriver.enable = true;
+
+  # Required by OpenTabletDriver
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
 }
