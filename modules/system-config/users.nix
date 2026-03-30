@@ -17,6 +17,7 @@ in
         description = "Rhylie M. Orton";
         shell = pkgs.zsh;
         extraGroups = [
+          "audio"
           "networkmanager"
           "tty"
           "wheel"
