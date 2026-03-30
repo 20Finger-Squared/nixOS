@@ -7,9 +7,9 @@
   btop = import ./btop { inherit pkgs; };
   sxot = import ./sxot { inherit pkgs; };
   selx = import ./selx { inherit pkgs; };
+  starship = import ./starship { inherit pkgs colorscheme; };
   dunst = import ./dunst {
-    inherit pkgs;
-    inherit colorscheme;
+    inherit pkgs colorscheme;
   };
   bash = import ./bash { inherit pkgs; };
   tmux = import ./tmux { inherit pkgs; };

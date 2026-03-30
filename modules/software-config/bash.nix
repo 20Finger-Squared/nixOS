@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  my-pkgs,
   ...
 }:
 let
@@ -12,7 +13,7 @@ in
   config = mkIf config.software-config.bash.enable {
     environment.systemPackages = [
       pkgs.zoxide
-      pkgs.starship
+      my-pkgs.starship
     ];
     programs.bash = {
       completion.enable = true;
