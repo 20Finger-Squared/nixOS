@@ -1,11 +1,7 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.clangd.setup({})
-
--- Standard LSP capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   cmd = { "clangd", "--header-insertion=iwyu", "--clang-tidy" },
   init_options = {
     clangdOnSave = true,
@@ -19,136 +15,141 @@ lspconfig.clangd.setup({
     }
   }
 })
+vim.lsp.enable('clangd')
 
-lspconfig.marksman.setup({
-    cmd = { "marksman", "server" },
-    filetypes = { "markdown" },
-    root_dir = lspconfig.util.root_pattern(".git", "."),
-    settings = {},
-})
-
--- HTML LSP
-lspconfig.html.setup({
-    capabilities = capabilities,
-    settings = {
-	html = {
-	    format = {
-		templating = true,
-		wrapLineLength = 120,
-		wrapAttributes = 'auto',
-	    },
-	    hover = {
-		documentation = true,
-		references = true,
-	    },
-	},
-    },
-})
-
--- CSS LSP
-lspconfig.cssls.setup({
-    capabilities = capabilities,
-    settings = {
-	css = { validate = true },
-    },
-})
-
--- Yuck LSP setup
-lspconfig.yuck_ls.setup({
-    default_config = {
-	cmd = { "yuckls" },
-	filetypes = { "yuck" },
-    }
-})
-
--- TypeScript / JavaScript LSP
-lspconfig.ts_ls.setup({
-    name = "ts_ls", -- optional alias
-    capabilities = capabilities,
-    settings = {
-	javascript = { format = { semicolons = 'insert' } },
-	typescript = { format = { semicolons = 'insert' } },
-    },
-})
-
--- Changed from pyright to basedpyright
-lspconfig.basedpyright.setup({
-    settings = {
-	basedpyright = {
-	    analysis = {
-		inlayHints = {
-		    variableTypes = true,
-		    callArgumentNames = true
-		},
-		diagnosticMode = "openFilesOnly" -- Fixed typo: "diagnositcMode"
-	    }
-	}
-    }
-})
-
-lspconfig.lua_ls.setup({
-    settings = {
-	Lua = {
-	    runtime = { version = 'LuaJIT' },
-	    diagnostics = { globals = { 'vim' } },
-	    workspace = {
-		library = vim.api.nvim_get_runtime_file("", true),
-		checkThirdParty = false,
-	    },
-	    telemetry = { enable = false },
-	    format = {
-		enable = true,
-		defaultConfig = {
-		    indent_style = "space",
-		    indent_size = "2",
-		    max_width = "80",
-		}
-	    }
-	},
-    },
-})
-
--- Nil LSP (for Nix language)
-lspconfig.nil_ls.setup({
-    cmd = { "nil" }, -- or "nil-lsp" depending on your system package
-    filetypes = { "nix" },
-    root_dir = lspconfig.util.root_pattern(".git", "flake.nix", "default.nix", "shell.nix"),
-    capabilities = capabilities,
-    settings = {
-        ['nil'] = {
-            formatting = {
-                command = { "nixfmt" }, -- or "alejandra" if you prefer
-            },
-            nix = {
-                flake = {
-                    autoEvalInputs = true,
-                },
-            },
-        },
-    },
-})
-
-local lspconfig = require('lspconfig')
-
-lspconfig.intelephense.setup({
-  on_attach = function(client, bufnr)
-    -- Enable inlay hints if supported
-    if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-    end
-
-    -- Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end,
-    })
+vim.lsp.config('marksman', {
+  cmd = { "marksman", "server" },
+  filetypes = { "markdown" },
+  root_dir = function(bufnr)
+    return vim.fs.root(bufnr, { ".git", "." })
   end,
+  settings = {},
+})
+vim.lsp.enable('marksman')
 
+vim.lsp.config('html', {
+  capabilities = capabilities,
+  settings = {
+    html = {
+      format = {
+        templating = true,
+        wrapLineLength = 120,
+        wrapAttributes = 'auto',
+      },
+      hover = {
+        documentation = true,
+        references = true,
+      },
+    },
+  },
+})
+vim.lsp.enable('html')
+
+vim.lsp.config('cssls', {
+  capabilities = capabilities,
+  settings = {
+    css = { validate = true },
+  },
+})
+vim.lsp.enable('cssls')
+
+vim.lsp.config('yuck_ls', {
+  default_config = {
+    cmd = { "yuckls" },
+    filetypes = { "yuck" },
+  }
+})
+vim.lsp.enable('yuck_ls')
+
+vim.lsp.config('ts_ls', {
+  name = "ts_ls",
+  capabilities = capabilities,
+  settings = {
+    javascript = { format = { semicolons = 'insert' } },
+    typescript = { format = { semicolons = 'insert' } },
+  },
+})
+vim.lsp.enable('ts_ls')
+
+vim.lsp.config('basedpyright', {
+  settings = {
+    basedpyright = {
+      analysis = {
+        inlayHints = {
+          variableTypes = true,
+          callArgumentNames = true
+        },
+        diagnosticMode = "openFilesOnly"
+      }
+    }
+  }
+})
+vim.lsp.enable('basedpyright')
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      telemetry = { enable = false },
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+          max_width = "80",
+        }
+      }
+    },
+  },
+})
+vim.lsp.enable('lua_ls')
+
+vim.lsp.config('nixd', {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import (builtins.getFlake \"/home/tf/nixOS\").inputs.nixpkgs { overlays = [ ]; }",
+      },
+      options = {
+        nixos = {
+          expr = "(builtins.getFlake \"/home/tf/nixOS\").nixosConfigurations.pc.options",
+        },
+      },
+    },
+  },
+})
+vim.lsp.enable('nixd')
+
+vim.lsp.config('nil_ls', {
+  cmd = { "nil" },
+  filetypes = { "nix" },
+  root_dir = function(bufnr)
+    return vim.fs.root(bufnr, { ".git", "flake.nix", "default.nix", "shell.nix" })
+  end,
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixfmt" },
+      },
+      nix = {
+        flake = {
+          autoEvalInputs = true,
+        },
+      },
+    },
+  },
+})
+vim.lsp.enable('nil_ls')
+
+vim.lsp.config('intelephense', {
   settings = {
     intelephense = {
-      -- PHP stubs for better completion
       stubs = {
         "apache", "bcmath", "bz2", "calendar", "com_dotnet", "Core", "ctype", "curl",
         "date", "dba", "dom", "enchant", "exif", "FFI", "fileinfo", "filter", "fpm",
@@ -160,29 +161,39 @@ lspconfig.intelephense.setup({
         "superglobals", "sysvmsg", "sysvsem", "sysvshm", "tidy", "tokenizer", "xml",
         "xmlreader", "xmlrpc", "xmlwriter", "xsl", "Zend OPcache", "zip", "zlib"
       },
-
       files = {
-        maxSize = 1000000, -- 1MB
+        maxSize = 1000000,
         exclude = {
-          "**/.git/**",
-          "**/.svn/**",
-          "**/.hg/**",
-          "**/CVS/**",
-          "**/.DS_Store/**",
-          "**/node_modules/**",
-          "**/bower_components/**",
-          "**/vendor/**/{Tests,tests}/**",
+          "**/.git/**", "**/.svn/**", "**/.hg/**", "**/CVS/**", "**/.DS_Store/**",
+          "**/node_modules/**", "**/bower_components/**", "**/vendor/**/{Tests,tests}/**",
         },
       },
-
-      -- Enable all features
-      diagnostics = {
-        enable = true,
-      },
-
-      format = {
-        enable = true,
-      },
+      diagnostics = { enable = true },
+      format = { enable = true },
     },
   },
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client or client.name ~= "intelephense" then return end
+
+    local bufnr = args.buf
+
+    -- Handle Inlay Hints
+    if client.supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    -- Proper formatting autocmd
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
+  end,
+})
+
+vim.lsp.enable('intelephense')

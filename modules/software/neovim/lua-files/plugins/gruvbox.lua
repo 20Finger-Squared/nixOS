@@ -4,6 +4,11 @@ require("gruvbox").setup({
     terminal_colors = true,
 })
 
-vim.cmd([[ hi Normal guibg=NONE ctermbg=NONE ]])
+vim.cmd([[
+  hi Normal      guibg=NONE ctermbg=NONE
+  hi NormalFloat guibg=NONE ctermbg=NONE
+  hi FloatBorder guibg=NONE ctermbg=NONE
+]])
+
 -- Apply the colorscheme after setup
 vim.cmd("colorscheme gruvbox")
