@@ -26,9 +26,9 @@
 
   desktop-config = {
     plasma = true;
+    hyprland = true;
   };
 
   networking.hostName = "pc";
-
   system.stateVersion = "25.11";
 }
