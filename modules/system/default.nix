@@ -9,5 +9,6 @@
     ./printing.nix
     ./security.nix
     ./users.nix
+    ./fonts.nix
   ];
 }
