@@ -27,5 +27,7 @@
     plasma = true;
   };
 
+  networking.hostName = "pc";
+
   system.stateVersion = "25.11";
 }

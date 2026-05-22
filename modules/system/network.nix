@@ -1,7 +1,6 @@
 { lib, ... }@inputs:
 lib.mkSystemOption "network" inputs {
   networking = {
-    hostName = "tf-pc";
     networkmanager.enable = true;
   };
 
