@@ -1,7 +1,8 @@
-{...}:
+{ ... }:
 {
-imports = [
-./git.nix
-./neovim
-];
+  imports = [
+    ./git.nix
+    ./neovim
+    ./nix-helper.nix
+  ];
 }

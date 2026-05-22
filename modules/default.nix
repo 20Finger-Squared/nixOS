@@ -1,4 +1,8 @@
-{...}:
+{ ... }:
 {
-  imports = [./software ./system];
+  imports = [
+    ./software
+    ./system
+    ./desktop
+  ];
 }

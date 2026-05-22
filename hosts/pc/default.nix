@@ -5,43 +5,26 @@
   ...
 }:
 {
-  software-config.git = true;
-  software-config.neovim = true;
+
+  software-config = {
+    git = true;
+    neovim = true;
+    nh = true;
+  };
+
   system-config = {
-    network = true;
+    audio = true;
     boot = true;
+    keyboard = true;
+    network = true;
+    nix = true;
+    printing = true;
+    security = true;
     users = true;
   };
 
-  security.rtkit.enable = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nixpkgs.config.allowUnfree = true;
-
-  services = {
-    xserver.enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma6.enable = true;
-
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    printing.enable = true;
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-  };
-
-  programs = {
-    neovim.enable = true;
+  desktop-config = {
+    plasma = true;
   };
 
   system.stateVersion = "25.11";

@@ -1,27 +1,16 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-let
-  inherit (lib) filesystem mkIf mkEnableOption;
-in
-{
-  options.software-config.neovim = mkEnableOption "my neovim config";
-  config = mkIf config.software-config.neovim {
-    environment = {
-      sessionVariables.EDITOR = "nvim";
-      systemPackages = [
-        # dev setup for nixOS
-        pkgs.nixfmt-rfc-style # formatter for dot-nix
-        pkgs.nil
+{ pkgs, lib, ... }@inputs:
+lib.mkSoftwareOption "neovim" inputs {
+  environment = {
+    sessionVariables.EDITOR = "nvim";
+    systemPackages = [
+      # dev setup for nixOS
+      pkgs.nixfmt # formatter for dot-nix
 
-        # lsp and C compiler
-        pkgs.clang-tools
-        pkgs.clang
-      ];
-    };
+      # lsp and C compiler
+      pkgs.clang-tools
+      pkgs.clang
+    ];
+  };
 
     programs.neovim = {
       enable = true;
