@@ -19,6 +19,7 @@ lib.mkSystemOption "users" inputs {
       kitty
       lazygit
       kdePackages.kate
+      fastfetch
     ];
   };
 }
