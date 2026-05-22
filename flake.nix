@@ -18,7 +18,10 @@
 
       mkSystem =
         hosts: system:
-        nixpkgs.lib.nixosSystem {
+        let # adds the custom functions from helper-functions.nix
+          extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
+        in
+        extendedLib.nixosSystem {
           system = "${system}";
           specialArgs = {
             inherit inputs;
