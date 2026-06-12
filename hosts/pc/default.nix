@@ -15,6 +15,7 @@
   system-config = {
     audio = true;
     boot = true;
+    bluetooth = true;
     fonts = true;
     keyboard = true;
     network = true;
