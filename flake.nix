@@ -1,9 +1,6 @@
 {
   description = "My conf";
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  };
+  inputs.nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
   outputs =
     { nixpkgs, ... }@inputs:
@@ -18,7 +15,7 @@
 
       mkSystem =
         hosts: system:
-        let # adds the custom functions from helper-functions.nix
+        let
           extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
         in
         extendedLib.nixosSystem {
