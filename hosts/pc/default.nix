@@ -30,6 +30,12 @@
     hyprland = true;
   };
 
+  programing-language-config = {
+    c = true;
+    python = true;
+    nix = true;
+  };
+
   networking.hostName = "pc";
   system.stateVersion = "25.11";
 }

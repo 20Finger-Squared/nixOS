@@ -2,15 +2,6 @@
 lib.mkSoftwareOption "neovim" inputs {
   environment = {
     sessionVariables.EDITOR = "nvim";
-    systemPackages = [
-      # dev setup for nixOS
-      pkgs.nixfmt # formatter for dot-nix
-      pkgs.nixd
-
-      # lsp and C compiler
-      pkgs.clang-tools
-      pkgs.clang
-    ];
   };
 
   programs.neovim = {

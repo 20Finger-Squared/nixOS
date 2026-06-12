@@ -9,5 +9,6 @@ lib: rec {
 
   mkSystemOption = mkConfigOption "system-config";
   mkSoftwareOption = mkConfigOption "software-config";
+  mkProgramingLanguageOption = mkConfigOption "programing-language-config";
   mkDesktopOption = mkConfigOption "desktop-config";
 }

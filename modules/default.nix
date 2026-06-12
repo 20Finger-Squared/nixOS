@@ -4,5 +4,6 @@
     ./software
     ./system
     ./desktop
+    ./programing-languages
   ];
 }
