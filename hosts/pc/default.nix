@@ -28,6 +28,9 @@
   desktop-config = {
     plasma = true;
     hyprland = true;
+    qutebrowser = true;
+    via = true;
+    obsidian = true;
   };
 
   programing-language-config = {
@@ -35,6 +38,10 @@
     python = true;
     nix = true;
   };
+
+  environment.systemPackages = [
+    pkgs.btop
+  ];
 
   networking.hostName = "pc";
   system.stateVersion = "25.11";
