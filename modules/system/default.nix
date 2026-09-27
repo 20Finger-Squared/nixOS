@@ -12,6 +12,7 @@
     ./security.nix
     ./users.nix
     ./fonts.nix
+    ./nintendo-controller-support.nix
     ./graphics.nix
   ];
 }
