@@ -1,9 +1,13 @@
 {
   description = "My conf";
   inputs.nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+  inputs.home-manager = {
+    url = "github:nix-community/home-manager/release-26.05";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "aarch64-linux"
@@ -29,10 +33,13 @@
               colourscheme = local_colourscheme;
             };
           };
+
           modules = [
             ./modules
             ./hosts/${hosts}
             ./hosts/${hosts}/hardware-configuration.nix
+            home-manager.nixosModules.home-manager
+            ./home-manager
           ];
         };
     in
