@@ -5,14 +5,18 @@
   ...
 }:
 {
-
   software-config = {
+    email = true;
     git = true;
-    neovim = true;
+    neovim = false;
+    input-remapper = true;
+    tailscale = true;
     nh = true;
   };
 
   system-config = {
+    nintendo-controller-support = true;
+    graphics = true;
     audio = true;
     boot = true;
     bluetooth = true;
@@ -26,8 +30,12 @@
   };
 
   desktop-config = {
+    steam = true;
     plasma = true;
     hyprland = true;
+    qutebrowser = true;
+    via = true;
+    obsidian = true;
   };
 
   programing-language-config = {
@@ -35,6 +43,16 @@
     python = true;
     nix = true;
   };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false;
+    nvidiaSettings = true;
+  };
+
+  environment.systemPackages = [pkgs.azahar];
 
   networking.hostName = "pc";
   system.stateVersion = "25.11";
