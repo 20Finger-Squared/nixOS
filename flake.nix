@@ -17,12 +17,17 @@
         hosts: system:
         let
           extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
+          local_colourscheme = (import ./colourscheme.nix).gruvbox;
         in
         extendedLib.nixosSystem {
           system = "${system}";
           specialArgs = {
             inherit inputs;
-            my-pkgs = import ./packages { pkgs = nixpkgs.legacyPackages.${system}; };
+            colourscheme = local_colourscheme;
+            my-pkgs = import ./packages {
+              pkgs = nixpkgs.legacyPackages.${system};
+              colourscheme = local_colourscheme;
+            };
           };
           modules = [
             ./modules
