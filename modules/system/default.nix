@@ -12,5 +12,6 @@
     ./security.nix
     ./users.nix
     ./fonts.nix
+    ./graphics.nix
   ];
 }
