@@ -20,6 +20,10 @@ lib.mkSystemOption "users" inputs {
       lazygit
       kdePackages.kate
       fastfetch
+      prismlauncher
+      steam
+      teamspeak6-client
+      obs-studio
     ];
   };
 }
