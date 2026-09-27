@@ -11,6 +11,8 @@ lib.mkSystemOption "users" inputs {
     extraGroups = [
       "networkmanager"
       "wheel"
+      "openrazer"
+      "input-remapper"
     ];
     packages = with pkgs; [
       firefox
