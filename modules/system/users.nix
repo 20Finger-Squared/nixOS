@@ -6,6 +6,8 @@
 }@inputs:
 lib.mkSystemOption "users" inputs {
   users.users.tf = {
+    shell = pkgs.zsh;
+    ignoreShellProgramCheck = true;
     isNormalUser = true;
     description = "Rhylie M. Orton";
     extraGroups = [
@@ -15,7 +17,6 @@ lib.mkSystemOption "users" inputs {
       "input-remapper"
     ];
     packages = with pkgs; [
-      firefox
       vesktop
       my-pkgs.tmux
       kitty
@@ -23,9 +24,11 @@ lib.mkSystemOption "users" inputs {
       kdePackages.kate
       fastfetch
       prismlauncher
-      steam
       teamspeak6-client
       obs-studio
+      my-pkgs.limusic
+      pkgs.azahar
     ];
   };
+  programs.firefox.enable = true;
 }
