@@ -16,13 +16,11 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
+      extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
+      local_colourscheme = (import ./colourscheme.nix).gruvbox;
 
       mkSystem =
         hosts: system:
-        let
-          extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
-          local_colourscheme = (import ./colourscheme.nix).gruvbox;
-        in
         extendedLib.nixosSystem {
           system = "${system}";
           specialArgs = {
@@ -31,6 +29,8 @@
             my-pkgs = import ./packages {
               pkgs = nixpkgs.legacyPackages.${system};
               colourscheme = local_colourscheme;
+              lib = extendedLib;
+              inherit inputs;
             };
           };
 
@@ -38,8 +38,13 @@
             ./modules
             ./hosts/${hosts}
             ./hosts/${hosts}/hardware-configuration.nix
-            home-manager.nixosModules.home-manager
             ./home-manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {
+                colourscheme = local_colourscheme;
+              };
+            }
           ];
         };
     in
