@@ -1,16 +1,11 @@
-{
-  config,
-  my-pkgs,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   software-config = {
     email = true;
     git = true;
     neovim = false;
     input-remapper = true;
-    tailscale = true;
+    tailscale = false;
     nh = true;
   };
 
@@ -33,7 +28,7 @@
     steam = true;
     plasma = true;
     hyprland = true;
-    qutebrowser = true;
+    qutebrowser = false; # replaced by home-manager
     via = true;
     obsidian = true;
   };
@@ -52,7 +47,10 @@
     nvidiaSettings = true;
   };
 
-  environment.systemPackages = [pkgs.azahar];
+  fileSystems."/games" = {
+    device = "/dev/disk/by-uuid/5ce6a227-91cd-46d4-8358-3471127946af";
+    fsType = "ext4";
+  };
 
   networking.hostName = "pc";
   system.stateVersion = "25.11";
