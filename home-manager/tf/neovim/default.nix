@@ -16,6 +16,8 @@
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
 
+      render-markdown-nvim
+
       mini-ai
       mini-align
       mini-move
