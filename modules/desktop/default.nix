@@ -7,5 +7,6 @@
     ./hyprland
     ./qutebrowser.nix
     ./obsidian.nix
+    ./email.nix
   ];
 }
