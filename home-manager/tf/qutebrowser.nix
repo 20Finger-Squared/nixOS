@@ -416,12 +416,7 @@
           leave_on_load = true;
           mode = "letter";
           scatter = true;
-          padding = {
-            "top" = 2;
-            "bottom" = 2;
-            "left" = 2;
-            "right" = 2;
-          };
+          padding = "{top:2, bottom:2, left:2, right:2}";
         };
 
         input = {
