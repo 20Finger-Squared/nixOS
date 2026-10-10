@@ -6,20 +6,24 @@ vim.lsp.config("nixd", {
     settings = {
         nixd = {
             nixpkgs = {
-                expr = 'import (builtins.getFlake ("~/nixOS")).inputs.nixpkgs { }',
-            },
-
-            options = {
-                nixos = {
-                    expr = '(builtins.getFlake ("~/nixOS")).nixosConfigurations."tf-nixos".options',
-                },
-
-                home_manager = {
-                    expr = '(builtins.getFlake ("~/nixOS")).nixosConfigurations."tf-nixos".options.home-manager.users.type.getSubOptions []',
-                },
+                expr = 'import (builtins.getFlake "/home/tf/nixOS").inputs.nixpkgs { }',
             },
         },
     },
 })
 
 vim.lsp.enable("nixd")
+
+vim.lsp.config("clangd", {
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+    root_markers = {
+        ".clangd",
+        "compile_commands.json",
+        "compile_flags.txt",
+        "configure.ac",
+        ".git",
+    },
+})
+
+vim.lsp.enable("clangd")
