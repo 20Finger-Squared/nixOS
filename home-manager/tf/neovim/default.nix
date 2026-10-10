@@ -18,10 +18,12 @@
 
       render-markdown-nvim
 
+      blink-cmp
+      luasnip
+
       mini-ai
       mini-align
       mini-move
-      mini-pairs
       mini-surround
       mini-bracketed
       mini-cmdline
