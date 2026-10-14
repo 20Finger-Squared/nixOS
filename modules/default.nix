@@ -6,5 +6,6 @@
     ./desktop
     ./programing-languages
     ./helpers
+    ./home-manager
   ];
 }
