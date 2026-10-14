@@ -1,9 +1,8 @@
 { ... }@inputs:
 {
   imports = [
-    ./gtk.nix
-    inputs.nixvim.homeManagerModules.nixvim
 
+    ./gtk.nix
     ./neovim.nix
     ./zsh.nix
     ./fzf.nix
@@ -11,6 +10,8 @@
     ./zoxide.nix
     ./eza.nix
     ./qutebrowser.nix
+
+    inputs.nixvim.homeManagerModules.nixvim
   ];
   home = {
     stateVersion = "26.05";
