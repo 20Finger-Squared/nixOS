@@ -1,6 +1,7 @@
 { ... }@inputs:
 {
   imports = [
+    ./hyprland
 
     ./gtk.nix
     ./neovim.nix
