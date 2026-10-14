@@ -1,9 +1,10 @@
-{ pkgs, ... }:
-
+{ ... }@inputs:
 {
   imports = [
     ./gtk.nix
-    ./neovim
+    inputs.nixvim.homeManagerModules.nixvim
+
+    ./neovim.nix
     ./zsh.nix
     ./fzf.nix
     ./starship.nix
