@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   software-config = {
     email = true;
@@ -27,7 +26,7 @@
   desktop-config = {
     steam = true;
     plasma = true;
-    hyprland = true;
+    hyprland = false;
     qutebrowser = false; # replaced by home-manager
     via = true;
     obsidian = true;
@@ -36,6 +35,7 @@
   programing-language-config = {
     c = true;
     python = true;
+    lua = true;
     nix = true;
   };
 
