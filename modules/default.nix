@@ -5,5 +5,6 @@
     ./system
     ./desktop
     ./programing-languages
+    ./helpers
   ];
 }
