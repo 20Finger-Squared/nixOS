@@ -2,7 +2,6 @@
   software-config = {
     email = true;
     git = true;
-    neovim = false;
     input-remapper = true;
     tailscale = false;
     nh = true;
