@@ -2,53 +2,46 @@
   description = "My conf";
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      nixvim,
-      ...
-    }@inputs:
+    { ... }@inputs:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-      extendedLib = nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
+      extendedLib = inputs.nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
 
       mkSystem =
-        hosts: system:
+        host: system:
         extendedLib.nixosSystem {
-          system = "${system}";
+          system = system;
           specialArgs = {
             inherit inputs;
             my-pkgs = import ./packages {
-              pkgs = nixpkgs.legacyPackages.${system};
+              pkgs = inputs.nixpkgs.legacyPackages.${system};
               lib = extendedLib;
               inherit inputs;
             };
+
           };
 
           modules = [
             ./modules
-            ./hosts/${hosts}
-            ./hosts/${hosts}/hardware-configuration.nix
+            ./hosts/${host}
+            ./hosts/${host}/hardware-configuration.nix
 
-            home-manager.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
           ];
         };
+
     in
     {
-      nixosConfigurations.pc = mkSystem "pc" "x86_64-linux";
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      nixosConfigurations =
+        {
+          pc = "x86_64-linux";
+        }
+        |> extendedLib.mapAttrs (host-name: mkSystem "${host-name}");
     };
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixvim.url = "github:nix-community/nixvim";
-
+    import-tree.url = "github:denful/import-tree";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
