@@ -1,6 +1,10 @@
 {
   description = "My conf";
 
+  nixConfig.extra-experimetal-features = [
+    "pipe-operators"
+  ];
+
   outputs =
     { ... }@inputs:
     let

@@ -13,7 +13,6 @@ lib.mkSystemOption "nix" inputs {
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operators"
       ];
     };
 
