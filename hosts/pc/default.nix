@@ -25,7 +25,6 @@
   desktop-config = {
     steam = true;
     plasma = true;
-    qutebrowser = false; # replaced by home-manager
     via = true;
     obsidian = true;
   };
