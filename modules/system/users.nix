@@ -25,7 +25,6 @@ lib.mkSystemOption "users" inputs {
       prismlauncher
       teamspeak6-client
       obs-studio
-      my-pkgs.limusic
       pkgs.azahar
     ];
   };
