@@ -17,7 +17,6 @@ lib.mkSystemOption "users" inputs {
       "input-remapper"
     ];
     packages = with pkgs; [
-      vesktop
       my-pkgs.tmux
       kitty
       lazygit

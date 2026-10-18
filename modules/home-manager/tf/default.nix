@@ -11,6 +11,7 @@
     ./zoxide.nix
     ./eza.nix
     ./qutebrowser.nix
+    ./vesktop.nix
 
     inputs.nixvim.homeManagerModules.nixvim
   ];
