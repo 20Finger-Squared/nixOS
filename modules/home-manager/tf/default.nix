@@ -3,6 +3,7 @@
   imports = [
     ./hyprland
 
+    ./tmux.nix
     ./gtk.nix
     ./neovim.nix
     ./zsh.nix

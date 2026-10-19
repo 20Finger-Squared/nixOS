@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  my-pkgs,
   ...
 }@inputs:
 lib.mkSystemOption "users" inputs {
@@ -17,7 +16,6 @@ lib.mkSystemOption "users" inputs {
       "input-remapper"
     ];
     packages = with pkgs; [
-      my-pkgs.tmux
       kitty
       lazygit
       kdePackages.kate
