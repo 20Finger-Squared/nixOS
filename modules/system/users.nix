@@ -3,7 +3,7 @@
   pkgs,
   ...
 }@inputs:
-mkConfig.mkSystemOption "users" inputs {
+mkConfig.system "users" inputs {
   users.users.tf = {
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

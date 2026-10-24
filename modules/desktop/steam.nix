@@ -1,5 +1,5 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkDesktopOption "steam" inputs {
+mkConfig.desktop "steam" inputs {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

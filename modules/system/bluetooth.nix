@@ -1,5 +1,5 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSystemOption "bluetooth" inputs {
+mkConfig.system "bluetooth" inputs {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;

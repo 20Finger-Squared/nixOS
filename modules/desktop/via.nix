@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkDesktopOption "via" inputs {
+mkConfig.desktop "via" inputs {
   environment.systemPackages = [
     pkgs.vial
     pkgs.via

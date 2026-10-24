@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkSystemOption "audio" inputs {
+mkConfig.system "audio" inputs {
   services = {
     pulseaudio.enable = false;
     pipewire = {

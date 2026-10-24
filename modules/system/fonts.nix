@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkSystemOption "fonts" inputs {
+mkConfig.system "fonts" inputs {
   fonts = {
     packages = [
       pkgs.noto-fonts-color-emoji

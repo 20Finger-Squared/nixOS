@@ -1,5 +1,5 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSoftwareOption "nh" inputs {
+mkConfig.software "nh" inputs {
   programs.nh = {
     enable = true;
     flake = "/home/tf/nixOS/";

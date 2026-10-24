@@ -1,4 +1,4 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkSoftwareOption "email" inputs {
+mkConfig.software "email" inputs {
   environment.systemPackages = [ pkgs.thunderbird ];
 }

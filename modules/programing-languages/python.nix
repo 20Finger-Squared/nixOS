@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkProgramingLanguageOption "python" inputs {
+mkConfig.programing-language "python" inputs {
   environment.systemPackages = [
     pkgs.ruff
     pkgs.basedpyright

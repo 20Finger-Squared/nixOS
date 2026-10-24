@@ -8,20 +8,27 @@
   outputs =
     { ... }@inputs:
     let
-      lib = inputs.nixpkgs.lib;
+      mkConfigOption = config-tag: config-name: inputs: attrset: {
+        options.${config-tag}.${config-name} = inputs.lib.mkEnableOption "my ${config-name} config";
+        config = inputs.lib.mkIf inputs.config.${config-tag}.${config-name} attrset;
+      };
+
+      mkConfig = {
+        inherit mkConfigOption;
+
+        system = mkConfigOption "system-config";
+        software = mkConfigOption "software-config";
+        programing-language = mkConfigOption "programing-language-config";
+        desktop = mkConfigOption "desktop-config";
+      };
 
       mkSystem =
         host: system:
-        lib.nixosSystem {
+        inputs.nixpkgs.lib.nixosSystem {
           system = system;
           specialArgs = {
             inherit inputs;
-            mkConfig = import ./helper-functions.nix;
-            # TODO get rid of extra arg
-            my-pkgs = import ./packages {
-              pkgs = inputs.nixpkgs.legacyPackages.${system};
-              inherit inputs;
-            };
+            inherit mkConfig;
           };
 
           # TODO convert to inport-tree
@@ -39,7 +46,7 @@
         {
           pc = "x86_64-linux";
         }
-        |> lib.mapAttrs (host-name: mkSystem "${host-name}");
+        |> inputs.nixpkgs.lib.mapAttrs (host-name: mkSystem "${host-name}");
     };
 
   inputs = {

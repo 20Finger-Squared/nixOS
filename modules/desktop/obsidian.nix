@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkDesktopOption "obsidian" inputs {
+mkConfig.desktop "obsidian" inputs {
   environment.systemPackages = [
     pkgs.obsidian
   ];

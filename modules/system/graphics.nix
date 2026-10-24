@@ -1,4 +1,4 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSystemOption "graphics" inputs {
+mkConfig.system "graphics" inputs {
   hardware.graphics.enable = true;
 }

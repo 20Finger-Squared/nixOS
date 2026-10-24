@@ -3,7 +3,7 @@
   pkgs,
   ...
 }@inputs:
-mkConfig.mkSystemOption "nintendo-controller-support" inputs {
+mkConfig.system "nintendo-controller-support" inputs {
   hardware = {
     steam-hardware.enable = true;
     uinput.enable = true;

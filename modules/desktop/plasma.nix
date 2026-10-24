@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkDesktopOption "plasma" inputs {
+mkConfig.desktop "plasma" inputs {
   services = {
     xserver.enable = true;
     displayManager.sddm.enable = true;

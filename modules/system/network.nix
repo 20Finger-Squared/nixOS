@@ -1,5 +1,5 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSystemOption "network" inputs {
+mkConfig.system "network" inputs {
   networking = {
     networkmanager.enable = true;
   };

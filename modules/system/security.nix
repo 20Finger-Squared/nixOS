@@ -1,4 +1,4 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSystemOption "security" inputs {
+mkConfig.system "security" inputs {
   security.rtkit.enable = true;
 }

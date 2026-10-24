@@ -1,5 +1,5 @@
 { mkConfig, ... }@inputs:
-mkConfig.mkSoftwareOption "git" inputs {
+mkConfig.software "git" inputs {
   programs.git = {
     enable = true;
     config = {

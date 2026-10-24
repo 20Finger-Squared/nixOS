@@ -1,5 +1,5 @@
 { mkConfig, pkgs, ... }@inputs:
-mkConfig.mkSoftwareOption "input-remapper" inputs {
+mkConfig.software "input-remapper" inputs {
   services.ratbagd.enable = true;
   services.input-remapper = {
     enable = true;
