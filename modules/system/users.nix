@@ -24,6 +24,7 @@ lib.mkSystemOption "users" inputs {
       teamspeak6-client
       obs-studio
       pkgs.azahar
+      pkgs.lmms
     ];
   };
   programs.firefox.enable = true;
