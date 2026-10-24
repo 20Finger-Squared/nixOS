@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkDesktopOption "via" inputs {
+{ mkConfig, pkgs, ... }@inputs:
+mkConfig.mkDesktopOption "via" inputs {
   environment.systemPackages = [
     pkgs.vial
     pkgs.via

@@ -1,9 +1,9 @@
 {
-  lib,
+  mkConfig,
   pkgs,
   ...
 }@inputs:
-lib.mkSystemOption "nintendo-controller-support" inputs {
+mkConfig.mkSystemOption "nintendo-controller-support" inputs {
   hardware = {
     steam-hardware.enable = true;
     uinput.enable = true;

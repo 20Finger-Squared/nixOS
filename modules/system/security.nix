@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
-lib.mkSystemOption "security" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "security" inputs {
   security.rtkit.enable = true;
 }

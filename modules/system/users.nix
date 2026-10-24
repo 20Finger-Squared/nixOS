@@ -1,9 +1,9 @@
 {
-  lib,
+  mkConfig,
   pkgs,
   ...
 }@inputs:
-lib.mkSystemOption "users" inputs {
+mkConfig.mkSystemOption "users" inputs {
   users.users.tf = {
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

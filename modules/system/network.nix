@@ -1,5 +1,5 @@
-{ lib, ... }@inputs:
-lib.mkSystemOption "network" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "network" inputs {
   networking = {
     networkmanager.enable = true;
   };

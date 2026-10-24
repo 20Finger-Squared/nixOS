@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkSystemOption "boot" inputs {
+{ mkConfig, pkgs, ... }@inputs:
+mkConfig.mkSystemOption "boot" inputs {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {

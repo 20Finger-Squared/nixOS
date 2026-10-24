@@ -1,4 +1,4 @@
-{lib, pkgs, ...}@inputs:
-lib.mkSystemOption "graphics" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "graphics" inputs {
   hardware.graphics.enable = true;
 }

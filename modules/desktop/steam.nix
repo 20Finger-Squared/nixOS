@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkDesktopOption "steam" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkDesktopOption "steam" inputs {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

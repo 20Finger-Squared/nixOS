@@ -8,22 +8,23 @@
   outputs =
     { ... }@inputs:
     let
-      extendedLib = inputs.nixpkgs.lib.extend (self: super: import ./helper-functions.nix self);
+      lib = inputs.nixpkgs.lib;
 
       mkSystem =
         host: system:
-        extendedLib.nixosSystem {
+        lib.nixosSystem {
           system = system;
           specialArgs = {
             inherit inputs;
+            mkConfig = import ./helper-functions.nix;
+            # TODO get rid of extra arg
             my-pkgs = import ./packages {
               pkgs = inputs.nixpkgs.legacyPackages.${system};
-              lib = extendedLib;
               inherit inputs;
             };
-
           };
 
+          # TODO convert to inport-tree
           modules = [
             ./modules
             ./hosts/${host}
@@ -32,14 +33,13 @@
             inputs.home-manager.nixosModules.home-manager
           ];
         };
-
     in
     {
       nixosConfigurations =
         {
           pc = "x86_64-linux";
         }
-        |> extendedLib.mapAttrs (host-name: mkSystem "${host-name}");
+        |> lib.mapAttrs (host-name: mkSystem "${host-name}");
     };
 
   inputs = {

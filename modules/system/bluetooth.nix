@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkSystemOption "bluetooth" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "bluetooth" inputs {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;

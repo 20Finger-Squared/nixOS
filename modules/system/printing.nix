@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
-lib.mkSystemOption "printing" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "printing" inputs {
   services.printing.enable = true;
 }

@@ -1,5 +1,5 @@
-{ lib, ... }@inputs:
-lib.mkSystemOption "nix" inputs {
+{ mkConfig, ... }@inputs:
+mkConfig.mkSystemOption "nix" inputs {
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {

@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkProgramingLanguageOption "lua" inputs {
+{ mkConfig, pkgs, ... }@inputs:
+mkConfig.mkProgramingLanguageOption "lua" inputs {
   environment.systemPackages = [
     pkgs.lua-language-server
     pkgs.luaformatter

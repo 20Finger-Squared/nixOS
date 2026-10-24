@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkDesktopOption "obsidian" inputs {
+{ mkConfig, pkgs, ... }@inputs:
+mkConfig.mkDesktopOption "obsidian" inputs {
   environment.systemPackages = [
     pkgs.obsidian
   ];

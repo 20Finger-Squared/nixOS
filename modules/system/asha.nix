@@ -1,5 +1,5 @@
-{ lib, pkgs, ... }@inputs:
-lib.mkSystemOption "asha" inputs {
+{ mkConfig, pkgs, ... }@inputs:
+mkConfig.mkSystemOption "asha" inputs {
   boot.extraModprobeConfig = ''
     options bluetooth enable_ecred=1
   '';
