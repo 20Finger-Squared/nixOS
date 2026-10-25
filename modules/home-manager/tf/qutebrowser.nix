@@ -4,6 +4,19 @@
     enable = true;
     enableDefaultBindings = true;
     loadAutoconfig = false;
+
+    quickmarks = {
+      cstimer = "https://cstimer.net/";
+      cubedb = "https://www.speedcubedb.com/algsheet/54721";
+    };
+
+    searchEngines = {
+      yt = "https://www.youtube.com/results?search_query={}";
+      np = "https://search.nixos.org/options?channel=26.05&query={}&type=packages";
+      no = "https://search.nixos.org/options?channel=26.05&query={}&type=options";
+      hmo = "https://home-manager-options.extranix.com/?query={}&release=release-26.05";
+    };
+
     aliases = {
       "w" = "session-save";
       "q" = "close";
@@ -285,7 +298,7 @@
               bg = bg;
 
               darkmode = {
-                enabled = true;
+                enabled = false;
 
                 policy = {
                   images = "never";
