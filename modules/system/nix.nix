@@ -11,6 +11,7 @@ mkConfig.system "nix" inputs {
       warn-dirty = false;
 
       experimental-features = [
+        "pipe-operators"
         "nix-command"
         "flakes"
       ];
