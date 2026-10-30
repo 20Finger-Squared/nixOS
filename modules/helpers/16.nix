@@ -76,6 +76,20 @@
       addMnemonicNames =
         scheme:
         {
+          bg = scheme.base00;
+          fg = scheme.base07;
+
+          black = scheme.base00;
+
+          darkest-gray = scheme.base01;
+          dark-gray = scheme.base02;
+          gray = scheme.base03;
+          light-gray = scheme.base04;
+
+          white = scheme.base05;
+          lighter-white = scheme.base06;
+          bright-white = scheme.base07;
+
           red = scheme.base08;
           orange = scheme.base09;
           yellow = scheme.base0A;

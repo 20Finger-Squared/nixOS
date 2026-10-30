@@ -223,14 +223,14 @@ in
     extraConfigLua =
       let
         colour = {
-          fg1 = "#${colourscheme.base07}";
-          fg = "#${colourscheme.base04}";
-          blue = "#${colourscheme.base0D}";
-          light_blue = "#${colourscheme.base0D}";
-          red = "#${colourscheme.base08}";
-          purple = "#${colourscheme.base0E}";
-          orange = "#${colourscheme.base09}";
-          bg2 = "#${colourscheme.base02}";
+          fg1 = colourscheme.base07;
+          fg = colourscheme.base04;
+          blue = colourscheme.base0D;
+          light_blue = colourscheme.base0D;
+          red = colourscheme.base08;
+          purple = colourscheme.base0E;
+          orange = colourscheme.base09;
+          bg2 = colourscheme.base02;
         };
 
         highlights = {

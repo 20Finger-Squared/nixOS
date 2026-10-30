@@ -66,13 +66,13 @@
       format = "[](fg:yellow)[$username@$hostname](bg:yellow fg:fg)[](bg:blue fg:yellow)[ $directory](bg:blue fg:fg)[](bg:purple fg:blue)[ $git_branch $git_commit $git_state $git_status $git_metrics](bg:purple fg:fg)[](fg:purple)$fill[](fg:aqua)[$time](bg:aqua fg:fg)[](fg:aqua)$line_break$character";
 
       palettes.gruvbox = {
-        yellow = "#${colourscheme.base0A}";
-        orange = "#${colourscheme.base09}";
-        blue = "#${colourscheme.base0D}";
-        purple = "#${colourscheme.base0E}";
-        aqua = "#${colourscheme.base0C}";
-        bg = "#${colourscheme.base07}";
-        fg = "#${colourscheme.base00}";
+        yellow = colourscheme.base0A;
+        orange = colourscheme.base09;
+        blue = colourscheme.base0D;
+        purple = colourscheme.base0E;
+        aqua = colourscheme.base0C;
+        bg = colourscheme.base07;
+        fg = colourscheme.base00;
       };
     };
   };
