@@ -48,16 +48,37 @@ in
 
     plugins = {
       #TODO render-markdown-nvim.enable = true;
+      treesitter = {
+        enable = true;
+        autoLoad = true;
+
+        grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+          bash
+          json
+          lua
+          make
+          markdown
+          nix
+          regex
+          toml
+          vim
+          vimdoc
+          xml
+          yaml
+        ];
+      };
+
       blink-cmp = {
         enable = true;
         settings = {
           keymap = lib_nixvim.mkRaw /* lua */ ''
             {
-            preset = "none",
-            ["<C-k>"] = { "select_prev", "fallback" },
-            ["<C-n>"] = { "select_next", "fallback" },
-            ["<Tab>"] = { "select_and_accept", "fallback" },
-            }'';
+              preset = "none",
+              ["<C-k>"] = { "select_prev", "fallback" },
+              ["<C-n>"] = { "select_next", "fallback" },
+              ["<Tab>"] = { "select_and_accept", "fallback" },
+            }
+          '';
 
           cmdline.enabled = true;
           signature.enabled = true;
@@ -83,6 +104,8 @@ in
       mini-cursorword.enable = true;
       mini-files.enable = true;
       mini-pick.enable = true;
+      mini-trailspace.enable = true;
+      mini-icons.enable = true;
       mini-clue = {
         enable = true;
         settings = {
@@ -106,38 +129,37 @@ in
           };
 
           triggers = lib_nixvim.mkRaw /* lua */ ''
-            {
-                  -- Leader triggers
-                  { mode = { 'n', 'x' }, keys = '<Leader>' },
+              {
+                    -- Leader triggers
+                    { mode = { 'n', 'x' }, keys = '<Leader>' },
 
-                  -- `[` and `]` keys
-                  { mode = 'n', keys = '[' },
-                  { mode = 'n', keys = ']' },
+                    -- `[` and `]` keys
+                    { mode = 'n', keys = '[' },
+                    { mode = 'n', keys = ']' },
 
-                  -- Built-in completion
-                  { mode = 'i', keys = '<C-x>' },
+                    -- Built-in completion
+                    { mode = 'i', keys = '<C-x>' },
 
-                  -- `g` key
-                  { mode = { 'n', 'x' }, keys = 'g' },
+                    -- `g` key
+                    { mode = { 'n', 'x' }, keys = 'g' },
 
-                  -- Marks
-                  { mode = { 'n', 'x' }, keys = "'" },
-                  { mode = { 'n', 'x' }, keys = '`' },
+                    -- Marks
+                    { mode = { 'n', 'x' }, keys = "'" },
+                    { mode = { 'n', 'x' }, keys = '`' },
 
-                  -- Registers
-                  { mode = { 'n', 'x' }, keys = '"' },
-                  { mode = { 'i', 'c' }, keys = '<C-r>' },
+                    -- Registers
+                    { mode = { 'n', 'x' }, keys = '"' },
+                    { mode = { 'i', 'c' }, keys = '<C-r>' },
 
-                  -- Window commands
-                  { mode = 'n', keys = '<C-w>' },
+                    -- Window commands
+                    { mode = 'n', keys = '<C-w>' },
 
-                  -- `z` key
-                  { mode = { 'n', 'x' }, keys = 'z' },
-                }'';
+                    -- `z` key
+                    { mode = { 'n', 'x' }, keys = 'z' },
+            }
+          '';
         };
       };
-      mini-trailspace.enable = true;
-      mini-icons.enable = true;
     };
 
     autoGroups.AutoFormatting = {
