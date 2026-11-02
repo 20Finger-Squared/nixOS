@@ -30,13 +30,6 @@
     obsidian = true;
   };
 
-  programing-language-config = {
-    c = true;
-    python = true;
-    lua = true;
-    nix = true;
-  };
-
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
