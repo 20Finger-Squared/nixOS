@@ -31,17 +31,18 @@
             inherit mkConfig;
           };
 
-          # TODO convert to inport-tree
           modules = [
-            ./modules
+            (inputs.import-tree ./modules)
+
             ./hosts/${host}
             ./hosts/${host}/hardware-configuration.nix
-
             inputs.home-manager.nixosModules.home-manager
           ];
         };
     in
     {
+      homeManagerModules.default = (inputs.import-tree ./home-manager-modules);
+
       nixosConfigurations =
         {
           pc = "x86_64-linux";
@@ -54,7 +55,7 @@
     nixvim.url = "github:nix-community/nixvim";
     import-tree.url = "github:denful/import-tree";
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

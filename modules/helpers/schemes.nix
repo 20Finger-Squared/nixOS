@@ -4,9 +4,6 @@ rec {
 
   scheme = {
     gruvbox = {
-      description = "Color scheme configuration";
-      scheme = "Gruvbox dark, hard";
-      author = "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)";
       base00 = "#1d2021"; # black (background
       base01 = "#3c3836"; # (Darkest Gray)
       base02 = "#504945"; # (Dark Gray)

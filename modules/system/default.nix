@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./garbage-collection.nix
     ./asha.nix
     ./audio.nix
     ./bluetooth.nix
