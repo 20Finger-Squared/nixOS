@@ -23,8 +23,9 @@ mkConfig.system "users" inputs {
       prismlauncher
       teamspeak6-client
       obs-studio
-      pkgs.azahar
-      pkgs.lmms
+      azahar
+      lmms
+      ytmdesktop
     ];
   };
   programs.firefox.enable = true;
