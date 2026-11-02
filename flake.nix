@@ -53,6 +53,8 @@
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixvim.url = "github:nix-community/nixvim";
+    hyprland-package.url = "github:hyprwm/Hyprland";
+
     import-tree.url = "github:denful/import-tree";
     home-manager = {
       url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";

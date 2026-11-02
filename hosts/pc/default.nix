@@ -24,6 +24,7 @@
   };
 
   desktop-config = {
+    hyprland = true;
     steam = true;
     plasma = true;
     via = true;
