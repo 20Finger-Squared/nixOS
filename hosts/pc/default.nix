@@ -20,6 +20,7 @@
     printing = true;
     security = true;
     users = true;
+    garbage-collection.nh = true;
   };
 
   desktop-config = {

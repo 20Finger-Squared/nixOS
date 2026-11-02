@@ -17,9 +17,5 @@ mkConfig.system "nix" inputs {
       ];
     };
 
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-    };
   };
 }
