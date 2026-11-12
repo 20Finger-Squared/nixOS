@@ -9,7 +9,7 @@ let
   lib_nixvim = config.lib.nixvim;
 in
 {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+  imports = [ inputs.nixvim.homeModules.nixvim ];
 
   options.home-manager-config.nixvim = lib.mkEnableOption "my home-manager nixvim config";
   config = lib.mkIf config.home-manager-config.nixvim {

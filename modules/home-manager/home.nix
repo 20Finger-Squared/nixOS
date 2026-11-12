@@ -1,8 +1,4 @@
-{
-  colourscheme,
-  inputs,
-  ...
-}:
+{ colourscheme, inputs, ... }:
 {
   home-manager.users."tf" = {
     imports = [
@@ -29,12 +25,13 @@
       inputs.self.outputs.homeManagerModules.default
     ];
   };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs;
-      inherit colourscheme;
+      inputs = inputs;
+      colourscheme = colourscheme;
     };
   };
 }
