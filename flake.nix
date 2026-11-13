@@ -93,6 +93,12 @@
           home-manager-modules.default = inputs.import-tree ./modules/home-manager-modules;
 
           /*
+           I decided to use qml files over nix.
+           The reason for such is that quickshell doesn't have a way to configure it within nix.
+          */
+          quickshell-config.default = ./modules/quickshell-config;
+
+          /*
             While initially complex it's easy to understand.
             `config.nixos` contains an attr set of
             ```nix
@@ -145,6 +151,11 @@
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixvim.url = "github:nix-community/nixvim";
     hyprland-package.url = "github:hyprwm/Hyprland";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     import-tree.url = "github:denful/import-tree";
     home-manager = {
