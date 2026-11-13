@@ -1,4 +1,4 @@
-{ mkScheme, ... }:
+{ mkScheme, flake, ... }:
 rec {
   _module.args.colourscheme = mkScheme scheme.gruvbox;
 

@@ -55,7 +55,13 @@ in
           }
         ];
 
+
         config = {
+          input = {
+            repeat_rate = 30;
+            repeat_delay = 300;
+          };
+
           master = {
             mfact = 0.7;
 
@@ -87,15 +93,13 @@ in
               passes = 2;
               popups = true;
               size = 5;
-              # variant = "acrylic";
+              variant = "acrylic";
             };
-            # motion_blur = true;
-            # wobble = {
-            #   enabled = false;
-            #   stiffness = 600;
-            #   damping = 25;
-            #   mass = 50;
-            # };
+
+            motion_blur = {
+              enabled = true;
+              samples = 7;
+            };
           };
         };
 

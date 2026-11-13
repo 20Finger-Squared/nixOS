@@ -1,8 +1,5 @@
-{ colourscheme, inputs, ... }:
 {
-  home-manager.users."tf" = {
-    imports = [
-      ({ ... }: {
+  home-manager.users."tf".config = {
         home.stateVersion = "26.05";
         home-manager-config = {
           tmux = true;
@@ -19,19 +16,7 @@
           hyprland = true;
           hyprtoolkit = true;
           hyprlauncher = true;
+          quickshell = true;
         };
-      })
-
-      inputs.self.outputs.homeManagerModules.default
-    ];
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inputs = inputs;
-      colourscheme = colourscheme;
-    };
   };
 }

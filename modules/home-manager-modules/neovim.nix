@@ -70,6 +70,7 @@ in
 
           grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
             bash
+            c
             json
             lua
             make
@@ -81,6 +82,7 @@ in
             vimdoc
             xml
             yaml
+            qmljs
           ];
         };
 
