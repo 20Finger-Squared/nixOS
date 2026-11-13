@@ -1,7 +1,7 @@
 {
   description = "My conf";
 
-  nixConfig.extra-experimetal-features = [
+  nixConfig.extra-experimental-features = [
     "pipe-operators"
   ];
 
