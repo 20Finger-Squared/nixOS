@@ -1,12 +1,5 @@
-{
-  colourscheme,
-  lib,
-  config,
-  ...
-}:
-{
-  options.home-manager-config.starship = lib.mkEnableOption "My home-manager starship config.";
-  config = lib.mkIf config.home-manager-config.starship {
+{ colourscheme, mkConfig, ... }@module-args:
+mkConfig.home.software "starship" module-args {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
@@ -83,5 +76,4 @@
         };
       };
     };
-  };
 }

@@ -1,12 +1,6 @@
+{ mkConfig, colourscheme, ... }@module-args:
+mkConfig.home.software "kitty" module-args
 {
-  colourscheme,
-  lib,
-  config,
-  ...
-}:
-{
-  options.home-manager-config.kitty = lib.mkEnableOption "My home-manager kitty config";
-  config = lib.mkIf config.home-manager-config.kitty {
     programs.kitty = {
       enable = true;
 
@@ -52,5 +46,4 @@
         color15 = colourscheme.lighter-white;
       };
     };
-  };
 }

@@ -1,7 +1,5 @@
-{ lib, config, ... }:
-{
-  options.home-manager-config.tmux = lib.mkEnableOption "My home-manager tmux config";
-  config = lib.mkIf config.home-manager-config.tmux {
+{ mkConfig, ... }@module-args:
+mkConfig.home.software "tmux" module-args {
     programs.tmux = {
       enable = true;
       baseIndex = 1;
@@ -22,5 +20,4 @@
         set-option -g default-terminal "st-256color"
       '';
     };
-  };
 }

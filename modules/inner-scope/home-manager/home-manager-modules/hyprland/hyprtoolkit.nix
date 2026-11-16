@@ -1,12 +1,5 @@
-{
-  colourscheme,
-  lib,
-  config,
-  ...
-}:
-{
-  options.home-manager-config.hyprtoolkit = lib.mkEnableOption "My home-manager hyprtoolkit config";
-  config = lib.mkIf config.home-manager-config.hyprtoolkit {
+{ mkConfig,colourscheme, ... }@module-args:
+mkConfig.home.software "hyprtoolkit" module-args {
     programs.hyprtoolkit = {
       enable = true;
       settings = {
@@ -15,5 +8,4 @@
         accent = "0xFF${colourscheme.noHashtag.base0A}";
       };
     };
-  };
 }

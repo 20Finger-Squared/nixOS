@@ -1,12 +1,5 @@
-{
-  colourscheme,
-  lib,
-  config,
-  ...
-}:
-{
-  options.home-manager-config.qutebrowser = lib.mkEnableOption "My home-manager qutebrowser config";
-  config = lib.mkIf config.home-manager-config.qutebrowser {
+{ colourscheme, mkConfig, ... }@module-args:
+mkConfig.home.software "qutebrowser" module-args {
     programs.qutebrowser = {
       enable = true;
       enableDefaultBindings = true;
@@ -474,5 +467,4 @@
         };
       };
     };
-  };
 }

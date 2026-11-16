@@ -1,12 +1,6 @@
+{mkConfig, pkgs, ...}@module-args:
+mkConfig.home.software "gtk" module-args
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  options.home-manager-config.gtk = lib.mkEnableOption "My home-manager gtk config";
-  config = lib.mkIf config.home-manager-config.gtk {
     gtk = {
       enable = true;
       colorScheme = "dark";
@@ -27,5 +21,4 @@
         package = pkgs.nerd-fonts.jetbrains-mono;
       };
     };
-  };
 }

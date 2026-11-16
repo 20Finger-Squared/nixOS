@@ -1,7 +1,5 @@
-{ config, lib, ... }:
-{
-  options.home-manager-config.zsh = lib.mkEnableOption "My home-manager zsh config";
-  config = lib.mkIf config.home-manager-config.zsh {
+{ mkConfig, ... }@module-args:
+mkConfig.home.software "zsh" module-args {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -21,6 +19,12 @@
         "cd" = "z";
       };
 
+      initContent = ''
+      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+      fi'';
+
+
       setOptions = [
         "AUTO_PUSHD"
         "PUSHD_IGNORE_DUPS"
@@ -33,5 +37,4 @@
         "CORRECT"
       ];
     };
-  };
 }

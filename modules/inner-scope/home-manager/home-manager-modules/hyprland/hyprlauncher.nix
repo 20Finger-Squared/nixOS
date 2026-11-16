@@ -1,7 +1,6 @@
-{ lib, config, ... }:
+{ mkConfig, ... }@module-args:
+mkConfig.home.software "hyprlauncher" module-args
 {
-  options.home-manager-config.hyprlauncher = lib.mkEnableOption "My home-manager hyprlauncher config";
-  config = lib.mkIf config.home-manager-config.hyprlauncher {
     services.hyprlauncher = {
       enable = true;
       settings = {
@@ -11,5 +10,4 @@
         ui.window_size = "800 520";
       };
     };
-  };
 }

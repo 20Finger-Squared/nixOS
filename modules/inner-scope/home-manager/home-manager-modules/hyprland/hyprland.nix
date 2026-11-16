@@ -1,11 +1,4 @@
-{
-  lib,
-  config,
-  colourscheme,
-  inputs,
-  pkgs,
-  ...
-}:
+{ lib, colourscheme, mkConfig, inputs, pkgs, ... }@module-args:
 let
   concat-bindings = lib.concatStringsSep "+";
 
@@ -32,17 +25,15 @@ let
     "SHIFT"
   ];
 in
+mkConfig.home.software "hyprland" module-args
 {
-  options.home-manager-config.hyprland = lib.mkEnableOption "My home-manager hyprland config";
-  config = lib.mkIf config.home-manager-config.hyprland {
     wayland.windowManager.hyprland = {
       enable = true;
       configType = "lua";
       xwayland.enable = true;
       package = inputs.hyprland-package.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # make sure to also set the portal package, so that they are in sync
-      portalPackage =
-        inputs.hyprland-package.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      portalPackage = inputs.hyprland-package.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
       submaps = { };
 
@@ -248,5 +239,4 @@ in
         hl.window_rule({ match = { float = false, workspace = "f[1]" }, rounding = 0 })
       '';
     };
-  };
 }

@@ -1,12 +1,15 @@
-{ colourscheme, inputs, flake, ... }:
+{ colourscheme, inputs, flake, config, ... }:
 {
-  home-manager = {
-    sharedModules = [ flake.home-manager-modules.default ];
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inputs = inputs;
-      colourscheme = colourscheme;
-    };
+home-manager = {
+  sharedModules = config.home-manager-modules ++ [
+    inputs.nixvim.homeModules.nixvim
+  ];
+
+  useGlobalPkgs = true;
+  useUserPackages = true;
+
+  extraSpecialArgs = {
+    inherit colourscheme inputs flake;
   };
+};
 }

@@ -1,7 +1,9 @@
+{ inputs,... }:
 {
-  home-manager.users."tf".config = {
+  home-manager.users.tf={
+    config = {
         home.stateVersion = "26.05";
-        home-manager-config = {
+        software-config = {
           tmux = true;
           gtk = true;
           zoxide = true;
@@ -10,7 +12,7 @@
           zsh = true;
           eza = true;
           starship = true;
-          nixvim = true;
+          neovim = true;
           vesktop = true;
           kitty = true;
           hyprland = true;
@@ -18,5 +20,6 @@
           hyprlauncher = true;
           quickshell = true;
         };
+  };
   };
 }
