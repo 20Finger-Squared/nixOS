@@ -66,7 +66,6 @@ mkConfig.home.software "quickshell" module-args
         readonly property color base14:        "${colourscheme.base14}"
         readonly property color base15:        "${colourscheme.base15}"
         readonly property color base16:        "${colourscheme.base16}"
-        readonly property color base16:        "${colourscheme.base17}"
         }
         '';
         quickshellConfig = pkgs.runCommand "quickshell-config" {} ''
