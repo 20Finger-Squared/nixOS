@@ -1,34 +1,42 @@
 import QtQuick
-import "."
 
-Rectangle {
-    color: Colours.darkestGray
+Item {
+  Segment {
+    id: middle
 
-    implicitWidth: text.implicitWidth + 30
-    implicitHeight: text.implicitHeight + 10
+    anchors.centerIn: parent.centerIn
+    anchors.verticalCenter: parent.verticalCenter
 
-    Rectangle {
-      anchors {
-        bottom: parent.bottom
-        horizontalCenter: parent.horizontalCenter
-      }
-      implicitWidth: parent.implicitWidth
-      height: 2
-      color: text.color
-    }
+    segment_text: Time.time
+    segment_text_colour: Colours.blue
 
+    left_border_colour: Colours.darkGray
+    right_border_colour: Colours.darkGray
+    left_border_width: 3
+    right_border_width: 3
+  }
 
-    Text {
-      id: text
+  Segment {
+    id: left
 
-      font {
-        family: "Jetbrains Mono NF"
-        weight: Font.ExtraBold
-        pixelSize: 15
-      }
+    anchors.right: middle.left
+    anchors.verticalCenter: parent.verticalCenter
 
-      anchors.centerIn: parent
-      text: Time.time
-      color: Colours.blue
-    }
+    segment_text: Time.day
+    segment_text_colour: Colours.yellow
+
+    right_border_width: 0
+  }
+
+  Segment {
+    id: right
+
+    anchors.left: middle.right
+    anchors.verticalCenter: parent.verticalCenter
+
+    segment_text: Time.date
+    segment_text_colour: Colours.magenta
+
+    left_border_width: 0
+  }
 }

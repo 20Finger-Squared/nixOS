@@ -1,10 +1,7 @@
 import Quickshell
-import Quickshell
-
+import QtQuick
 
 Scope {
-  // no more time object
-
   Variants {
     model: Quickshell.screens
 
@@ -13,6 +10,17 @@ Scope {
       screen: modelData
 
       color: Colours.bg
+
+      Rectangle { // bottom line
+        color: Colours.gray
+        height: 2
+        width: parent.width
+
+        anchors {
+          bottom: parent.bottom
+          horizontalCenter: parent.horizontalCenter
+        }
+      }
 
       AudioWidget {
         anchors.verticalCenter: parent.verticalCenter
