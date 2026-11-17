@@ -71,6 +71,7 @@ mkConfig.home.software "quickshell" module-args
         quickshellConfig = pkgs.runCommand "quickshell-config" {} ''
           mkdir -p $out
           cp -r ${inputs.self.outputs.quickshell-config.default}/* $out/
+          rm $out/default.nix
           cp ${colourscheme-file} $out/Colours.qml
         '';
       in
