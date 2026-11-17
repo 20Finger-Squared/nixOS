@@ -1,5 +1,15 @@
 {lib,...}:{
-        flake.mkConfig.default =
+  /*
+  This can be ignored if you're not gonna look inside ./modules/inner-scope or ./modules/outer-scope/home-manager-modules as these are merely helper functions
+  This function is designed to be used alongside currying, which is why it has so many parameters rather than an attribute set.
+  All it does is create a boolean option called `${config-tag}.${config-name}'
+  It then sets `config` to the given attrset
+
+  Using module-args.lib instead of the local lib was intentional
+  I decided to use it instead of the local `lib` to avoid potential issues,
+  if I decide to use another library ( For some reason ).
+  */
+   flake.mkConfig.default =
       let
       options = {
         system = "system-config";
