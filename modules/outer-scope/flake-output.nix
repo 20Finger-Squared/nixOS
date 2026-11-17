@@ -4,7 +4,7 @@
       So it creates all the hosts.
       Think of it as another name for outputs.
     */
-    {config,inputs,lib,mkConfig,...}:
+    {config,inputs,lib,...}:
     {
       flake = {
 
@@ -35,7 +35,9 @@
             # This means anything within modules within this is considered the inner-scope
             lib.nixosSystem {
               specialArgs = {
-                inherit inputs mkConfig;
+                inherit inputs;
+
+                mkConfig = config.flake.mkConfig.default;
 
                 # merging the attrset prevents a niche recursion error if you use nixosConfigurations within the inner-scope.
                 flake = config.flake // {nixosConfigurations = throw "Usage of `flake.nixosConfigurations` within the inner-scope is strictly prohibited.";};
