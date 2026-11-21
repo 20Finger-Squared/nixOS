@@ -9,7 +9,16 @@ Scope {
       required property var modelData
       screen: modelData
 
-      color: Colours.bg
+      color: "transparent"
+
+      implicitHeight: 30
+
+      anchors {
+
+        top: true
+        left: true
+        right: true
+      }
 
       Rectangle { // bottom line
         color: Colours.gray
@@ -27,17 +36,14 @@ Scope {
         anchors.leftMargin: 40
       }
 
-      anchors {
-        top: true
-        left: true
-        right: true
-      }
-
-      implicitHeight: 30
-
       ClockWidget {
         anchors.verticalCenter: parent.verticalCenter
         anchors.centerIn: parent
+      }
+
+      OtherWidget {
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
       }
     }
   }

@@ -1,11 +1,18 @@
 import QtQuick
 
 Item {
+  id: root
+
+  implicitWidth: left.width + middle.width + right.width
+  implicitHeight: 35
+
   Segment {
     id: middle
 
-    anchors.centerIn: parent.centerIn
-    anchors.verticalCenter: parent.verticalCenter
+    anchors.centerIn: root.centerIn
+
+    anchors.top: root.top
+    anchors.bottom: root.bottom
 
     segment_text: Time.time
     segment_text_colour: Colours.blue
@@ -20,7 +27,8 @@ Item {
     id: left
 
     anchors.right: middle.left
-    anchors.verticalCenter: parent.verticalCenter
+    anchors.top: root.top
+    anchors.bottom: root.bottom
 
     segment_text: Time.day
     segment_text_colour: Colours.yellow
@@ -32,7 +40,8 @@ Item {
     id: right
 
     anchors.left: middle.right
-    anchors.verticalCenter: parent.verticalCenter
+    anchors.top: root.top
+    anchors.bottom: root.bottom
 
     segment_text: Time.date
     segment_text_colour: Colours.magenta

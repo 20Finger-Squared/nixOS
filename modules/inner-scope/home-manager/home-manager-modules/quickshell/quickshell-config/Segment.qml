@@ -4,10 +4,28 @@ import Quickshell
 Rectangle {
   color: Colours.darkestGray
 
-  implicitWidth:  segment_text_object.implicitWidth + 30
-  implicitHeight: segment_text_object.implicitHeight + 10
+  implicitWidth:  segment_text_object.implicitWidth + left_border.implicitWidth + right_border.implicitWidth + 30
+  implicitHeight: segment_text_object.implicitHeight + bottom_border.implicitHeight + 10
   width: implicitWidth
   height: implicitHeight
+
+  property string segment_text: Time.time
+  property color segment_text_colour: Colours.fg
+  property string segment_font_family: "JetBrains Mono NF"
+  property int segment_font_weight: Font.ExtraBold
+  property int segment_font_size: 15
+
+  Text {
+      id: segment_text_object
+
+      anchors.centerIn: parent
+      text: segment_text
+      color: segment_text_colour
+
+      font.family: segment_font_family
+      font.weight: segment_font_weight
+      font.pixelSize: segment_font_size
+  }
 
   // Border: left
   property color left_border_colour: segment_text_colour
@@ -49,30 +67,11 @@ Rectangle {
 
     color: bottom_border_colour
     height: bottom_border_width
-
     width: parent.width
 
+    anchors.bottom: parent.bottom
     anchors {
-      bottom: parent.bottom
       horizontalCenter: parent.horizontalCenter
     }
-  }
-
-  property string segment_text: Time.time
-  property color segment_text_colour: Colours.fg
-  property string segment_font_family: "JetBrains Mono NF"
-  property int segment_font_weight: Font.ExtraBold
-  property int segment_font_size: 15
-
-  Text {
-      id: segment_text_object
-
-      anchors.centerIn: parent
-      text: segment_text
-      color: segment_text_colour
-
-      font.family: segment_font_family
-      font.weight: segment_font_weight
-      font.pixelSize: segment_font_size
   }
 }
