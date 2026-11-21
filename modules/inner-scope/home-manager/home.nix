@@ -3,6 +3,7 @@
 home-manager = {
   sharedModules = config.home-manager-modules ++ [
     inputs.nixvim.homeModules.nixvim
+    inputs.nix4nvchad.homeManagerModules.default
     inputs.mangowm.hmModules.mango
   ];
 

@@ -6,8 +6,10 @@ mkConfig.home.software "neovim" module-args (hm-args:
   in
   {
 
+    programs.nvchad.enable=true;
+
   programs.nixvim = {
-    enable = true;
+    enable = false;
     colorschemes.gruvbox.enable = true;
 
     globals = {
