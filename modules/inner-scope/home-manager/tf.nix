@@ -1,9 +1,11 @@
-{ inputs,... }:
+{ inputs, ... }:
 {
   home-manager.users.tf={
     config = {
         home.stateVersion = "26.05";
         software-config = {
+          fuzzel = true;
+          mangowc = true;
           tmux = true;
           gtk = true;
           zoxide = true;

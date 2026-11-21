@@ -25,6 +25,7 @@
     };
 
     desktop-config = {
+      mangowc=true;
       hyprland = true;
       steam = true;
       plasma = true;

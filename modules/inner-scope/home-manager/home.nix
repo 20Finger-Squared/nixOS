@@ -3,6 +3,7 @@
 home-manager = {
   sharedModules = config.home-manager-modules ++ [
     inputs.nixvim.homeModules.nixvim
+    inputs.mangowm.hmModules.mango
   ];
 
   useGlobalPkgs = true;
